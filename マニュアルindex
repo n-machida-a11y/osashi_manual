@@ -5,15 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>おさし 業務管理システム マニュアル</title>
 
-  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Tailwind CSS (各アプリのUI再現用) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      corePlugins: { preflight: false }
-    }
+    tailwind.config = { corePlugins: { preflight: false } }
   </script>
 
   <style>
@@ -61,7 +56,6 @@
       border-bottom: 1px dashed #ced4da;
       padding-bottom: 5px;
     }
-    /* 画像プレースホルダー */
     .image-placeholder {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       background-color: #e2e8f0; border: 2px dashed #94a3b8; border-radius: 8px;
@@ -74,7 +68,6 @@
 </head>
 <body>
 
-  <!-- ヘッダー -->
   <header class="manual-header shadow-sm">
     <div class="container">
       <h1 class="h3 mb-0">おさし 業務管理システム マニュアル</h1>
@@ -83,30 +76,18 @@
 
   <div class="container pb-5">
 
-    <!-- タブナビゲーション -->
     <ul class="nav nav-pills mb-4" id="manualTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="sales-tab" data-bs-toggle="pill" data-bs-target="#sales" type="button" role="tab">営業担当者編</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="clerk-tab" data-bs-toggle="pill" data-bs-target="#clerk" type="button" role="tab">営業事務編</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="shipping-tab" data-bs-toggle="pill" data-bs-target="#shipping" type="button" role="tab">出荷処理編</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="irregular-tab" data-bs-toggle="pill" data-bs-target="#irregular" type="button" role="tab">イレギュラー対応</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="admin-tab" data-bs-toggle="pill" data-bs-target="#admin" type="button" role="tab">管理者向け</button>
-      </li>
+      <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#sales" type="button">営業担当者編</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#clerk" type="button">営業事務編</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#shipping" type="button">出荷処理編</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#irregular" type="button">イレギュラー対応</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#admin" type="button">管理者向け</button></li>
     </ul>
 
-    <!-- タブコンテンツ -->
-    <div class="tab-content" id="manualTabContent">
+    <div class="tab-content">
 
-      <!-- ================= 1. 営業担当者編 ================= -->
-      <div class="tab-pane fade show active" id="sales" role="tabpanel">
+      <!-- ===== 営業担当者編 ===== -->
+      <div class="tab-pane fade show active" id="sales">
         <h2 class="h4 mb-4 text-primary border-bottom pb-2">営業担当者編（受注データの取り込み〜提出）</h2>
 
         <div class="step-box">
@@ -120,8 +101,8 @@
           <p>メニューの左端にある「データ取り込み」ボタンをクリックし、基幹システム（商魂）からダウンロードした<strong>テキスト（TXT）データ</strong>（複数可）を読み込ませます。これでベースとなる「受注兼発送依頼書」が作成されます。</p>
 
           <div class="image-placeholder">
-            <img src="" alt="受注データ取込画面">
-            <div>📷 受注データ取込画面のスクリーンショット<br><small>※ src="" に画像URLを入れると表示されます</small></div>
+            <img src="<?= img_import ?>" alt="受注データ取込画面">
+            <div>📷 受注データ取込画面<br><small>（管理者タブから画像を設定できます）</small></div>
           </div>
 
           <div class="mockup-container">
@@ -147,8 +128,8 @@
           <small class="text-muted">※ステータスや検索ボックスで絞り込むことが可能です。</small>
 
           <div class="image-placeholder">
-            <img src="" alt="ダッシュボードの受注一覧">
-            <div>📷 ダッシュボード（受注一覧）のスクリーンショット</div>
+            <img src="<?= img_dashboard ?>" alt="ダッシュボードの受注一覧">
+            <div>📷 ダッシュボード（受注一覧）</div>
           </div>
 
           <div class="mockup-container">
@@ -178,8 +159,8 @@
           <p>受注兼アプリでは、取引に必要な詳細情報の入力や、様々な付帯機能を利用できます。必要な情報を入力後、右上の<strong>「提出」</strong>ボタンを押して営業事務へ連携します。</p>
 
           <div class="image-placeholder">
-            <img src="" alt="受注兼アプリ画面全体">
-            <div>📷 受注兼発送依頼書アプリのスクリーンショット</div>
+            <img src="<?= img_juchu ?>" alt="受注兼アプリ画面全体">
+            <div>📷 受注兼発送依頼書アプリ</div>
           </div>
 
           <h6 class="font-bold mt-4 border-l-4 border-blue-500 pl-2">主な機能と入力項目</h6>
@@ -237,8 +218,8 @@
           <p>必要な場合、注文書作成アプリを開き、お客様への提出用「注文書PDF」を作成します。</p>
 
           <div class="image-placeholder">
-            <img src="" alt="注文書プレビュー画面">
-            <div>📷 注文書プレビュー画面のスクリーンショット</div>
+            <img src="<?= img_ordersheet ?>" alt="注文書プレビュー画面">
+            <div>📷 注文書プレビュー画面</div>
           </div>
 
           <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
@@ -294,8 +275,8 @@
 
       </div><!-- /sales -->
 
-      <!-- ================= 2. 営業事務編 ================= -->
-      <div class="tab-pane fade" id="clerk" role="tabpanel">
+      <!-- ===== 営業事務編 ===== -->
+      <div class="tab-pane fade" id="clerk">
         <h2 class="h4 mb-4 text-success border-bottom pb-2">営業事務編（内容の確認〜処理完了）</h2>
 
         <div class="step-box">
@@ -315,8 +296,8 @@
           <small class="text-muted">※処理完了後でも、追記や修正が発生した場合は「再編集」ボタンでロックを解除して編集状態に戻すことができます。</small>
 
           <div class="image-placeholder">
-            <img src="" alt="事務向けアクションボタン画面">
-            <div>📷 処理開始・処理完了ボタンのスクリーンショット</div>
+            <img src="<?= img_clerk ?>" alt="事務向けアクションボタン画面">
+            <div>📷 処理開始・処理完了ボタン</div>
           </div>
 
           <div class="mockup-container">
@@ -329,12 +310,8 @@
                 </div>
                 <div class="flex-1"></div>
                 <div class="flex items-center space-x-2">
-                  <div class="flex items-center px-3 py-1.5 bg-gray-100 border border-gray-300 rounded text-gray-500 font-bold text-xs">
-                    🔒 ロック中
-                  </div>
-                  <button class="px-4 py-1.5 bg-green-700 border-0 text-white rounded shadow-sm font-medium text-xs">
-                    ✅ 処理完了
-                  </button>
+                  <div class="flex items-center px-3 py-1.5 bg-gray-100 border border-gray-300 rounded text-gray-500 font-bold text-xs">🔒 ロック中</div>
+                  <button class="px-4 py-1.5 bg-green-700 border-0 text-white rounded shadow-sm font-medium text-xs">✅ 処理完了</button>
                 </div>
               </div>
             </div>
@@ -342,8 +319,8 @@
         </div>
       </div><!-- /clerk -->
 
-      <!-- ================= 3. 出荷処理編 ================= -->
-      <div class="tab-pane fade" id="shipping" role="tabpanel">
+      <!-- ===== 出荷処理編 ===== -->
+      <div class="tab-pane fade" id="shipping">
         <h2 class="h4 mb-4 text-info border-bottom pb-2">出荷処理編（出荷明細書の作成）</h2>
 
         <div class="step-box">
@@ -368,8 +345,8 @@
           </ul>
 
           <div class="image-placeholder">
-            <img src="" alt="出荷明細アプリ画面">
-            <div>📷 出荷明細アプリ（商品選択）のスクリーンショット</div>
+            <img src="<?= img_shipping ?>" alt="出荷明細アプリ画面">
+            <div>📷 出荷明細アプリ（商品選択）</div>
           </div>
 
           <div class="mockup-container">
@@ -414,9 +391,7 @@
                   </div>
                 </li>
               </ul>
-              <button class="w-full bg-[#007bff] border-0 text-white font-bold py-3 rounded mt-4 text-base shadow-sm">
-                出荷伝票を作成する
-              </button>
+              <button class="w-full bg-[#007bff] border-0 text-white font-bold py-3 rounded mt-4 text-base shadow-sm">出荷伝票を作成する</button>
             </div>
           </div>
         </div>
@@ -434,8 +409,8 @@
         </div>
       </div><!-- /shipping -->
 
-      <!-- ================= 4. イレギュラー対応 ================= -->
-      <div class="tab-pane fade" id="irregular" role="tabpanel">
+      <!-- ===== イレギュラー対応 ===== -->
+      <div class="tab-pane fade" id="irregular">
         <h2 class="h4 mb-4 text-warning border-bottom pb-2">イレギュラー対応編</h2>
 
         <div class="step-box" style="border-left-color: #fd7e14;">
@@ -472,9 +447,41 @@
         </div>
       </div><!-- /irregular -->
 
-      <!-- ================= 5. 管理者向け ================= -->
-      <div class="tab-pane fade" id="admin" role="tabpanel">
+      <!-- ===== 管理者向け ===== -->
+      <div class="tab-pane fade" id="admin">
         <h2 class="h4 mb-4 text-secondary border-bottom pb-2">管理者向け</h2>
+
+        <!-- 画像設定フォーム -->
+        <div class="step-box" style="border-left-color: #0d6efd;">
+          <h5>📸 マニュアル画像の管理</h5>
+          <p>各画面のスクリーンショットをGoogleドライブにアップロードし、ファイルIDを入力して保存してください。<br>
+          保存後はブラウザをリロードすると画像が反映されます。</p>
+
+          <div class="alert alert-info py-2 mb-3">
+            <strong>ファイルIDの確認方法：</strong>
+            ドライブでファイルを右クリック →「共有」→「リンクを知っている全員」に設定 →
+            共有リンクの <code>/d/</code> と <code>/view</code> の間の文字列がファイルIDです。<br>
+            例）<code>https://drive.google.com/file/d/<strong>1aBcDeFgHiJk</strong>/view</code>
+          </div>
+
+          <table class="table table-bordered table-sm align-middle">
+            <thead class="table-light">
+              <tr><th style="width:30%">対象画面</th><th>ドライブ ファイルID</th><th style="width:15%">状態</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>データ取込画面</td><td><input class="form-control form-control-sm" id="img_import" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_import" class="text-center">—</td></tr>
+              <tr><td>ダッシュボード</td><td><input class="form-control form-control-sm" id="img_dashboard" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_dashboard" class="text-center">—</td></tr>
+              <tr><td>受注兼アプリ</td><td><input class="form-control form-control-sm" id="img_juchu" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_juchu" class="text-center">—</td></tr>
+              <tr><td>注文書プレビュー</td><td><input class="form-control form-control-sm" id="img_ordersheet" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_ordersheet" class="text-center">—</td></tr>
+              <tr><td>出荷明細アプリ</td><td><input class="form-control form-control-sm" id="img_shipping" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_shipping" class="text-center">—</td></tr>
+              <tr><td>事務向けボタン</td><td><input class="form-control form-control-sm" id="img_clerk" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_clerk" class="text-center">—</td></tr>
+              <tr><td>管理用スプレッドシート</td><td><input class="form-control form-control-sm" id="img_admin_db" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_admin_db" class="text-center">—</td></tr>
+            </tbody>
+          </table>
+
+          <button class="btn btn-primary" onclick="saveImageSettings()">💾 保存する</button>
+          <span id="save-msg" class="ms-3 fw-bold"></span>
+        </div>
 
         <div class="step-box" style="border-left-color: #6c757d;">
           <h5>マスターデータのメンテナンス</h5>
@@ -482,17 +489,8 @@
           （アプリ起動時に自動で最新情報が読み込まれます）</p>
 
           <div class="image-placeholder">
-            <img src="" alt="スプレッドシートDBの画面">
-            <div>📷 管理用スプレッドシート（DB）のスクリーンショット</div>
-          </div>
-        </div>
-
-        <div class="step-box" style="border-left-color: #6c757d;">
-          <h5>マニュアルの更新について</h5>
-          <p>このマニュアル自体は、GASの <code>マニュアルindex</code> ファイルに記述されています。記載内容や画像（モックアップ）を変更したい場合は、対象のGASプロジェクトのスクリプトエディタを開き、HTMLタグを直接編集してデプロイし直してください。</p>
-          <div class="alert alert-info mt-3 mb-0">
-            <strong>📸 実際の画面キャプチャを表示する方法</strong><br>
-            各ステップにある <code>&lt;img src=""&gt;</code> タグの <code>src=""</code> に、Google ドライブの公開リンクや画像のURLを指定するだけで、実際のキャプチャ画像をマニュアル内に表示できます。
+            <img src="<?= img_admin_db ?>" alt="スプレッドシートDBの画面">
+            <div>📷 管理用スプレッドシート（DB）</div>
           </div>
         </div>
 
@@ -511,7 +509,56 @@
     </div><!-- /tab-content -->
   </div><!-- /container -->
 
-  <!-- Bootstrap 5 JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const IMAGE_KEYS = ['img_import','img_dashboard','img_juchu','img_ordersheet','img_shipping','img_clerk','img_admin_db'];
+
+    // 管理者タブを開いたときに現在の設定を読み込む
+    document.querySelector('[data-bs-target="#admin"]').addEventListener('shown.bs.tab', function() {
+      loadImageSettings();
+    });
+
+    function loadImageSettings() {
+      google.script.run
+        .withSuccessHandler(function(settings) {
+          IMAGE_KEYS.forEach(function(key) {
+            var input = document.getElementById(key);
+            var status = document.getElementById('st_' + key);
+            if (input) input.value = settings[key] || '';
+            if (status) status.innerHTML = settings[key] ? '<span class="text-success">✅ 設定済</span>' : '<span class="text-muted">未設定</span>';
+          });
+        })
+        .getImageSettings();
+    }
+
+    function saveImageSettings() {
+      var settings = {};
+      IMAGE_KEYS.forEach(function(key) {
+        var input = document.getElementById(key);
+        if (input) settings[key] = input.value;
+      });
+
+      var msg = document.getElementById('save-msg');
+      msg.textContent = '保存中...';
+      msg.className = 'ms-3 fw-bold text-secondary';
+
+      google.script.run
+        .withSuccessHandler(function(result) {
+          if (result.success) {
+            msg.textContent = '✅ 保存しました。ブラウザをリロードすると画像が反映されます。';
+            msg.className = 'ms-3 fw-bold text-success';
+            loadImageSettings();
+          } else {
+            msg.textContent = '❌ エラー: ' + result.error;
+            msg.className = 'ms-3 fw-bold text-danger';
+          }
+        })
+        .withFailureHandler(function(err) {
+          msg.textContent = '❌ エラー: ' + err.message;
+          msg.className = 'ms-3 fw-bold text-danger';
+        })
+        .saveImageSettings(settings);
+    }
+  </script>
 </body>
 </html>

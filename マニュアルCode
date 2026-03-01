@@ -1,5 +1,54 @@
 function doGet() {
-  return HtmlService.createHtmlOutputFromFile('マニュアルindex')
-    .setTitle('おさし 業務管理システム 使用者・管理者マニュアル')
+  const tmpl = HtmlService.createTemplateFromFile('マニュアルindex');
+  const props = PropertiesService.getScriptProperties();
+  const keys = [
+    'img_import', 'img_dashboard', 'img_juchu',
+    'img_ordersheet', 'img_shipping', 'img_clerk', 'img_admin_db'
+  ];
+  keys.forEach(function(key) {
+    const fileId = props.getProperty(key) || '';
+    tmpl[key] = fileId ? fileToBase64(fileId) : '';
+  });
+  return tmpl.evaluate()
+    .setTitle('おさし 業務管理システム マニュアル')
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+function fileToBase64(fileId) {
+  try {
+    const blob = DriveApp.getFileById(fileId).getBlob();
+    return 'data:' + blob.getContentType() + ';base64,' + Utilities.base64Encode(blob.getBytes());
+  } catch(e) {
+    return '';
+  }
+}
+
+function saveImageSettings(settings) {
+  try {
+    const props = PropertiesService.getScriptProperties();
+    Object.keys(settings).forEach(function(key) {
+      const val = settings[key];
+      if (val && val.trim()) {
+        props.setProperty(key, val.trim());
+      } else {
+        props.deleteProperty(key);
+      }
+    });
+    return { success: true };
+  } catch(e) {
+    return { success: false, error: e.message };
+  }
+}
+
+function getImageSettings() {
+  const props = PropertiesService.getScriptProperties();
+  return {
+    img_import:     props.getProperty('img_import')     || '',
+    img_dashboard:  props.getProperty('img_dashboard')  || '',
+    img_juchu:      props.getProperty('img_juchu')      || '',
+    img_ordersheet: props.getProperty('img_ordersheet') || '',
+    img_shipping:   props.getProperty('img_shipping')   || '',
+    img_clerk:      props.getProperty('img_clerk')      || '',
+    img_admin_db:   props.getProperty('img_admin_db')   || ''
+  };
 }
