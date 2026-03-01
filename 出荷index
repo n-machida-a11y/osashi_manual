@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <!-- デザインを整えるためのライブラリ（Tailwind CSS）を読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* 全体のレイアウト調整 */
+      body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f3f4f6; }
+      .sidebar { height: 100vh; overflow-y: auto; }
+      .main-content { height: 100vh; overflow-y: auto; }
+      /* 選択された行のハイライト */
+      .selected-order { background-color: #dbeafe; border-left: 4px solid #2563eb; }
+      /* テーブルの見た目 */
+      th { position: sticky; top: 0; background-color: #f9fafb; z-index: 10; }
+    </style>
+  </head>
+  <body class="flex h-screen overflow-hidden">
+
+    <!-- 左サイドバー：受注リスト -->
+    <div class="w-1/3 bg-white border-r border-gray-200 flex flex-col sidebar">
+      <div class="p-4 border-b border-gray-200 sticky top-0 bg-white z-20">
+        <h2 class="text-lg font-bold text-gray-800 mb-2">受注一覧</h2>
+        
+        <div class="space-y-2">
+          <!-- ステータスフィルタ -->
+          <select id="statusFilter" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white text-gray-700">
+            <option value="">全てのステータス</option>
+            <option value="未出荷">未出荷</option>
+            <option value="一部出荷">一部出荷</option>
+            <option value="出荷済">出荷済</option>
+          </select>
+
+          <!-- 検索ボックス -->
+          <input type="text" id="searchInput" placeholder="受注No,得意先,担当者で検索..." 
+                 class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+        </div>
+      </div>
+      
+      <!-- リスト表示エリア -->
+      <div id="orderList" class="flex-1">
+        <div class="p-4 text-center text-gray-500">読み込み中...</div>
+      </div>
+    </div>
+
+    <!-- 右メインエリア：詳細表示 -->
+    <div class="w-2/3 flex flex-col main-content">
+      
+      <!-- ヘッダー -->
+      <header class="bg-white border-b border-gray-200 p-4 shadow-sm sticky top-0 z-20">
+        <h1 class="text-xl font-bold text-gray-800 flex items-center">
+          <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded mr-2">DASHBOARD</span>
+          出荷状況確認
+        </h1>
+        <p id="currentOrderInfo" class="text-sm text-gray-500 mt-1">左のリストから受注を選択してください</p>
+      </header>
+
+      <!-- 詳細エリア -->
+      <div class="p-6 space-y-6 flex-1 overflow-y-auto">
+        
+        <!-- 右上：商品別 出荷状況 -->
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="text-md font-bold text-gray-700 mb-3 border-l-4 border-blue-500 pl-2">商品別 出荷状況（残数確認）</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm text-left text-gray-500">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                  <th class="px-4 py-2">商品コード</th>
+                  <th class="px-4 py-2">商品名</th>
+                  <th class="px-4 py-2 text-right">受注数</th>
+                  <th class="px-4 py-2 text-right text-red-600">残数</th>
+                  <th class="px-4 py-2 text-right">出荷済</th>
+                </tr>
+              </thead>
+              <tbody id="productTableBody">
+                <tr><td colspan="5" class="px-4 py-8 text-center text-gray-400">データが表示されます</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 右下：出荷履歴（明細） -->
+        <div class="bg-white rounded-lg shadow p-4">
+          <h3 class="text-md font-bold text-gray-700 mb-3 border-l-4 border-green-500 pl-2">出荷履歴（明細）</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm text-left text-gray-500">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                  <th class="px-4 py-2">出荷日</th>
+                  <th class="px-4 py-2">到着日</th>
+                  <th class="px-4 py-2">到達時刻</th>
+                  <th class="px-4 py-2">商品名</th>
+                  <th class="px-4 py-2 text-right">出荷数</th>
+                  <th class="px-4 py-2">処理日時</th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody">
+                <tr><td colspan="6" class="px-4 py-8 text-center text-gray-400">履歴が表示されます</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- JavaScript：画面の動きを制御 -->
+    <script>
+      let allOrders = [];
+      const detailsCache = {}; 
+
+      // 1. 画面読み込み完了時
+      window.onload = function() {
+        google.script.run
+          .withSuccessHandler(renderSidebar)
+          .withFailureHandler(showError)
+          .getOrderList();
+      };
+
+      // 2. 左サイドバーを描画する処理
+      function renderSidebar(data) {
+        // 受注Noが空のデータを除外
+        allOrders = data.filter(order => order.orderNo && order.orderNo.trim() !== "");
+        // 初回表示
+        updateList();
+      }
+
+      // イベントリスナー設定
+      document.getElementById('searchInput').addEventListener('keyup', updateList);
+      document.getElementById('statusFilter').addEventListener('change', updateList);
+
+      // リスト更新の統合関数
+      function updateList() {
+        const keyword = document.getElementById('searchInput').value;
+        const status = document.getElementById('statusFilter').value;
+        filterAndRenderList(keyword, status);
+      }
+
+      // フィルタリングと描画
+      function filterAndRenderList(keyword, status) {
+        const container = document.getElementById('orderList');
+        container.innerHTML = ''; 
+
+        const filtered = allOrders.filter(order => {
+          // 検索対象の文字列に得意先名2と営業担当者名を追加
+          const searchStr = (order.orderNo + order.customerName + order.customerName2 + order.salesRepName).toLowerCase();
+          const matchKeyword = searchStr.includes(keyword.toLowerCase());
+          const matchStatus = status === "" || order.status === status;
+          return matchKeyword && matchStatus;
+        });
+
+        if (filtered.length === 0) {
+          container.innerHTML = '<div class="p-4 text-center text-gray-400">該当なし</div>';
+          return;
+        }
+
+        filtered.forEach(order => {
+          // ステータスごとのバッジ色設定
+          let statusColor = "bg-gray-100 text-gray-600";
+          if (order.status === '出荷済') statusColor = "bg-green-100 text-green-800";
+          if (order.status === '一部出荷') statusColor = "bg-yellow-100 text-yellow-800";
+          if (order.status === '未出荷') statusColor = "bg-red-100 text-red-800";
+
+          // --- リンクURLの作成 ---
+          const orderAppBaseUrl = "https://script.google.com/a/macros/osasi-work.jp/s/AKfycbwTbvUf9z_zFASmFdN1eq5M-unFogMErF7knK4xStP6dG5XIXJFcLYZzl1JVoCohlQp/exec";
+          const orderAppUrl = `${orderAppBaseUrl}?orderNo=${encodeURIComponent(order.orderNo)}`;
+          
+          const shipAppBaseUrl = "https://script.google.com/macros/s/AKfycbyBDg6a7X2_iWxkredWHfLBjeJVN-brZxHawfDHUkghDZjFJlqM1VZ3AHKiU2sUdwJgIQ/exec";
+          const shipAppUrl = `${shipAppBaseUrl}?juchuNo=${encodeURIComponent(order.orderNo)}&tab=edit`;
+
+          const div = document.createElement('div');
+          div.className = 'p-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition duration-150 ease-in-out relative group';
+          
+          // レイアウト調整：得意先名2を改行して得意先名と担当者の間に表示
+          div.innerHTML = `
+            <div class="flex items-center justify-between mb-2">
+              <!-- No. -->
+              <div class="font-bold text-blue-600 w-20 flex-shrink-0 whitespace-nowrap">No. ${order.orderNo}</div>
+              
+              <!-- 右側グループ：ボタンとステータスをまとめる -->
+              <div class="flex items-center gap-2">
+                <!-- 遷移ボタンエリア -->
+                <div class="flex gap-1">
+                  <a href="${orderAppUrl}" target="_blank" 
+                     class="text-[10px] px-2 py-0.5 bg-gray-50 border border-gray-300 text-gray-600 rounded hover:bg-gray-200 transition whitespace-nowrap"
+                     onclick="event.stopPropagation()">
+                     受注兼
+                  </a>
+                  <a href="${shipAppUrl}" target="_blank" 
+                     class="text-[10px] px-2 py-0.5 bg-blue-50 border border-blue-200 text-blue-600 rounded hover:bg-blue-100 transition whitespace-nowrap"
+                     onclick="event.stopPropagation()">
+                     出荷明細
+                  </a>
+                </div>
+
+                <!-- ステータス (幅を固定して中央揃えにすることで隣のボタンの位置を揃える) -->
+                <span class="text-xs px-2 py-0.5 rounded-full whitespace-nowrap w-20 text-center block ${statusColor}">${order.status}</span>
+              </div>
+            </div>
+            <div class="text-sm text-gray-700 truncate">${order.customerName}</div>
+            ${order.customerName2 ? `<div class="text-sm text-gray-700 truncate">${order.customerName2}</div>` : ''}
+            ${order.salesRepName ? `<div class="text-xs text-gray-500 mt-1 truncate">担当: ${order.salesRepName}</div>` : ''}
+          `;
+          
+          // 行クリックで詳細表示
+          div.onclick = () => selectOrder(div, order);
+          container.appendChild(div);
+        });
+      }
+
+      // 3. 受注をクリックした時の処理
+      function selectOrder(element, order) {
+        document.querySelectorAll('#orderList > div').forEach(el => el.classList.remove('selected-order'));
+        element.classList.add('selected-order');
+
+        document.getElementById('currentOrderInfo').textContent = `選択中: 受注No.${order.orderNo} / ${order.customerName}`;
+
+        if (detailsCache[order.orderNo]) {
+          renderDetails(detailsCache[order.orderNo]);
+          return; 
+        }
+
+        document.getElementById('productTableBody').innerHTML = '<tr><td colspan="5" class="px-4 py-8 text-center">読み込み中...</td></tr>';
+        document.getElementById('historyTableBody').innerHTML = '<tr><td colspan="6" class="px-4 py-8 text-center">読み込み中...</td></tr>';
+
+        // プレビュー環境でのエラー回避
+        if (typeof google !== 'undefined' && google.script) {
+          google.script.run
+            .withSuccessHandler(function(data) {
+               detailsCache[order.orderNo] = data;
+               renderDetails(data);
+            })
+            .getOrderDetails(order.orderNo);
+        } else {
+          console.warn('Preview mode: google.script.run is not available.');
+          document.getElementById('productTableBody').innerHTML = '<tr><td colspan="5" class="px-4 py-8 text-center text-gray-400">プレビューモードのため取得不可</td></tr>';
+          document.getElementById('historyTableBody').innerHTML = '<tr><td colspan="6" class="px-4 py-8 text-center text-gray-400">プレビューモードのため取得不可</td></tr>';
+        }
+      }
+
+      // 4. 詳細テーブル描画
+      function renderDetails(data) {
+        const productsParams = data.items;
+        const historyParams = data.history;
+
+        const productBody = document.getElementById('productTableBody');
+        productBody.innerHTML = '';
+        if (productsParams.length === 0) {
+          productBody.innerHTML = '<tr><td colspan="5" class="px-4 py-4 text-center text-gray-400">明細データがありません</td></tr>';
+        } else {
+          productsParams.forEach(item => {
+            const row = document.createElement('tr');
+            row.className = "border-b hover:bg-gray-50";
+            row.innerHTML = `
+              <td class="px-4 py-2 font-mono">${item.code}</td>
+              <td class="px-4 py-2">${item.name}</td>
+              <td class="px-4 py-2 text-right font-medium">${item.qty}</td>
+              <td class="px-4 py-2 text-right font-bold ${item.remain > 0 ? 'text-red-600' : 'text-gray-400'}">${item.remain}</td>
+              <td class="px-4 py-2 text-right text-gray-600">${item.shipped}</td>
+            `;
+            productBody.appendChild(row);
+          });
+        }
+
+        const historyBody = document.getElementById('historyTableBody');
+        historyBody.innerHTML = '';
+        if (historyParams.length === 0) {
+          historyBody.innerHTML = '<tr><td colspan="6" class="px-4 py-4 text-center text-gray-400">出荷履歴がありません</td></tr>';
+        } else {
+          historyParams.forEach(h => {
+            const row = document.createElement('tr');
+            row.className = "border-b hover:bg-gray-50";
+            row.innerHTML = `
+              <td class="px-4 py-2">${h.date}</td>
+              <td class="px-4 py-2">${h.arrivalDate}</td>
+              <td class="px-4 py-2">${h.arrivalTime}</td> 
+              <td class="px-4 py-2">${h.name}</td>
+              <td class="px-4 py-2 text-right font-medium">${h.shippedQty}</td>
+              <td class="px-4 py-2 text-xs text-gray-400">${h.processTime}</td>
+            `;
+            historyBody.appendChild(row);
+          });
+        }
+      }
+
+      function showError(e) {
+        alert('エラーが発生しました: ' + e); 
+      }
+    </script>
+  </body>
+</html>
