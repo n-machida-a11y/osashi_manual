@@ -305,7 +305,17 @@
 
     <div class="step-box">
       <h5><span class="step-num">1</span>ブラウザでURLを開く</h5>
-      <p>管理者から共有されたURLをGoogle ChromeまたはMicrosoft Edgeで開きます。</p>
+      <p>以下のURLをGoogle ChromeまたはMicrosoft Edgeで開きます。</p>
+      <div class="mt-2">
+        <a href="https://www.appsheet.com/start/1e48f45e-c936-4f42-945a-ee4590b9a86e"
+           target="_blank"
+           style="display:inline-flex;align-items:center;gap:8px;background:#1e3a5f;color:#fff;padding:10px 20px;border-radius:7px;text-decoration:none;font-weight:700;font-size:0.95rem;">
+          🔗 アプリを開く（AppSheet）
+        </a>
+      </div>
+      <p class="mt-2" style="font-size:0.88rem;color:#666;">
+        URLをブックマークしておくと次回から便利です。
+      </p>
     </div>
     <div class="step-box">
       <h5><span class="step-num">2</span>自分の名前を選択して「保存」を押す</h5>
