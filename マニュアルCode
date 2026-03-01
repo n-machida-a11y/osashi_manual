@@ -1,0 +1,5 @@
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('マニュアルindex')
+    .setTitle('おさし 業務管理システム 使用者・管理者マニュアル')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
