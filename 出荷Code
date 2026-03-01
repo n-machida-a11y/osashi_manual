@@ -1,0 +1,271 @@
+/**
+ * ----------------------------------------------------------------------
+ * 設定エリア
+ * ----------------------------------------------------------------------
+ */
+const SPREADSHEET_ID = '1L2DgOm3gfEZMwoe2TDjzBJuq5cHB2SlBlwg6vifg5IE';
+
+
+/**
+ * Webアプリの初期表示
+ */
+function doGet() {
+  return HtmlService.createTemplateFromFile('index')
+    .evaluate()
+    .setTitle('出荷状況確認ダッシュボード')
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+}
+
+
+/**
+ * ヘッダー行から特定の列名のインデックス（何列目か）を探すヘルパー関数
+ */
+function getColIndex(headerRow, name) {
+  // ヘッダーの各項目の前後の空白を削除して比較する
+  const index = headerRow.findIndex(h => String(h).trim() === name);
+  if (index === -1) {
+    console.error(`列名「${name}」が見つかりません。`);
+    return -1;
+  }
+  return index;
+}
+
+
+/**
+ * 左サイドバー用の「受注No一覧」を取得する関数
+ */
+function getOrderList() {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheetOrder = ss.getSheetByName('受注データ');
+  const sheetDetail = ss.getSheetByName('受注明細');
+  const sheetStaff = ss.getSheetByName('担当者マスタ'); // 【追加】担当者マスタを取得
+ 
+  if (!sheetOrder || !sheetDetail) return [];
+
+
+  // --- 【追加】担当者マスタからマップを作成する処理 ---
+  const staffMap = {};
+  if (sheetStaff) {
+    const staffValues = sheetStaff.getDataRange().getValues();
+    if (staffValues.length >= 2) {
+      const staffHeader = staffValues[0];
+      const idxStaffCode = getColIndex(staffHeader, '担当者コード');
+      const idxStaffName = getColIndex(staffHeader, '担当者名');
+     
+      if (idxStaffCode !== -1 && idxStaffName !== -1) {
+        for (let i = 1; i < staffValues.length; i++) {
+          const code = String(staffValues[i][idxStaffCode]).trim();
+          const name = String(staffValues[i][idxStaffName]);
+          if (code) {
+            staffMap[code] = name;
+          }
+        }
+      }
+    }
+  }
+
+
+  // --- 1. 受注明細を集計して、受注ごとの進捗状況を把握する ---
+  const detailValues = sheetDetail.getDataRange().getValues();
+  const orderStats = {};
+
+
+  if (detailValues.length >= 2) {
+    const detailHeader = detailValues[0];
+    const idxDetailOrderNo = getColIndex(detailHeader, '受注No');
+    const idxDetailQty = getColIndex(detailHeader, '数量');
+    const idxDetailShipped = getColIndex(detailHeader, '出荷済数');
+
+
+    if (idxDetailOrderNo !== -1 && idxDetailQty !== -1 && idxDetailShipped !== -1) {
+      for (let i = 1; i < detailValues.length; i++) {
+        const row = detailValues[i];
+        const orderNo = String(row[idxDetailOrderNo]);
+       
+        const qty = Number(row[idxDetailQty]) || 0;
+        const shipped = Number(row[idxDetailShipped]) || 0;
+
+
+        if (!orderStats[orderNo]) {
+          orderStats[orderNo] = { totalQty: 0, totalShipped: 0 };
+        }
+        orderStats[orderNo].totalQty += qty;
+        orderStats[orderNo].totalShipped += shipped;
+      }
+    }
+  }
+
+
+  // --- 2. 受注データ一覧を取得し、ステータス等を付与する ---
+  const lastRow = sheetOrder.getLastRow();
+  if (lastRow < 2) return [];
+ 
+  const orderValues = sheetOrder.getRange(2, 1, lastRow - 1, sheetOrder.getLastColumn()).getValues();
+  const orderHeader = sheetOrder.getRange(1, 1, 1, sheetOrder.getLastColumn()).getValues()[0];
+
+
+  const idxOrderNo = getColIndex(orderHeader, '受注No');
+  const idxCustomer = getColIndex(orderHeader, '得意先名');
+  const idxCustomer2 = getColIndex(orderHeader, '得意先名２'); // 【追加】
+  const idxStaffCodeOrder = getColIndex(orderHeader, '担当者コード'); // 【追加】
+
+
+  if (idxOrderNo === -1 || idxCustomer === -1) {
+    throw new Error('「受注データ」シートに必要な列が見つかりません。');
+  }
+
+
+  // データを抽出
+  return orderValues.map(row => {
+    const orderNo = String(row[idxOrderNo]);
+    const customerName = String(row[idxCustomer]);
+   
+    // 【追加】得意先名２と担当者名の取得
+    const customerName2 = idxCustomer2 !== -1 ? String(row[idxCustomer2]) : '';
+    const staffCode = idxStaffCodeOrder !== -1 ? String(row[idxStaffCodeOrder]).trim() : '';
+    const salesRepName = staffMap[staffCode] || staffCode; // マスタになければコードをそのまま表示
+   
+    // ステータス判定ロジック
+    let status = 'データなし';
+    const stats = orderStats[orderNo];
+   
+    if (stats) {
+      if (stats.totalQty > 0 && stats.totalShipped >= stats.totalQty) {
+        status = '出荷済';
+      } else if (stats.totalShipped > 0) {
+        status = '一部出荷';
+      } else {
+        status = '未出荷';
+      }
+    }
+
+
+    return {
+      orderNo: orderNo,
+      customerName: customerName,
+      customerName2: customerName2, // 【追加】
+      salesRepName: salesRepName,   // 【追加】
+      status: status
+    };
+  });
+}
+
+
+/**
+ * 特定の受注Noに基づき、右側の詳細データを取得する関数
+ */
+function getOrderDetails(targetOrderNo) {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+ 
+  // --- 1. 右上：商品別出荷状況データの取得 ---
+  const sheetDetail = ss.getSheetByName('受注明細');
+  const details = [];
+ 
+  if (sheetDetail) {
+    const lastRow = sheetDetail.getLastRow();
+    if (lastRow >= 2) {
+      const dataValues = sheetDetail.getRange(2, 1, lastRow - 1, sheetDetail.getLastColumn()).getValues();
+      const headerRow = sheetDetail.getRange(1, 1, 1, sheetDetail.getLastColumn()).getValues()[0];
+
+
+      const idxOrderNo = getColIndex(headerRow, '受注No');
+      const idxCode = getColIndex(headerRow, '商品コード');
+      const idxName = getColIndex(headerRow, '商品名');
+      const idxQty = getColIndex(headerRow, '数量');
+      const idxShipped = getColIndex(headerRow, '出荷済数');
+
+
+      if (idxOrderNo !== -1) {
+        const filtered = dataValues.filter(row => String(row[idxOrderNo]) === targetOrderNo);
+       
+        const mappedDetails = filtered.map(row => {
+          let qty = 0;
+          if (idxQty !== -1) {
+            const val = row[idxQty];
+            if (val !== "" && !isNaN(val)) qty = Number(val);
+          }
+
+
+          let shippedQty = 0;
+          if (idxShipped !== -1) {
+            const val = row[idxShipped];
+            if (val !== "" && !isNaN(val)) shippedQty = Number(val);
+          }
+         
+          return {
+            code: idxCode !== -1 ? row[idxCode] : '',
+            name: idxName !== -1 ? row[idxName] : '',
+            qty: qty,
+            shipped: shippedQty,
+            remain: qty - shippedQty
+          };
+        }).filter(item => item.qty > 0);
+
+
+        details.push(...mappedDetails);
+      }
+    }
+  }
+
+
+  // --- 2. 右下：出荷履歴データの取得 ---
+  const sheetHistory = ss.getSheetByName('出荷済明細');
+  const history = [];
+
+
+  if (sheetHistory) {
+    const lastRow = sheetHistory.getLastRow();
+    if (lastRow >= 2) {
+      const dataValues = sheetHistory.getRange(2, 1, lastRow - 1, sheetHistory.getLastColumn()).getValues();
+      const headerRow = sheetHistory.getRange(1, 1, 1, sheetHistory.getLastColumn()).getValues()[0];
+
+
+      const idxOrderNo = getColIndex(headerRow, '受注No');
+      const idxDate = getColIndex(headerRow, '出荷日');
+      const idxArrDate = getColIndex(headerRow, '到着日');
+      let idxArrTime = getColIndex(headerRow, '到達時刻');
+      if (idxArrTime === -1) idxArrTime = getColIndex(headerRow, '到着時刻');
+
+
+      const idxCode = getColIndex(headerRow, '商品コード');
+      const idxName = getColIndex(headerRow, '商品名');
+      const idxShippedQty = getColIndex(headerRow, '出荷済数');
+      const idxProcessTime = getColIndex(headerRow, '処理日時');
+
+
+      if (idxOrderNo !== -1) {
+        const filtered = dataValues.filter(row => String(row[idxOrderNo]) === targetOrderNo);
+       
+        history.push(...filtered.map(row => {
+          return {
+            date: idxDate !== -1 ? formatDate(row[idxDate]) : '',
+            arrivalDate: idxArrDate !== -1 ? formatDate(row[idxArrDate]) : '',
+            arrivalTime: idxArrTime !== -1 ? row[idxArrTime] : '',
+            code: idxCode !== -1 ? row[idxCode] : '',
+            name: idxName !== -1 ? row[idxName] : '',
+            shippedQty: idxShippedQty !== -1 ? row[idxShippedQty] : 0,
+            processTime: idxProcessTime !== -1 ? formatDate(row[idxProcessTime], 'yyyy/MM/dd HH:mm') : ''
+          };
+        }));
+      }
+    }
+  }
+
+
+  return {
+    items: details,
+    history: history
+  };
+}
+
+
+function formatDate(dateObj, format = 'yyyy/MM/dd') {
+  if (!dateObj) return '';
+  if (typeof dateObj === 'string') return dateObj;
+  try {
+    return Utilities.formatDate(dateObj, Session.getScriptTimeZone(), format);
+  } catch (e) {
+    return '';
+  }
+}
+
