@@ -7,558 +7,770 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { corePlugins: { preflight: false } }
-  </script>
+  <script>tailwind.config = { corePlugins: { preflight: false } }</script>
 
   <style>
+    /* ===== ベース ===== */
+    html { scroll-behavior: smooth; }
     body {
-      background-color: #f8f9fa;
       font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      background: #f0f4f8;
+      display: flex;
     }
-    .manual-header {
-      background-color: #0d6efd;
-      color: white;
-      padding: 20px 0;
-      margin-bottom: 30px;
+
+    /* ===== 左サイドバー ===== */
+    .sidebar {
+      width: 240px;
+      min-width: 240px;
+      min-height: 100vh;
+      background: #1e3a5f;
+      color: #fff;
+      position: fixed;
+      top: 0; left: 0;
+      overflow-y: auto;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
     }
+    .sidebar-logo {
+      padding: 20px 16px 14px;
+      background: #0f1f36;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .sidebar-logo .app-name { font-size: 1.05rem; font-weight: 800; color: #fff; }
+    .sidebar-logo .sub { font-size: 0.72rem; color: #7da8d0; margin-top: 3px; }
+    .nav-group-label {
+      padding: 14px 16px 4px;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #4a7099;
+    }
+    .sidebar a {
+      display: block; padding: 8px 16px;
+      color: #93b8d8; text-decoration: none;
+      font-size: 0.82rem; border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar a:hover { background: #254a6e; color: #fff; border-left-color: #3b82f6; }
+    .sidebar a.active { background: #1d3f5e; color: #fff; border-left-color: #60a5fa; font-weight: 600; }
+
+    /* ===== メインコンテンツ ===== */
+    .main { margin-left: 240px; flex: 1; padding: 0; }
+
+    /* ===== カバー ===== */
+    .cover {
+      background: linear-gradient(135deg, #0f1f36 0%, #1e3a5f 50%, #1a4a7a 100%);
+      color: #fff; padding: 60px 48px; position: relative; overflow: hidden;
+    }
+    .cover::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: rgba(59, 130, 246, 0.12); pointer-events: none;
+    }
+    .cover .tag {
+      display: inline-block; background: #3b82f6; color: #fff;
+      font-size: 0.72rem; font-weight: 700; padding: 3px 12px;
+      border-radius: 20px; margin-bottom: 14px; letter-spacing: 0.06em;
+    }
+    .cover h1 { font-size: 2rem; font-weight: 900; margin-bottom: 6px; }
+    .cover .sub { font-size: 0.95rem; color: #93b8d8; margin-bottom: 32px; }
+    .cover-cards { display: flex; gap: 12px; flex-wrap: wrap; }
+    .cover-card {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px; padding: 10px 16px;
+    }
+    .cover-card .lbl { font-size: 0.65rem; color: #60a5fa; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 3px; }
+    .cover-card .val { font-size: 0.88rem; font-weight: 600; }
+
+    /* ===== セクション ===== */
+    .section { padding: 44px 48px; background: #fff; border-bottom: 1px solid #e2e8f0; }
+    .section.alt { background: #fafbfd; }
+    .section-label {
+      display: inline-block; background: #1e3a5f; color: #fff;
+      font-size: 0.65rem; font-weight: 700; padding: 2px 10px;
+      border-radius: 4px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .section h2 {
+      font-size: 1.55rem; font-weight: 800; color: #1e3a5f;
+      border-bottom: 3px solid #3b82f6; display: inline-block;
+      padding-bottom: 8px; margin-bottom: 6px;
+    }
+    .section-intro { font-size: 0.93rem; color: #555; line-height: 1.85; margin: 14px 0 24px; }
+    .section h3 {
+      font-size: 1.05rem; font-weight: 700; color: #1e3a5f;
+      margin: 28px 0 12px; padding-left: 10px;
+      border-left: 4px solid #3b82f6;
+    }
+
+    /* ===== フロー図 ===== */
+    .flow-wrap {
+      background: #f0f4f8; border-radius: 10px; padding: 20px 24px;
+      margin: 16px 0; display: flex; align-items: center;
+      flex-wrap: wrap; gap: 0;
+    }
+    .flow-step {
+      text-align: center; padding: 10px 14px; border-radius: 8px;
+      font-size: 0.82rem; font-weight: 700; min-width: 100px;
+      color: #fff; line-height: 1.4;
+    }
+    .flow-step small { font-size: 0.68rem; font-weight: 400; opacity: 0.85; display: block; margin-top: 2px; }
+    .flow-arrow { padding: 0 6px; color: #3b82f6; font-size: 1.2rem; font-weight: 700; }
+
+    /* ===== 役割バッジ ===== */
+    .role-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; align-items: center; }
+    .role-lbl { font-size: 0.78rem; color: #888; }
+    .badge-sales { background: #dbeafe; color: #1d4ed8; }
+    .badge-office { background: #dcfce7; color: #15803d; }
+    .badge-mgr { background: #f3e8ff; color: #7c3aed; }
+
+    /* ===== ステップbox ===== */
     .step-box {
-      background: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      border-left: 5px solid #0d6efd;
+      background: #fff; border-radius: 8px; padding: 18px 20px;
+      margin-bottom: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      border-left: 5px solid #3b82f6;
     }
-    .step-number {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      background-color: #0d6efd;
-      color: white;
-      text-align: center;
-      line-height: 30px;
-      border-radius: 50%;
-      margin-right: 10px;
-      font-weight: bold;
+    .step-box h5 { font-size: 0.97rem; font-weight: 700; color: #1e3a5f; margin-bottom: 8px; }
+    .step-box p, .step-box ul, .step-box ol { font-size: 0.9rem; color: #444; line-height: 1.8; margin-bottom: 0; }
+    .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; background: #3b82f6; color: #fff;
+      border-radius: 50%; font-size: 0.82rem; font-weight: 700;
+      margin-right: 8px; flex-shrink: 0;
     }
-    .mockup-container {
-      background-color: #e9ecef;
-      border: 1px solid #ced4da;
-      border-radius: 8px;
-      padding: 15px;
-      margin-top: 15px;
+
+    /* ===== モックアップ ===== */
+    .mockup-wrap {
+      border: 1px solid #d0d7e0; border-radius: 10px; overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin: 20px 0;
     }
-    .mockup-header {
-      font-size: 0.85em;
-      color: #6c757d;
-      margin-bottom: 10px;
-      border-bottom: 1px dashed #ced4da;
-      padding-bottom: 5px;
+    .browser-bar {
+      background: #f1f3f5; padding: 8px 12px;
+      display: flex; align-items: center; gap: 7px;
+      border-bottom: 1px solid #e2e8f0;
     }
+    .bdot { width: 10px; height: 10px; border-radius: 50%; }
+    .bdot:nth-child(1) { background: #ff5f57; }
+    .bdot:nth-child(2) { background: #febc2e; }
+    .bdot:nth-child(3) { background: #28c840; }
+    .burl { flex: 1; background: #fff; border: 1px solid #dde; border-radius: 4px; padding: 2px 8px; font-size: 0.72rem; color: #888; }
+
+    /* ===== 画像プレースホルダー ===== */
     .image-placeholder {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      background-color: #e2e8f0; border: 2px dashed #94a3b8; border-radius: 8px;
-      min-height: 120px; margin: 15px 0; color: #475569; font-size: 0.9em; padding: 20px;
+      background: #e8edf3; border: 2px dashed #94a3b8; border-radius: 8px;
+      min-height: 110px; margin: 14px 0; color: #64748b;
+      font-size: 0.88rem; padding: 20px; text-align: center;
     }
-    .image-placeholder img { max-width: 100%; height: auto; border-radius: 4px; display: none; }
+    .image-placeholder img { max-width: 100%; height: auto; border-radius: 6px; display: none; }
     .image-placeholder img[src]:not([src=""]) { display: block; }
     .image-placeholder img[src]:not([src=""]) + div { display: none; }
+
+    /* ===== ノート ===== */
+    .note {
+      background: #eff6ff; border-left: 4px solid #3b82f6;
+      padding: 11px 15px; border-radius: 0 6px 6px 0;
+      margin: 14px 0; font-size: 0.88rem; line-height: 1.75;
+    }
+    .note.warn { background: #fffbeb; border-color: #f59e0b; }
+    .note.danger { background: #fef2f2; border-color: #ef4444; }
+    .note-title { font-weight: 700; margin-bottom: 3px; color: #1d4ed8; }
+    .note.warn .note-title { color: #b45309; }
+    .note.danger .note-title { color: #b91c1c; }
+
+    /* ===== フッター ===== */
+    .footer { padding: 28px 48px; background: #1e3a5f; color: #4a7099; font-size: 0.8rem; text-align: center; }
   </style>
 </head>
 <body>
 
-  <header class="manual-header shadow-sm">
-    <div class="container">
-      <h1 class="h3 mb-0">おさし 業務管理システム マニュアル</h1>
+<!-- ===== 左サイドバー ===== -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="app-name">おさし</div>
+    <div class="sub">業務管理システム マニュアル</div>
+  </div>
+
+  <div class="nav-group-label">はじめに</div>
+  <a href="#overview">アプリの概要・目的</a>
+
+  <div class="nav-group-label">操作手順</div>
+  <a href="#txt-import">① TXTデータの読み込み</a>
+  <a href="#juchu">② 受注兼発送依頼書</a>
+  <a href="#ordersheet">③ 注文書の作成</a>
+  <a href="#shipping">④ 出荷明細書の作成</a>
+  <a href="#confirm">⑤ 確認・処理完了</a>
+
+  <div class="nav-group-label">その他</div>
+  <a href="#irregular">イレギュラー対応</a>
+  <a href="#admin">管理者向け設定</a>
+</nav>
+
+<!-- ===== メインコンテンツ ===== -->
+<div class="main">
+
+  <!-- カバー -->
+  <div class="cover">
+    <span class="tag">MANUAL</span>
+    <h1>おさし 業務管理システム</h1>
+    <p class="sub">受注〜出荷までの業務フローを管理するシステムのマニュアルです。</p>
+    <div class="cover-cards">
+      <div class="cover-card">
+        <div class="lbl">対象</div>
+        <div class="val">営業 ／ 営業事務 ／ 管理者</div>
+      </div>
+      <div class="cover-card">
+        <div class="lbl">基盤</div>
+        <div class="val">Google Apps Script（GAS）</div>
+      </div>
+      <div class="cover-card">
+        <div class="lbl">作成</div>
+        <div class="val">2026年3月</div>
+      </div>
     </div>
-  </header>
+  </div>
 
-  <div class="container pb-5">
+  <!-- ===== 概要 ===== -->
+  <section class="section" id="overview">
+    <div class="section-label">はじめに</div>
+    <h2>アプリの概要・目的</h2>
+    <p class="section-intro">
+      「おさし」は、受注から出荷までの業務フローをGoogle Workspace上で一元管理するシステムです。
+      基幹システム（商魂）からのデータ取り込みを起点に、受注兼発送依頼書の作成・承認・出荷処理・注文書PDF発行まで、
+      一連の作業をWebブラウザ上で完結できます。
+    </p>
 
-    <ul class="nav nav-pills mb-4" id="manualTab" role="tablist">
-      <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#sales" type="button">営業担当者編</button></li>
-      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#clerk" type="button">営業事務編</button></li>
-      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#shipping" type="button">出荷処理編</button></li>
-      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#irregular" type="button">イレギュラー対応</button></li>
-      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#admin" type="button">管理者向け</button></li>
-    </ul>
+    <h3>業務の全体フロー</h3>
+    <div class="flow-wrap">
+      <div class="flow-step" style="background:#1e3a5f;">TXTデータ<br>取り込み<small>商魂から出力</small></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step" style="background:#1d4ed8;">受注兼<br>発送依頼書<small>作成・提出</small></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step" style="background:#7c3aed;">承認フロー<small>課長・部長・社長</small></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step" style="background:#15803d;">出荷明細書<br>作成<small>営業事務</small></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step" style="background:#b45309;">注文書PDF<br>発行<small>顧客提出</small></div>
+    </div>
 
-    <div class="tab-content">
+    <h3>誰が何を使うか</h3>
+    <table class="table table-bordered" style="font-size:0.88rem;">
+      <thead class="table-dark">
+        <tr><th>役割</th><th>主な操作</th><th>使う機能</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-sales rounded-pill px-2 py-1">営業</span></td>
+          <td>受注入力・提出・注文書作成</td>
+          <td>TXT取込、受注兼発送依頼書（入力・提出）、注文書</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-office rounded-pill px-2 py-1">営業事務</span></td>
+          <td>出荷手配・伝票管理・処理完了</td>
+          <td>ダッシュボード、出荷明細書、確認・処理完了</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-mgr rounded-pill px-2 py-1">管理者</span></td>
+          <td>全機能＋マスタ管理</td>
+          <td>全機能＋スプレッドシート（DB）管理</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- ===== 営業担当者編 ===== -->
-      <div class="tab-pane fade show active" id="sales">
-        <h2 class="h4 mb-4 text-primary border-bottom pb-2">営業担当者編（受注データの取り込み〜提出）</h2>
+    <div class="note">
+      <div class="note-title">アクセス方法</div>
+      管理者から共有されたURLをブラウザで開いてください。初回のみGoogleアカウントへの
+      「アクセス許可」が表示されます。「許可する」をクリックして進めてください。
+    </div>
+  </section>
 
-        <div class="step-box">
-          <h5><span class="step-number">1</span>アプリへのログイン</h5>
-          <p>初期画面で自身の名前を選択し、「保存」を押してログインします。<br>
-          <small class="text-muted">※デバイスに紐づくため、次回以降は自動で名前が入るようになります。</small></p>
-        </div>
+  <!-- ===== ① TXT取込 ===== -->
+  <section class="section alt" id="txt-import">
+    <div class="section-label">手順 ①</div>
+    <h2>TXTデータの読み込み</h2>
+    <div class="role-row">
+      <span class="role-lbl">操作者：</span>
+      <span class="badge badge-sales rounded-pill px-2 py-1">営業</span>
+    </div>
+    <p class="section-intro">
+      基幹システム（商魂）から出力したテキストデータ（TXT）を取り込み、
+      受注兼発送依頼書のベースを自動作成します。複数ファイルを一括で取り込むことができます。
+    </p>
 
-        <div class="step-box">
-          <h5><span class="step-number">2</span>テキスト（TXT）データの取り込み</h5>
-          <p>メニューの左端にある「データ取り込み」ボタンをクリックし、基幹システム（商魂）からダウンロードした<strong>テキスト（TXT）データ</strong>（複数可）を読み込ませます。これでベースとなる「受注兼発送依頼書」が作成されます。</p>
+    <div class="image-placeholder">
+      <img src="<?= img_import ?>" alt="受注データ取込画面">
+      <div>📷 受注データ取込画面<br><small>（管理者タブから画像を設定できます）</small></div>
+    </div>
 
-          <div class="image-placeholder">
-            <img src="<?= img_import ?>" alt="受注データ取込画面">
-            <div>📷 受注データ取込画面<br><small>（管理者タブから画像を設定できます）</small></div>
+    <div class="mockup-wrap">
+      <div class="browser-bar">
+        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+        <span class="burl">おさし — 受注データ取込</span>
+      </div>
+      <div class="bg-white p-4">
+        <div class="bg-white border-0 shadow-sm mx-auto rounded" style="max-width:420px;">
+          <div class="p-4">
+            <h6 class="text-center fw-bold mb-1" style="font-size:1rem;">受注データ取込</h6>
+            <p class="text-center text-muted mb-3" style="font-size:0.78rem;">※複数のTXTファイルを選択できます</p>
+            <label class="form-label fw-bold" style="font-size:0.85rem;">テキストファイルを選択</label>
+            <input type="file" class="form-control form-control-sm mb-3" disabled>
+            <button class="btn btn-primary w-100 fw-bold">アップロードして取込</button>
           </div>
+        </div>
+      </div>
+    </div>
 
-          <div class="mockup-container">
-            <div class="mockup-header">画面イメージ：受注データ取込</div>
-            <div class="bg-white border-0 shadow-sm mx-auto rounded-lg" style="max-width: 450px;">
-              <div class="p-6">
-                <h3 class="text-center mb-4 font-bold text-2xl text-gray-800 m-0">受注データ取込</h3>
-                <p class="text-gray-500 text-xs text-center mb-4 m-0">※複数のTXTファイルを選択できます</p>
-                <div class="mb-4">
-                  <label class="block text-sm text-gray-700 font-bold mb-2">テキストファイルを選択</label>
-                  <input type="file" class="w-full px-3 py-2 border rounded-md bg-gray-50" disabled>
-                </div>
-                <button class="w-full bg-[#0d6efd] text-white font-bold py-3 rounded-md text-lg shadow-sm">アップロードして取込</button>
-              </div>
+    <h3>操作手順</h3>
+    <div class="step-box">
+      <h5><span class="step-num">1</span>商魂からTXTファイルをダウンロードする</h5>
+      <p>基幹システム（商魂）の所定の画面から、受注データをテキスト形式（.txt）でエクスポートします。</p>
+    </div>
+    <div class="step-box">
+      <h5><span class="step-num">2</span>「データ取り込み」ボタンをクリックする</h5>
+      <p>おさしのトップメニュー左端にある「データ取り込み」ボタンをクリックします。</p>
+    </div>
+    <div class="step-box">
+      <h5><span class="step-num">3</span>ファイルを選択して取り込む</h5>
+      <p>ファイル選択欄をクリックして、ダウンロードしたTXTファイルを選択します（複数選択可）。「アップロードして取込」ボタンを押すと処理が開始されます。</p>
+    </div>
+    <div class="step-box">
+      <h5><span class="step-num">4</span>受注兼発送依頼書が作成されていることを確認する</h5>
+      <p>取り込みが完了すると、ダッシュボードの受注一覧に新しいデータが表示されます。</p>
+    </div>
+  </section>
+
+  <!-- ===== ② 受注兼発送依頼書 ===== -->
+  <section class="section" id="juchu">
+    <div class="section-label">手順 ②</div>
+    <h2>受注兼発送依頼書の作成・編集・提出</h2>
+    <div class="role-row">
+      <span class="role-lbl">操作者：</span>
+      <span class="badge badge-sales rounded-pill px-2 py-1">営業</span>
+      <span class="badge badge-office rounded-pill px-2 py-1">営業事務</span>
+    </div>
+    <p class="section-intro">
+      受注兼発送依頼書は、取引の中心となる書類です。TXT取込で自動作成されたデータに
+      詳細情報を入力し、上長への承認フローを開始します。
+    </p>
+
+    <div class="image-placeholder">
+      <img src="<?= img_juchu ?>" alt="受注兼発送依頼書アプリ画面">
+      <div>📷 受注兼発送依頼書アプリ<br><small>（管理者タブから画像を設定できます）</small></div>
+    </div>
+
+    <div class="mockup-wrap">
+      <div class="browser-bar">
+        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+        <span class="burl">おさし — 受注兼発送依頼書（操作パネル）</span>
+      </div>
+      <div class="bg-gray-200 p-3 font-sans text-gray-800 overflow-x-auto">
+        <div class="bg-white p-3 rounded-lg shadow-sm flex justify-between items-center border-l-4 border-blue-600 min-w-[580px]">
+          <div class="flex items-center space-x-3">
+            <div>
+              <div class="font-bold text-blue-700 text-sm">【販売品】</div>
+              <div class="text-[10px] text-gray-500">受注No: 250969</div>
             </div>
+            <select class="bg-gray-100 text-xs font-bold p-1 rounded border border-gray-300 outline-none"><option>作成中</option><option>仮</option><option>差替</option></select>
+            <span class="bg-gray-500 text-white px-2 py-0.5 rounded text-[10px] font-bold">未提出</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button class="px-2 py-1 bg-purple-600 text-white border-0 rounded text-[11px]">📎 添付</button>
+            <button class="px-2 py-1 bg-green-600 text-white border-0 rounded text-[11px]">Excel出力</button>
+            <button class="px-2 py-1 bg-gray-100 text-gray-700 border border-gray-200 rounded text-[11px]">画像保存</button>
+            <div class="h-4 w-px bg-gray-300"></div>
+            <button class="px-3 py-1 bg-blue-600 text-white border-0 rounded font-bold text-[11px]">💾 一時保存</button>
+            <button class="px-3 py-1 bg-indigo-600 text-white border-0 rounded font-bold text-[11px]">提出 ▶</button>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="step-box">
-          <h5><span class="step-number">3</span>対象データの選択</h5>
-          <p>「出荷ダッシュボード（受注一覧）」から、対象のデータを探します。<br>
-          編集したい対象データの<strong>「受注兼」</strong>ボタンを押して、詳細画面へ移動します。</p>
-          <small class="text-muted">※ステータスや検索ボックスで絞り込むことが可能です。</small>
+    <h3>入力できる主な項目</h3>
+    <table class="table table-bordered" style="font-size:0.87rem;">
+      <thead class="table-light">
+        <tr><th>項目</th><th>内容</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>基本情報</td><td>得意先・直送先の会社名、住所、担当者名など</td></tr>
+        <tr><td>モード切替</td><td>販売・レンタル・通信費。レンタル/通信費は「生成」ボタンで請求スケジュールを自動作成</td></tr>
+        <tr><td>明細</td><td>商品検索→選択→数量・単価入力（金額は自動計算）。「明細を追加」で行を増やせる</td></tr>
+        <tr><td>出荷指示</td><td>出荷日・納期・配送方法・時間帯指定（最大10回分）</td></tr>
+        <tr><td>集金条件</td><td>締め日・支払日・支払方法</td></tr>
+        <tr><td>技術課依頼</td><td>有/無を選択し、依頼内容を入力</td></tr>
+        <tr><td>備考・メール</td><td>備考の追加と、特定スタッフへのメール通知（CC追加可）</td></tr>
+        <tr><td>統合機能</td><td>仮伝票・差替伝票を作成する際の統合先受注Noを入力</td></tr>
+      </tbody>
+    </table>
 
-          <div class="image-placeholder">
-            <img src="<?= img_dashboard ?>" alt="ダッシュボードの受注一覧">
-            <div>📷 ダッシュボード（受注一覧）</div>
-          </div>
+    <h3>操作手順</h3>
+    <div class="step-box">
+      <h5><span class="step-num">1</span>ダッシュボードから対象データの「受注兼」ボタンを押す</h5>
+      <p>ダッシュボード（受注一覧）を開き、対象のデータ行にある「受注兼」ボタンをクリックします。</p>
+    </div>
 
-          <div class="mockup-container">
-            <div class="mockup-header">画面イメージ：受注一覧（ダッシュボード左側）</div>
-            <div class="bg-white border border-gray-200 flex flex-col mx-auto rounded shadow-sm" style="max-width: 400px;">
-              <div class="p-3 border-b border-gray-200 bg-gray-50">
-                <input type="text" placeholder="受注No,得意先,担当者で検索..." class="w-full px-3 py-1.5 border border-gray-300 rounded-md text-sm bg-white outline-none">
-              </div>
-              <div class="p-3 border-b border-gray-100 bg-blue-50 border-l-4 border-blue-600">
-                <div class="flex items-center justify-between mb-2">
-                  <div class="font-bold text-blue-600 text-sm">No. 250969</div>
-                  <div class="flex items-center gap-1">
-                    <span class="text-[10px] px-2 py-0.5 bg-gray-50 border border-gray-300 text-gray-600 rounded shadow-sm cursor-pointer">受注兼</span>
-                    <span class="text-[10px] px-2 py-0.5 bg-blue-50 border border-blue-200 text-blue-600 rounded shadow-sm">出荷明細</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-red-100 text-red-800 ml-1 font-bold">未出荷</span>
-                  </div>
-                </div>
-                <div class="text-sm text-gray-700 font-bold">株式会社サンプル商事</div>
-                <div class="text-xs text-gray-500 mt-1">担当: 営業 太郎</div>
-              </div>
+    <div class="image-placeholder">
+      <img src="<?= img_dashboard ?>" alt="ダッシュボード受注一覧">
+      <div>📷 ダッシュボード（受注一覧）</div>
+    </div>
+
+    <div class="step-box">
+      <h5><span class="step-num">2</span>必要な情報を入力する</h5>
+      <p>上記の各項目を確認・入力します。入力途中で中断したい場合は「💾 一時保存」を押してください。</p>
+    </div>
+    <div class="step-box">
+      <h5><span class="step-num">3</span>「提出」ボタンを押して承認フローを開始する</h5>
+      <p>内容が確定したら「提出 ▶」ボタンを押します。ステータスが「提出済」に変わり、承認フローが始まります。</p>
+    </div>
+
+    <div class="note warn">
+      <div class="note-title">提出後の修正について</div>
+      提出後でも、営業事務が「処理開始」を押すまでは「再編集」ボタンから修正できます。
+      「処理開始」後は再編集するとステータスが「作成中」に戻り、再度提出が必要になります。
+    </div>
+
+    <h3>承認スタンプの流れ</h3>
+    <table class="table table-bordered" style="font-size:0.87rem;">
+      <thead class="table-dark"><tr><th>ステップ</th><th>担当</th><th>操作</th></tr></thead>
+      <tbody>
+        <tr><td>作成・提出</td><td><span class="badge badge-sales rounded-pill px-2">営業</span></td><td>「提出」ボタンを押す</td></tr>
+        <tr><td>承認（課長）</td><td>課長</td><td>スタンプ欄をクリック</td></tr>
+        <tr><td>承認（部長）</td><td>部長</td><td>スタンプ欄をクリック</td></tr>
+        <tr><td>承認（社長）</td><td>社長</td><td>スタンプ欄をクリック</td></tr>
+        <tr><td>処理開始</td><td><span class="badge badge-office rounded-pill px-2">営業事務</span></td><td>「処理開始」ボタンを押す</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== ③ 注文書 ===== -->
+  <section class="section alt" id="ordersheet">
+    <div class="section-label">手順 ③</div>
+    <h2>注文書の作成（PDF出力）</h2>
+    <div class="role-row">
+      <span class="role-lbl">操作者：</span>
+      <span class="badge badge-sales rounded-pill px-2 py-1">営業</span>
+      <span class="badge badge-office rounded-pill px-2 py-1">営業事務</span>
+    </div>
+    <p class="section-intro">
+      受注兼発送依頼書の明細をもとに、顧客への提出用注文書PDFを生成します。
+      プレビュー画面上で宛名・条件を直接編集してから出力できます。
+    </p>
+
+    <div class="image-placeholder">
+      <img src="<?= img_ordersheet ?>" alt="注文書プレビュー画面">
+      <div>📷 注文書プレビュー画面</div>
+    </div>
+
+    <div class="mockup-wrap">
+      <div class="browser-bar">
+        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+        <span class="burl">おさし — 注文書作成</span>
+      </div>
+      <div class="font-sans overflow-hidden">
+        <div class="bg-slate-900 text-white p-3 flex justify-between items-center">
+          <div class="text-sm font-bold">📄 注文書プレビュー（2 明細）</div>
+          <button class="bg-blue-600 px-4 py-1.5 rounded text-xs font-bold border-0 text-white">PDFを生成する</button>
+        </div>
+        <div class="bg-gray-100 p-4">
+          <div class="bg-white p-5 shadow mx-auto" style="max-width:480px;font-size:0.8rem;">
+            <div class="text-center font-bold text-lg mb-3 border-b-2 border-gray-800 pb-1">注 文 書</div>
+            <div class="flex justify-between mb-3 text-xs">
+              <div class="font-bold border-b border-gray-800 pb-1">株式会社サンプル商事 御中</div>
+              <div>2026年3月1日</div>
             </div>
+            <table class="w-full border-collapse border border-gray-800 text-[10px] text-center">
+              <tr class="bg-gray-100"><th class="border border-gray-800 p-1"><input type="checkbox" checked></th><th class="border border-gray-800 p-1">品名・型式</th><th class="border border-gray-800 p-1">数量</th><th class="border border-gray-800 p-1">単価</th></tr>
+              <tr><td class="border border-gray-800 p-1"><input type="checkbox" checked></td><td class="border border-gray-800 p-1 text-left">レーザープリンター A4</td><td class="border border-gray-800 p-1">2</td><td class="border border-gray-800 p-1">¥68,000</td></tr>
+              <tr class="opacity-50"><td class="border border-gray-800 p-1"><input type="checkbox"></td><td class="border border-gray-800 p-1 text-left">トナーカートリッジ</td><td class="border border-gray-800 p-1">5</td><td class="border border-gray-800 p-1">¥4,800</td></tr>
+            </table>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="step-box">
-          <h5><span class="step-number">4</span>受注兼アプリでの入力・編集</h5>
-          <p>受注兼アプリでは、取引に必要な詳細情報の入力や、様々な付帯機能を利用できます。必要な情報を入力後、右上の<strong>「提出」</strong>ボタンを押して営業事務へ連携します。</p>
+    <h3>操作手順</h3>
+    <div class="step-box"><h5><span class="step-num">1</span>注文書アプリを開く</h5><p>管理者から共有された注文書アプリのURLを開き、対象の受注番号を入力してデータを読み込みます。</p></div>
+    <div class="step-box"><h5><span class="step-num">2</span>出力する明細にチェックを入れる</h5><p>注文書に含めたい行のチェックボックスをONにします。チェックを外すと金額から除外されます。</p></div>
+    <div class="step-box"><h5><span class="step-num">3</span>宛名や条件を確認・編集する</h5><p>得意先名・担当者名・納入期日・支払条件などをプレビュー上でクリックして直接編集できます。</p></div>
+    <div class="step-box"><h5><span class="step-num">4</span>「PDFを生成する」ボタンを押す</h5><p>生成完了後に「PDFを開く」リンクが表示されます。クリックしてPDFを確認・印刷してください。</p></div>
 
-          <div class="image-placeholder">
-            <img src="<?= img_juchu ?>" alt="受注兼アプリ画面全体">
-            <div>📷 受注兼発送依頼書アプリ</div>
-          </div>
+    <div class="note">
+      <div class="note-title">複数ページの注文書</div>
+      明細が多い場合、1ページ目は15行、2ページ目以降は25行で自動的に分割されます。
+    </div>
+  </section>
 
-          <h6 class="font-bold mt-4 border-l-4 border-blue-500 pl-2">主な機能と入力項目</h6>
-          <ul class="list-disc pl-5 space-y-3 text-sm text-gray-700 mt-2">
-            <li><strong>基本情報の入力：</strong> 得意先、直送先情報の入力・修正を行います。</li>
-            <li><strong>モード切替と請求スケジュール：</strong> 販売・レンタル・通信費のモードが表示されます。レンタルや通信費の場合は、期間を指定して「生成」ボタンを押すと、<strong>請求スケジュールを自動生成</strong>できます。</li>
-            <li><strong>明細の編集：</strong> 商品名を入力して検索し、数量・単価を入力します（売上小計などは自動計算されます）。明細行は「明細を追加」ボタンで増やせます。</li>
-            <li><strong>出荷指示の設定：</strong> 出荷日、納期、配送方法、時間帯などを最大10回分まで分けて設定できます。「行を追加」で入力枠を増やせます。</li>
-            <li><strong>集金条件：</strong> 締め日や支払日（プルダウン）、支払方法の詳細を入力します。</li>
-            <li><strong>技術課依頼：</strong> 必要に応じて「技術課依頼書」の有/無を選択し、依頼内容を入力します。</li>
-            <li><strong>備考・履歴とメール送信：</strong> 備考を追加し、特定のスタッフ（CC追加も可能）へ直接<strong>メール通知を送信</strong>できます。</li>
-            <li><strong>統合機能：</strong> 仮伝票や差替伝票を作成する際、関連する「統合先受注No」を入力してデータを紐づけることができます。</li>
-          </ul>
+  <!-- ===== ④ 出荷明細書 ===== -->
+  <section class="section" id="shipping">
+    <div class="section-label">手順 ④</div>
+    <h2>出荷明細書の作成</h2>
+    <div class="role-row">
+      <span class="role-lbl">操作者：</span>
+      <span class="badge badge-office rounded-pill px-2 py-1">営業事務</span>
+    </div>
+    <p class="section-intro">
+      出荷する商品と数量を選択して出荷明細書（伝票）を作成します。
+      作成すると指定フォルダにスプレッドシートが自動保存され、在庫の出荷済数が更新されます。
+      分納の場合は出荷回数分のタブが表示されます。
+    </p>
 
-          <h6 class="font-bold mt-4 border-l-4 border-purple-500 pl-2">便利なツール機能</h6>
-          <ul class="list-disc pl-5 space-y-3 text-sm text-gray-700 mt-2">
-            <li><strong>📎 添付ファイル管理：</strong> 上部のボタンから、参考資料（Excel、PDF、画像など）をアップロードして案件に紐づけることができます。</li>
-            <li><strong>📊 Excel出力 / 画像保存：</strong> 「Excel出力」で現在の内容をスプレッドシートとして出力したり、「画像保存」で画面をそのまま画像（PNG）としてダウンロードできます。</li>
-            <li><strong>💮 スタンプ承認：</strong> あなたの権限に応じて、画面右上のスタンプ欄（作成、営業、課長など）をクリックして承認印を押すことができます。</li>
-          </ul>
+    <div class="image-placeholder">
+      <img src="<?= img_shipping ?>" alt="出荷明細アプリ画面">
+      <div>📷 出荷明細アプリ（商品選択）</div>
+    </div>
 
-          <h6 class="font-bold mt-4 border-l-4 border-indigo-500 pl-2">データの保存と提出</h6>
-          <p class="text-sm text-gray-700">入力途中の場合は<strong>「💾 一時保存」</strong>を、入力が完了した場合は<strong>「提出」</strong>ボタンを押します。<br>
-          <span class="text-xs text-gray-500">※提出後でも、営業事務が「処理開始」にするまでは「再編集」ボタンから何度でも修正が可能です。</span></p>
-
-          <div class="mockup-container">
-            <div class="mockup-header">画面イメージ：受注兼発送依頼書アプリの上部操作パネル</div>
-            <div class="bg-gray-200 p-4 font-sans text-gray-800 rounded mx-auto overflow-x-auto">
-              <div class="bg-white p-3 rounded-lg shadow-sm flex justify-between items-center border-l-4 border-blue-600 min-w-[600px]">
-                <div class="flex items-center space-x-4">
-                  <div class="flex flex-col m-0">
-                    <span class="font-bold text-blue-700 text-base leading-tight">【販売品】</span>
-                    <span class="text-[10px] text-gray-500 leading-tight">受注No: 250969</span>
-                  </div>
-                  <div class="flex items-center space-x-2">
-                    <select class="bg-gray-100 text-xs font-bold p-1 rounded border border-gray-300 outline-none"><option>作成中</option><option>仮</option><option>差替</option></select>
-                    <span class="bg-gray-500 text-white px-2 py-1 rounded text-[10px] font-bold">未提出</span>
-                  </div>
-                </div>
-                <div class="flex items-center space-x-2">
-                  <button class="px-3 py-1.5 bg-purple-600 text-white border-0 rounded text-xs shadow-sm">📎 添付ファイル</button>
-                  <button class="px-3 py-1.5 bg-green-600 text-white border-0 rounded text-xs shadow-sm">Excel出力</button>
-                  <button class="px-3 py-1.5 bg-gray-100 text-gray-700 border border-gray-200 rounded text-xs shadow-sm">画像保存</button>
-                  <div class="h-5 w-px bg-gray-300 mx-1"></div>
-                  <button class="px-3 py-1.5 bg-blue-600 text-white border-0 rounded shadow-sm font-medium text-xs">💾 一時保存</button>
-                  <button class="px-4 py-1.5 bg-indigo-600 text-white border-0 rounded shadow-sm font-medium text-xs">提出 ▶</button>
-                </div>
+    <div class="mockup-wrap">
+      <div class="browser-bar">
+        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+        <span class="burl">おさし — 出荷明細書作成</span>
+      </div>
+      <div class="font-sans bg-white border border-gray-300 p-3 text-gray-800">
+        <div class="p-2 bg-gray-100 mb-3 text-xs font-bold rounded flex items-center border border-gray-200">
+          <input type="checkbox" checked class="mr-2"> 全選択
+        </div>
+        <ul class="list-none p-0 m-0">
+          <li class="border-b border-gray-200 py-3 px-2">
+            <div class="flex items-center font-bold text-sm mb-1">
+              <div class="flex flex-col items-center mr-4 text-center">
+                <input type="checkbox" class="mb-1">
+                <span class="text-[9px] text-red-500">除外</span>
               </div>
+              <input type="checkbox" checked class="mr-3">
+              <span>レーザープリンター A4 (P-1001)</span>
             </div>
-          </div>
-        </div>
-
-        <div class="step-box" style="border-left-color: #20c997;">
-          <h5><span class="step-number" style="background-color: #20c997;">5</span>注文書の作成（PDF出力）</h5>
-          <p>必要な場合、注文書作成アプリを開き、お客様への提出用「注文書PDF」を作成します。</p>
-
-          <div class="image-placeholder">
-            <img src="<?= img_ordersheet ?>" alt="注文書プレビュー画面">
-            <div>📷 注文書プレビュー画面</div>
-          </div>
-
-          <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
-            <li><strong>対象行の選択：</strong> 注文書に記載したい明細行の左端にあるチェックボックスで選択（または全選択）します。</li>
-            <li><strong>宛名や条件の直接編集：</strong> プレビュー画面上で、得意先名、担当者名、納入期日、支払条件などをクリックすると、直接文字を修正できます。</li>
-            <li><strong>PDFの生成：</strong> 内容を確認後、右上の<strong>「PDFを生成する」</strong>ボタンを押します。</li>
-            <li><strong>ファイルの確認：</strong> 生成が完了すると「PDFを開く」リンクが表示されるので、クリックしてPDFをダウンロードまたは印刷してください。</li>
-          </ul>
-
-          <div class="mockup-container mt-4">
-            <div class="mockup-header">画面イメージ：注文書作成プレビュー</div>
-            <div class="font-sans border border-gray-300 rounded shadow-sm overflow-hidden max-w-2xl mx-auto">
-              <div class="bg-slate-900 text-white p-3 flex justify-between items-center">
-                <div class="text-sm font-bold">📄 注文書プレビュー（2 明細）</div>
-                <button class="bg-blue-600 px-4 py-1.5 rounded-lg text-xs font-bold shadow border-0 text-white">PDFを生成する</button>
-              </div>
-              <div class="bg-gray-100 p-4">
-                <div class="bg-white p-6 shadow mx-auto text-sm text-gray-800" style="max-width: 500px;">
-                  <div class="text-center font-bold text-xl mb-4 border-b-2 border-gray-800 pb-2">注 文 書</div>
-                  <div class="flex justify-between items-end mb-4 text-xs">
-                    <div class="font-bold text-base border-b border-gray-800 pb-1">株式会社サンプル商事 御中</div>
-                    <div class="text-right">2026年3月1日</div>
-                  </div>
-                  <div class="grid grid-cols-[100px_1fr] border border-gray-800 mb-2">
-                    <div class="bg-gray-100 p-1 border-r border-gray-800 text-center text-[10px] font-bold">納入期日</div>
-                    <div class="p-1 text-center font-bold">2026年3月10日</div>
-                  </div>
-                  <table class="w-full border-collapse border border-gray-800 text-[10px] text-center">
-                    <tr class="bg-gray-100">
-                      <th class="border border-gray-800 p-1"><input type="checkbox" checked></th>
-                      <th class="border border-gray-800 p-1">品 名 ・ 型 式</th>
-                      <th class="border border-gray-800 p-1">数量</th>
-                      <th class="border border-gray-800 p-1">単価 (円)</th>
-                    </tr>
-                    <tr>
-                      <td class="border border-gray-800 p-1"><input type="checkbox" checked></td>
-                      <td class="border border-gray-800 p-1 text-left">レーザープリンター A4</td>
-                      <td class="border border-gray-800 p-1">2</td>
-                      <td class="border border-gray-800 p-1 text-right">¥68,000</td>
-                    </tr>
-                    <tr class="bg-gray-50 opacity-60">
-                      <td class="border border-gray-800 p-1"><input type="checkbox"></td>
-                      <td class="border border-gray-800 p-1 text-left">トナーカートリッジ（黒）</td>
-                      <td class="border border-gray-800 p-1">5</td>
-                      <td class="border border-gray-800 p-1 text-right">¥4,800</td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
+            <div class="text-xs text-gray-600 pl-14 flex gap-4">
+              <span>受注:2</span><span>済:1</span><span class="font-bold text-red-600">残:1</span>
             </div>
-          </div>
-        </div>
-
-      </div><!-- /sales -->
-
-      <!-- ===== 営業事務編 ===== -->
-      <div class="tab-pane fade" id="clerk">
-        <h2 class="h4 mb-4 text-success border-bottom pb-2">営業事務編（内容の確認〜処理完了）</h2>
-
-        <div class="step-box">
-          <h5><span class="step-number">1</span>未処理データの確認</h5>
-          <p>ダッシュボード（受注一覧）から、ステータスが<strong>「未出荷」</strong>などになっている対象データを探します。</p>
-        </div>
-
-        <div class="step-box">
-          <h5><span class="step-number">2</span>処理の開始（編集ロック）</h5>
-          <p>対象のデータの「受注兼」アプリを開き、上部の<strong>「処理開始」</strong>ボタンを押します。<br>
-          これによりステータスが「処理中」となり、営業担当者側からの編集ができなくなります。</p>
-        </div>
-
-        <div class="step-box">
-          <h5><span class="step-number">3</span>内容確認と処理完了</h5>
-          <p>内容を確認し、問題がなければ<strong>「処理完了」</strong>ボタンを押します。</p>
-          <small class="text-muted">※処理完了後でも、追記や修正が発生した場合は「再編集」ボタンでロックを解除して編集状態に戻すことができます。</small>
-
-          <div class="image-placeholder">
-            <img src="<?= img_clerk ?>" alt="事務向けアクションボタン画面">
-            <div>📷 処理開始・処理完了ボタン</div>
-          </div>
-
-          <div class="mockup-container">
-            <div class="mockup-header">画面イメージ：事務向けアクションボタン</div>
-            <div class="bg-gray-200 p-3 rounded mx-auto" style="max-width: 600px;">
-              <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200 flex items-center overflow-x-auto min-w-max">
-                <div class="flex items-center space-x-3 mr-4">
-                  <span class="font-bold text-blue-700 text-sm">【販売品】</span>
-                  <span class="bg-red-600 text-white px-2 py-1 rounded text-[10px] font-bold">処理中</span>
-                </div>
-                <div class="flex-1"></div>
-                <div class="flex items-center space-x-2">
-                  <div class="flex items-center px-3 py-1.5 bg-gray-100 border border-gray-300 rounded text-gray-500 font-bold text-xs">🔒 ロック中</div>
-                  <button class="px-4 py-1.5 bg-green-700 border-0 text-white rounded shadow-sm font-medium text-xs">✅ 処理完了</button>
-                </div>
-              </div>
+            <div class="pl-14 mt-1 flex items-center text-xs">
+              <label class="mr-2 text-gray-600">今回数(Max:1):</label>
+              <input type="number" value="1" class="w-14 p-1 border border-gray-300 rounded text-right outline-none">
             </div>
-          </div>
-        </div>
-      </div><!-- /clerk -->
-
-      <!-- ===== 出荷処理編 ===== -->
-      <div class="tab-pane fade" id="shipping">
-        <h2 class="h4 mb-4 text-info border-bottom pb-2">出荷処理編（出荷明細書の作成）</h2>
-
-        <div class="step-box">
-          <h5><span class="step-number">1</span>出荷明細アプリへの移動</h5>
-          <p>ダッシュボードの左一覧から、該当データの<strong>「出荷明細」</strong>ボタンを押します。<br>
-          得意先コードや直送先名などは自動で引き継がれています。</p>
-        </div>
-
-        <div class="step-box">
-          <h5><span class="step-number">2</span>情報の確認・入力</h5>
-          <p>「出荷日」「到着日」「到着時刻」などが自動反映されていることを確認します。<br>
-          プルダウンから「作成者」の自分の名前を選択します。</p>
-          <small class="text-muted">※分納等で複数回の出荷指示がある場合は、「1回目」「2回目」とタブが分かれて表示されます。</small>
-        </div>
-
-        <div class="step-box">
-          <h5><span class="step-number">3</span>出荷商品の選択</h5>
-          <p>画面下部のリストを使用して、出荷する商品を選びます。</p>
-          <ul>
-            <li><strong>出荷する商品：</strong> 左側のチェックボックスにチェックを入れると、残数が自動で入ります。分納の場合は、ここで出荷する数量に変更します。</li>
-            <li><strong>出荷しない商品（除外）：</strong> 左端の「除外」にチェックを入れると、その商品は今回の伝票から除外されます。</li>
-          </ul>
-
-          <div class="image-placeholder">
-            <img src="<?= img_shipping ?>" alt="出荷明細アプリ画面">
-            <div>📷 出荷明細アプリ（商品選択）</div>
-          </div>
-
-          <div class="mockup-container">
-            <div class="mockup-header">画面イメージ：出荷明細アプリ（商品選択）</div>
-            <div class="font-sans bg-white border border-gray-300 rounded-lg p-3 max-w-xl mx-auto shadow-sm text-gray-800">
-              <div class="p-2 bg-gray-100 mb-3 text-xs font-bold rounded flex items-center border border-gray-200">
-                <input type="checkbox" checked class="mr-2 transform scale-125"> 全選択
+          </li>
+          <li class="py-3 px-2 bg-gray-50 opacity-60">
+            <div class="flex items-center font-bold text-sm mb-1">
+              <div class="flex flex-col items-center mr-4 text-center">
+                <input type="checkbox" checked class="mb-1">
+                <span class="text-[9px] text-red-500 font-bold">除外</span>
               </div>
-              <ul class="list-none p-0 m-0">
-                <li class="border-b border-gray-200 py-3 px-2">
-                  <div class="flex items-center font-bold text-sm mb-2">
-                    <div class="relative mr-4 flex flex-col items-center">
-                      <input type="checkbox" class="transform scale-150">
-                      <span class="text-[9px] text-red-500 mt-1">除外</span>
-                    </div>
-                    <input type="checkbox" checked class="transform scale-150 mr-3">
-                    <span class="text-gray-800">レーザープリンター A4 (P-1001)</span>
-                  </div>
-                  <div class="text-xs text-gray-600 pl-16 mt-1 flex gap-4">
-                    <span>受注: 2</span><span>済: 1</span><span class="font-bold text-red-600">残: 1</span>
-                  </div>
-                  <div class="pl-16 mt-2 flex items-center text-xs">
-                    <label class="mr-2 text-gray-600">今回数 (Max:1):</label>
-                    <input type="number" value="1" class="w-16 p-1 border border-gray-300 rounded text-right font-mono outline-none">
-                  </div>
-                </li>
-                <li class="py-3 px-2 bg-gray-50 opacity-70">
-                  <div class="flex items-center font-bold text-sm mb-2">
-                    <div class="relative mr-4 flex flex-col items-center">
-                      <input type="checkbox" checked class="transform scale-150">
-                      <span class="text-[9px] text-red-500 font-bold mt-1">除外</span>
-                    </div>
-                    <input type="checkbox" disabled class="transform scale-150 mr-3">
-                    <span class="text-gray-800">トナーカートリッジ（黒）</span>
-                  </div>
-                  <div class="text-xs text-gray-500 pl-16 mt-1 flex gap-4">
-                    <span>受注: 5</span><span>済: 5</span><span class="font-bold">残: 0</span>
-                  </div>
-                  <div class="pl-16 mt-2 flex items-center text-xs">
-                    <label class="mr-2 text-gray-400">今回数 (Max:0):</label>
-                    <input type="number" value="" disabled class="w-16 p-1 border border-gray-200 rounded bg-gray-100">
-                  </div>
-                </li>
-              </ul>
-              <button class="w-full bg-[#007bff] border-0 text-white font-bold py-3 rounded mt-4 text-base shadow-sm">出荷伝票を作成する</button>
+              <input type="checkbox" disabled class="mr-3">
+              <span>トナーカートリッジ（黒）</span>
             </div>
-          </div>
+            <div class="text-xs text-gray-500 pl-14 flex gap-4">
+              <span>受注:5</span><span>済:5</span><span class="font-bold">残:0</span>
+            </div>
+          </li>
+        </ul>
+        <button class="w-full bg-blue-600 border-0 text-white font-bold py-2 rounded mt-3 text-sm shadow-sm">出荷伝票を作成する</button>
+      </div>
+    </div>
+
+    <h3>操作手順</h3>
+    <div class="step-box"><h5><span class="step-num">1</span>ダッシュボードから「出荷明細」ボタンを押す</h5><p>受注一覧で該当データの「出荷明細」をクリックします。得意先・直送先情報は自動で引き継がれます。</p></div>
+    <div class="step-box"><h5><span class="step-num">2</span>作成者・出荷日・到着日時を確認する</h5><p>プルダウンから自分の名前を選択します。出荷日・到着日・到着時刻が自動反映されていることを確認してください。</p></div>
+    <div class="step-box"><h5><span class="step-num">3</span>出荷する商品を選択し、今回数を入力する</h5><p>出荷する商品のチェックボックスをONにすると残数が自動入力されます。分納の場合は今回出荷する数に変更してください。出荷しない商品は「除外」にチェックを入れます。</p></div>
+    <div class="step-box"><h5><span class="step-num">4</span>「出荷伝票を作成する」ボタンを押す</h5><p>確認ポップアップで「OK」を押すと伝票スプレッドシートが自動保存されます。</p></div>
+  </section>
+
+  <!-- ===== ⑤ 確認・処理完了 ===== -->
+  <section class="section alt" id="confirm">
+    <div class="section-label">手順 ⑤</div>
+    <h2>確認・処理完了</h2>
+    <div class="role-row">
+      <span class="role-lbl">操作者：</span>
+      <span class="badge badge-office rounded-pill px-2 py-1">営業事務</span>
+    </div>
+    <p class="section-intro">
+      作成した伝票を確認者が承認し、受注兼発送依頼書の処理を完了します。
+    </p>
+
+    <div class="image-placeholder">
+      <img src="<?= img_clerk ?>" alt="処理完了ボタン画面">
+      <div>📷 処理完了ボタンの画面</div>
+    </div>
+
+    <div class="mockup-wrap">
+      <div class="browser-bar">
+        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+        <span class="burl">おさし — 受注兼発送依頼書（処理中）</span>
+      </div>
+      <div class="bg-gray-200 p-3">
+        <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200 flex items-center gap-3 flex-wrap">
+          <span class="font-bold text-blue-700 text-sm">【販売品】No.250969</span>
+          <span class="bg-red-600 text-white px-2 py-0.5 rounded text-[10px] font-bold">処理中</span>
+          <div class="flex-1"></div>
+          <div class="px-3 py-1.5 bg-gray-100 border border-gray-300 rounded text-gray-500 text-xs font-bold">🔒 ロック中</div>
+          <button class="px-4 py-1.5 bg-green-700 border-0 text-white rounded text-xs font-bold">✅ 処理完了</button>
         </div>
+      </div>
+    </div>
 
-        <div class="step-box">
-          <h5><span class="step-number">4</span>伝票の作成と確認</h5>
-          <p><strong>「出荷伝票を作成する」</strong>ボタンを押し、確認のポップアップで「OK」を押します。<br>
-          指定した「出荷日フォルダ」の中に、新しい伝票（スプレッドシート）が自動で保存されます。</p>
-        </div>
+    <h3>操作手順</h3>
+    <div class="step-box"><h5><span class="step-num">1</span>伝票の確認承認（出荷明細アプリ）</h5><p>「📂 作成済伝票の確認・修正」タブを開き、対象の伝票を選択します。「✅ 確認済にする」から確認者の名前を選んで実行すると、伝票の確認欄に名前が記録されます。</p></div>
+    <div class="step-box"><h5><span class="step-num">2</span>受注兼発送依頼書で「処理完了」を押す</h5><p>出荷がすべて完了したら受注兼発送依頼書を開き、「✅ 処理完了」ボタンを押します。</p></div>
 
-        <div class="step-box">
-          <h5><span class="step-number">5</span>確認者の承認</h5>
-          <p>出荷明細アプリの「📂 作成済伝票の確認・修正」タブを開きます。<br>
-          対象の伝票を選び、「✅ 確認済にする」からプルダウンで「確認者」の名前を選び実行することで、伝票の確認欄に名前が反映されます。</p>
-        </div>
-      </div><!-- /shipping -->
+    <div class="note warn">
+      <div class="note-title">処理完了後の修正</div>
+      処理完了後でも追記や修正が必要な場合は「再編集」ボタンでロックを解除できます。
+    </div>
+  </section>
 
-      <!-- ===== イレギュラー対応 ===== -->
-      <div class="tab-pane fade" id="irregular">
-        <h2 class="h4 mb-4 text-warning border-bottom pb-2">イレギュラー対応編</h2>
+  <!-- ===== イレギュラー対応 ===== -->
+  <section class="section" id="irregular">
+    <div class="section-label">その他</div>
+    <h2>イレギュラー対応</h2>
+    <p class="section-intro">
+      出荷後の修正・返品・複製など、通常フロー以外の操作方法です。
+      いずれも「📂 作成済伝票の確認・修正」タブから操作します。
+    </p>
 
-        <div class="step-box" style="border-left-color: #fd7e14;">
-          <h5>A. 作成済み伝票の「修正」</h5>
-          <p>出荷日や数量などを間違えた場合の手順です。</p>
-          <ol>
-            <li>出荷明細アプリの「📂 作成済伝票の確認・修正」タブから、過去の伝票を選択して<strong>「🛠️ 修正」</strong>を押します。</li>
-            <li>「元の伝票ファイルは削除され、上書き作成されます」という警告が出るので「OK」を押します。</li>
-            <li>内容（数量や日付など）を修正し、<strong>「⚠️ 出荷明細書を再作成（上書き保存）する」</strong>を押します。</li>
-          </ol>
-          <p class="mt-2">古い伝票は自動で削除され、正しい内容の伝票が新しく保存されます。<br>
-          <small class="text-muted">※修正して再作成した際は、承認状況をリセットするため「確認者欄」は空欄に戻ります。</small></p>
-        </div>
+    <h3>A. 作成済み伝票の修正</h3>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:12px;">出荷日や数量を間違えた場合の手順です。</p>
+    <div class="step-box" style="border-left-color:#fd7e14;"><h5><span class="step-num" style="background:#fd7e14;">1</span>対象の伝票を選択して「🛠️ 修正」を押す</h5><p>過去の伝票一覧から対象を選択し「修正」ボタンをクリックします。「元の伝票は削除されます」という警告が出たら「OK」を押します。</p></div>
+    <div class="step-box" style="border-left-color:#fd7e14;"><h5><span class="step-num" style="background:#fd7e14;">2</span>内容を修正して「再作成」を押す</h5><p>数量や日付を修正し「⚠️ 出荷明細書を再作成（上書き保存）する」を押します。古い伝票は自動削除されます。</p></div>
+    <div class="note warn"><div class="note-title">注意</div>修正して再作成すると確認者欄がリセットされます。再度確認承認を行ってください。</div>
 
-        <div class="step-box" style="border-left-color: #6f42c1;">
-          <h5>B. 返品処理</h5>
-          <p>お客様から商品が返品された場合の手順です。</p>
-          <ol>
-            <li>「📂 作成済伝票の確認・修正」タブから出荷伝票を開き、<strong>「↩️ 返品処理」</strong>ボタンを押します。</li>
-            <li>返品された数量、シリアルナンバー、返品依頼No、送料などを入力して<strong>「返品を実行」</strong>を押します。</li>
-          </ol>
-          <p class="mt-2">返品された数量が在庫（未出荷の残数）に戻り、再び出荷処理ができる状態になります。<br>
-          <small class="text-muted">※この処理を行っても、元の出荷伝票自体は削除されずに残ります。</small></p>
-        </div>
+    <h3>B. 返品処理</h3>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:12px;">商品が返品された場合の手順です。</p>
+    <div class="step-box" style="border-left-color:#6f42c1;"><h5><span class="step-num" style="background:#6f42c1;">1</span>対象の伝票を選択して「↩️ 返品処理」を押す</h5><p>返品数量・シリアルナンバー・返品依頼No・送料負担を入力して「返品を実行」を押します。</p></div>
+    <div class="note"><div class="note-title">返品処理の効果</div>返品された数量が残数に戻り、再び出荷処理できる状態になります。元の出荷伝票は削除されずに残ります。</div>
 
-        <div class="step-box" style="border-left-color: #20c997;">
-          <h5>C. 複製して作成（レンタル返却・誤送品対応など）</h5>
-          <p>元の伝票を残したまま、住所などの情報だけを流用して別の伝票（在庫が変動しない手書き伝票の代わり）を作りたい場合の手順です。</p>
-          <ol>
-            <li>該当の伝票を開き、<strong>「📋 複製」</strong>ボタンを押します。</li>
-            <li>自由入力欄が表示されるので、品名、数量、シリアルナンバーなどを手入力し、新たな伝票を作成します。</li>
-          </ol>
-          <small class="text-muted">※元の出荷伝票は削除されずに残ります。またこの伝票は受注残数に影響を与えません。</small>
-        </div>
-      </div><!-- /irregular -->
+    <h3>C. 複製して作成</h3>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:12px;">レンタル返却・誤送品対応など、在庫数に影響しない伝票を作りたい場合の手順です。</p>
+    <div class="step-box" style="border-left-color:#20c997;"><h5><span class="step-num" style="background:#20c997;">1</span>対象の伝票を選択して「📋 複製」を押す</h5><p>品名・数量・シリアルナンバーなどを手入力し、新しい伝票を作成します。元の伝票は削除されず、受注残数にも影響しません。</p></div>
+  </section>
 
-      <!-- ===== 管理者向け ===== -->
-      <div class="tab-pane fade" id="admin">
-        <h2 class="h4 mb-4 text-secondary border-bottom pb-2">管理者向け</h2>
+  <!-- ===== 管理者向け ===== -->
+  <section class="section alt" id="admin">
+    <div class="section-label">管理者向け</div>
+    <h2>管理者向け設定</h2>
+    <div class="role-row">
+      <span class="role-lbl">操作者：</span>
+      <span class="badge badge-mgr rounded-pill px-2 py-1">管理者</span>
+    </div>
 
-        <!-- 画像設定フォーム -->
-        <div class="step-box" style="border-left-color: #0d6efd;">
-          <h5>📸 マニュアル画像の管理</h5>
-          <p>各画面のスクリーンショットをGoogleドライブにアップロードし、ファイルIDを入力して保存してください。<br>
-          保存後はブラウザをリロードすると画像が反映されます。</p>
+    <h3>📸 マニュアル画像の管理</h3>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:12px;">
+      各画面のスクリーンショットをGoogleドライブにアップロードし、ファイルIDを入力して「保存」してください。
+      保存後にブラウザをリロードすると画像が表示されます。
+    </p>
+    <div class="alert alert-info py-2 mb-3" style="font-size:0.85rem;">
+      <strong>ファイルIDの確認方法：</strong>
+      ドライブでファイルを右クリック →「共有」→「リンクを知っている全員」に変更 →
+      共有URLの <code>/d/</code> と <code>/view</code> の間の文字列がIDです。<br>
+      例）<code>https://drive.google.com/file/d/<strong>1aBcDeFgHiJk</strong>/view</code>
+    </div>
+    <table class="table table-bordered table-sm align-middle mb-3">
+      <thead class="table-light">
+        <tr><th style="width:28%">対象画面</th><th>ドライブ ファイルID</th><th style="width:14%">状態</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>受注データ取込画面</td><td><input class="form-control form-control-sm" id="img_import" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_import" class="text-center">—</td></tr>
+        <tr><td>ダッシュボード（受注一覧）</td><td><input class="form-control form-control-sm" id="img_dashboard" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_dashboard" class="text-center">—</td></tr>
+        <tr><td>受注兼発送依頼書アプリ</td><td><input class="form-control form-control-sm" id="img_juchu" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_juchu" class="text-center">—</td></tr>
+        <tr><td>注文書プレビュー</td><td><input class="form-control form-control-sm" id="img_ordersheet" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_ordersheet" class="text-center">—</td></tr>
+        <tr><td>出荷明細アプリ</td><td><input class="form-control form-control-sm" id="img_shipping" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_shipping" class="text-center">—</td></tr>
+        <tr><td>処理完了ボタン</td><td><input class="form-control form-control-sm" id="img_clerk" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_clerk" class="text-center">—</td></tr>
+        <tr><td>管理用スプレッドシート</td><td><input class="form-control form-control-sm" id="img_admin_db" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_admin_db" class="text-center">—</td></tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary" onclick="saveImageSettings()">💾 保存する</button>
+    <span id="save-msg" class="ms-3 fw-bold"></span>
 
-          <div class="alert alert-info py-2 mb-3">
-            <strong>ファイルIDの確認方法：</strong>
-            ドライブでファイルを右クリック →「共有」→「リンクを知っている全員」に設定 →
-            共有リンクの <code>/d/</code> と <code>/view</code> の間の文字列がファイルIDです。<br>
-            例）<code>https://drive.google.com/file/d/<strong>1aBcDeFgHiJk</strong>/view</code>
-          </div>
+    <h3>マスターデータのメンテナンス</h3>
+    <p style="font-size:0.9rem;color:#555;margin-bottom:12px;">
+      担当者名・得意先・商品などのマスタは管理用スプレッドシート（DB）から直接編集します。
+      アプリ起動時に自動で最新情報が読み込まれます。
+    </p>
+    <div class="image-placeholder">
+      <img src="<?= img_admin_db ?>" alt="管理用スプレッドシート">
+      <div>📷 管理用スプレッドシート（DB）</div>
+    </div>
 
-          <table class="table table-bordered table-sm align-middle">
-            <thead class="table-light">
-              <tr><th style="width:30%">対象画面</th><th>ドライブ ファイルID</th><th style="width:15%">状態</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>データ取込画面</td><td><input class="form-control form-control-sm" id="img_import" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_import" class="text-center">—</td></tr>
-              <tr><td>ダッシュボード</td><td><input class="form-control form-control-sm" id="img_dashboard" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_dashboard" class="text-center">—</td></tr>
-              <tr><td>受注兼アプリ</td><td><input class="form-control form-control-sm" id="img_juchu" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_juchu" class="text-center">—</td></tr>
-              <tr><td>注文書プレビュー</td><td><input class="form-control form-control-sm" id="img_ordersheet" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_ordersheet" class="text-center">—</td></tr>
-              <tr><td>出荷明細アプリ</td><td><input class="form-control form-control-sm" id="img_shipping" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_shipping" class="text-center">—</td></tr>
-              <tr><td>事務向けボタン</td><td><input class="form-control form-control-sm" id="img_clerk" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_clerk" class="text-center">—</td></tr>
-              <tr><td>管理用スプレッドシート</td><td><input class="form-control form-control-sm" id="img_admin_db" placeholder="例：1aBcDeFgHiJk..."></td><td id="st_img_admin_db" class="text-center">—</td></tr>
-            </tbody>
-          </table>
+    <h3>GAS WebアプリのURL再発行</h3>
+    <div class="step-box" style="border-left-color:#6c757d;">
+      <h5>コード変更後のデプロイ手順</h5>
+      <ol style="font-size:0.9rem;color:#444;line-height:1.9;margin-bottom:0;">
+        <li>スプレッドシートのメニューから「拡張機能」→「Apps Script」を開く</li>
+        <li>右上の「デプロイ」→「新しいデプロイ」をクリック</li>
+        <li>「実行するユーザー：自分」「アクセスできるユーザー：全員」に設定して「デプロイ」</li>
+        <li>発行されたURLを利用者へ共有する</li>
+      </ol>
+    </div>
+  </section>
 
-          <button class="btn btn-primary" onclick="saveImageSettings()">💾 保存する</button>
-          <span id="save-msg" class="ms-3 fw-bold"></span>
-        </div>
+  <footer class="footer">
+    <p>おさし 業務管理システム マニュアル &copy; 2026</p>
+    <p style="margin-top:4px;">ご不明点は社内の管理者担当者にお問い合わせください。</p>
+  </footer>
 
-        <div class="step-box" style="border-left-color: #6c757d;">
-          <h5>マスターデータのメンテナンス</h5>
-          <p>担当者名の追加や変更、各種プルダウンの選択肢は、管理用のスプレッドシート（DB）から直接編集してください。<br>
-          （アプリ起動時に自動で最新情報が読み込まれます）</p>
+</div><!-- /main -->
 
-          <div class="image-placeholder">
-            <img src="<?= img_admin_db ?>" alt="スプレッドシートDBの画面">
-            <div>📷 管理用スプレッドシート（DB）</div>
-          </div>
-        </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // スクロールに合わせてサイドバーのアクティブリンクを更新
+  const sections = document.querySelectorAll('section[id], div.cover');
+  const navLinks = document.querySelectorAll('.sidebar a');
 
-        <div class="step-box" style="border-left-color: #6c757d;">
-          <h5>GAS WebアプリのURL再発行</h5>
-          <p>コードを変更した後は、新しいデプロイが必要です。</p>
-          <ol>
-            <li>スプレッドシートのメニューから「拡張機能」→「Apps Script」を選択します。</li>
-            <li>画面右上の「デプロイ」→「新しいデプロイ」を選択します。</li>
-            <li>「実行するユーザー：自分」「アクセスできるユーザー：全員」に設定し「デプロイ」をクリックします。</li>
-            <li>表示されたWebアプリのURLを利用者へ共有します。</li>
-          </ol>
-        </div>
-      </div><!-- /admin -->
-
-    </div><!-- /tab-content -->
-  </div><!-- /container -->
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const IMAGE_KEYS = ['img_import','img_dashboard','img_juchu','img_ordersheet','img_shipping','img_clerk','img_admin_db'];
-
-    // 管理者タブを開いたときに現在の設定を読み込む
-    document.querySelector('[data-bs-target="#admin"]').addEventListener('shown.bs.tab', function() {
-      loadImageSettings();
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
     });
+  }, { rootMargin: '-30% 0px -60% 0px' });
 
-    function loadImageSettings() {
-      google.script.run
-        .withSuccessHandler(function(settings) {
-          IMAGE_KEYS.forEach(function(key) {
-            var input = document.getElementById(key);
-            var status = document.getElementById('st_' + key);
-            if (input) input.value = settings[key] || '';
-            if (status) status.innerHTML = settings[key] ? '<span class="text-success">✅ 設定済</span>' : '<span class="text-muted">未設定</span>';
-          });
-        })
-        .getImageSettings();
+  sections.forEach(s => observer.observe(s));
+
+  // 画像設定
+  const IMAGE_KEYS = ['img_import','img_dashboard','img_juchu','img_ordersheet','img_shipping','img_clerk','img_admin_db'];
+
+  window.addEventListener('load', function() {
+    if (typeof google !== 'undefined' && google.script) {
+      loadImageSettings();
     }
+  });
 
-    function saveImageSettings() {
-      var settings = {};
-      IMAGE_KEYS.forEach(function(key) {
-        var input = document.getElementById(key);
-        if (input) settings[key] = input.value;
-      });
+  function loadImageSettings() {
+    google.script.run
+      .withSuccessHandler(function(settings) {
+        IMAGE_KEYS.forEach(function(key) {
+          var input = document.getElementById(key);
+          var status = document.getElementById('st_' + key);
+          if (input) input.value = settings[key] || '';
+          if (status) status.innerHTML = settings[key]
+            ? '<span class="text-success fw-bold">✅ 設定済</span>'
+            : '<span class="text-muted">未設定</span>';
+        });
+      })
+      .getImageSettings();
+  }
 
-      var msg = document.getElementById('save-msg');
-      msg.textContent = '保存中...';
-      msg.className = 'ms-3 fw-bold text-secondary';
+  function saveImageSettings() {
+    var settings = {};
+    IMAGE_KEYS.forEach(function(key) {
+      var input = document.getElementById(key);
+      if (input) settings[key] = input.value;
+    });
+    var msg = document.getElementById('save-msg');
+    msg.textContent = '保存中...';
+    msg.className = 'ms-3 fw-bold text-secondary';
 
-      google.script.run
-        .withSuccessHandler(function(result) {
-          if (result.success) {
-            msg.textContent = '✅ 保存しました。ブラウザをリロードすると画像が反映されます。';
-            msg.className = 'ms-3 fw-bold text-success';
-            loadImageSettings();
-          } else {
-            msg.textContent = '❌ エラー: ' + result.error;
-            msg.className = 'ms-3 fw-bold text-danger';
-          }
-        })
-        .withFailureHandler(function(err) {
-          msg.textContent = '❌ エラー: ' + err.message;
+    google.script.run
+      .withSuccessHandler(function(result) {
+        if (result.success) {
+          msg.textContent = '✅ 保存しました。ページをリロードすると画像が反映されます。';
+          msg.className = 'ms-3 fw-bold text-success';
+          loadImageSettings();
+        } else {
+          msg.textContent = '❌ エラー: ' + result.error;
           msg.className = 'ms-3 fw-bold text-danger';
-        })
-        .saveImageSettings(settings);
-    }
-  </script>
+        }
+      })
+      .withFailureHandler(function(err) {
+        msg.textContent = '❌ エラー: ' + err.message;
+        msg.className = 'ms-3 fw-bold text-danger';
+      })
+      .saveImageSettings(settings);
+  }
+</script>
 </body>
 </html>
