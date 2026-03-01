@@ -301,6 +301,131 @@ body { font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', 'Yu Gothic', sans-ser
 /* === Footer === */
 .footer { padding: 30px 60px; background: #1a2332; color: #4a6278; font-size: 0.8rem; text-align: center; }
 .footer a { color: #4a9eff; text-decoration: none; }
+
+/* =========================================
+   PC初心者向け追加スタイル
+   ========================================= */
+
+/* ヒントボックス（黄色） */
+.beginner-tip {
+  background: #fffbeb; border-left: 5px solid #fbbf24;
+  padding: 18px 22px; border-radius: 0 12px 12px 0; margin: 24px 0;
+  font-size: 0.97rem; line-height: 2.0;
+}
+.beginner-tip .tip-title {
+  font-weight: 800; color: #92400e; margin-bottom: 10px;
+  font-size: 1.05rem; display: flex; align-items: center; gap: 8px;
+}
+.beginner-tip ul { padding-left: 20px; margin-top: 6px; }
+.beginner-tip li { margin-bottom: 6px; }
+
+/* ポイントボックス（緑） */
+.point-box {
+  background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px;
+  padding: 16px 20px; margin: 20px 0;
+}
+.point-box .point-title { color: #15803d; font-weight: 800; margin-bottom: 6px; font-size: 0.97rem; }
+.point-box p, .point-box li { font-size: 0.92rem; color: #333; line-height: 1.8; }
+.point-box ul { padding-left: 20px; margin-top: 6px; }
+.point-box li { margin-bottom: 4px; }
+
+/* はじめての方へ カード */
+.start-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 26px 0;
+}
+.start-card {
+  background: #fff; border: 2px solid #e2e8f0; border-radius: 14px;
+  padding: 24px 18px; text-align: center; transition: 0.2s;
+}
+.start-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.1); }
+.sc-icon { font-size: 2.4rem; margin-bottom: 10px; }
+.sc-step { font-size: 0.68rem; font-weight: 700; color: #2563eb; letter-spacing: 0.12em; margin-bottom: 6px; }
+.sc-title { font-size: 1rem; font-weight: 800; color: #1a2332; margin-bottom: 8px; }
+.sc-desc { font-size: 0.87rem; color: #555; line-height: 1.7; }
+
+/* スクリーンショット用画像コンテナ */
+.img-container {
+  margin: 26px 0; border-radius: 10px; overflow: hidden;
+  border: 2px solid #e2e8f0; box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.img-container img {
+  width: 100%; display: block; background: #f8fafc;
+}
+.img-placeholder {
+  min-height: 200px; background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 40px;
+  color: #94a3b8; text-align: center;
+}
+.img-placeholder .ph-icon { font-size: 3rem; margin-bottom: 12px; color: #cbd5e1; }
+.img-placeholder p { font-size: 0.9rem; line-height: 1.7; }
+.img-placeholder .ph-note {
+  margin-top: 12px; font-size: 0.78rem; background: #e2e8f0;
+  padding: 5px 16px; border-radius: 20px; color: #64748b;
+}
+.img-caption {
+  padding: 10px 18px; background: #f1f5f9; border-top: 2px solid #e2e8f0;
+  font-size: 0.83rem; color: #4a6278; font-weight: 600;
+}
+
+/* スプレッドシートモックアップ */
+.ss-outer { background: #fff; font-size: 0.75rem; overflow: hidden; }
+.ss-app-bar {
+  background: #fff; padding: 8px 12px;
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.ss-app-icon { font-size: 1.4rem; }
+.ss-app-title { font-size: 0.85rem; font-weight: 600; color: #202124; }
+.ss-menu-bar {
+  display: flex; gap: 12px; padding: 4px 12px;
+  background: #fff; border-bottom: 1px solid #e8e8e8;
+  font-size: 0.72rem; color: #3c4043;
+}
+.ss-formula-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 10px; background: #fff; border-bottom: 1px solid #e0e0e0;
+  font-size: 0.72rem;
+}
+.ss-cell-ref { width: 60px; padding: 2px 6px; border: 1px solid #d0d7e0; border-radius: 2px; text-align: center; font-size: 0.7rem; }
+.ss-formula-input { flex: 1; padding: 2px 8px; border: 1px solid #d0d7e0; border-radius: 2px; font-size: 0.7rem; background: #fff; }
+.ss-sheet-tabs {
+  display: flex; padding: 0 8px;
+  background: #f1f3f4; border-bottom: 1px solid #e0e0e0;
+  overflow-x: auto;
+}
+.ss-sheet-tab {
+  padding: 6px 16px; font-size: 0.72rem; cursor: pointer;
+  border-top: 2px solid transparent; color: #5f6368; white-space: nowrap;
+  margin-right: 2px;
+}
+.ss-sheet-tab.active {
+  background: #fff; color: #1a73e8; font-weight: 700;
+  border-top: 2px solid #1a73e8; border-radius: 2px 2px 0 0;
+}
+.ss-grid-wrap { overflow-x: auto; }
+.ss-table { border-collapse: collapse; min-width: 100%; }
+.ss-col-header { background: #f8f9fa; padding: 3px 8px; border: 1px solid #e0e0e0; color: #777; font-size: 0.68rem; font-weight: 700; text-align: center; min-width: 80px; white-space: nowrap; }
+.ss-row-header { background: #f8f9fa; padding: 3px 6px; border: 1px solid #e0e0e0; color: #999; font-size: 0.65rem; text-align: center; width: 30px; }
+.ss-cell { padding: 4px 8px; border: 1px solid #e8e8e8; font-size: 0.7rem; white-space: nowrap; min-width: 80px; }
+.ss-cell.header-row { background: #e8f0fe !important; font-weight: 700; color: #1a2332; }
+.ss-cell.blue-txt { color: #1a73e8; }
+.ss-cell.green-txt { color: #0f9d58; }
+.ss-cell.red-txt { color: #d93025; }
+
+/* よくある質問 */
+.faq-list { margin: 16px 0; }
+.faq-item { border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+.faq-q {
+  padding: 16px 20px; background: #f8fafc; font-weight: 700; color: #1a2332;
+  font-size: 0.95rem; display: flex; gap: 10px; align-items: flex-start;
+}
+.faq-q-mark { color: #2563eb; font-weight: 800; font-size: 1.05rem; flex-shrink: 0; }
+.faq-a {
+  padding: 16px 20px; font-size: 0.92rem; line-height: 1.85; color: #444;
+  border-top: 1px solid #e2e8f0; background: #fff; display: flex; gap: 10px; align-items: flex-start;
+}
+.faq-a-mark { color: #15803d; font-weight: 800; font-size: 1.05rem; flex-shrink: 0; }
 </style>
 </head>
 <body>
@@ -314,6 +439,7 @@ body { font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', 'Yu Gothic', sans-ser
   </div>
 
   <div class="nav-section-label">はじめに</div>
+  <a class="nav-item" href="#guide">はじめての方へ</a>
   <a class="nav-item" href="#overview">システム概要</a>
   <a class="nav-item" href="#roles">役割と権限</a>
 
@@ -332,6 +458,9 @@ body { font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', 'Yu Gothic', sans-ser
   <div class="nav-section-label">管理者向け</div>
   <a class="nav-item" href="#admin-sheet">スプレッドシート管理</a>
   <a class="nav-item" href="#admin-master">マスタデータ管理</a>
+
+  <div class="nav-section-label">サポート</div>
+  <a class="nav-item" href="#faq">よくある質問</a>
 </nav>
 
 <!-- =================== MAIN =================== -->
@@ -414,6 +543,67 @@ body { font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', 'Yu Gothic', sans-ser
         <span class="badge badge-manager">管理者</span>
       </div>
     </a>
+    <a class="toc-card" href="#faq">
+      <div class="num">困ったときは</div>
+      <div class="title">よくある質問（FAQ）</div>
+      <div class="desc">操作で迷ったときやエラーが出たときの対処法をまとめています。</div>
+      <div class="roles">
+        <span class="badge badge-sales">営業</span>
+        <span class="badge badge-office">営業事務</span>
+        <span class="badge badge-manager">管理者</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== BEGINNER GUIDE ===== -->
+<section class="section" style="background:#f0f7ff;" id="guide">
+  <div class="section-label">このマニュアルについて</div>
+  <h2>はじめての方へ</h2>
+  <p class="section-intro">
+    このマニュアルは、おさし業務管理システムの使い方を、<strong>パソコンが苦手な方にも分かりやすく</strong>説明しています。<br>
+    実際の画面イメージを見ながら、順番に読み進めていただけます。
+  </p>
+
+  <div class="start-cards">
+    <div class="start-card">
+      <div class="sc-icon">🌐</div>
+      <div class="sc-step">STEP 01</div>
+      <div class="sc-title">URLをブラウザで開く</div>
+      <div class="sc-desc">管理者から共有された「アドレス（URL）」を、Google ChromeやEdgeのアドレスバーに貼り付けて開きます。</div>
+    </div>
+    <div class="start-card">
+      <div class="sc-icon">📝</div>
+      <div class="sc-step">STEP 02</div>
+      <div class="sc-title">画面を操作する</div>
+      <div class="sc-desc">このマニュアルに書かれた手順の通りにボタンをクリック・文字を入力して操作します。</div>
+    </div>
+    <div class="start-card">
+      <div class="sc-icon">✅</div>
+      <div class="sc-step">STEP 03</div>
+      <div class="sc-title">分からなければ相談</div>
+      <div class="sc-desc">操作に迷ったときは、このマニュアルの「よくある質問」を確認するか、社内の管理者に相談してください。</div>
+    </div>
+  </div>
+
+  <div class="beginner-tip">
+    <div class="tip-title">📌 このマニュアルの読み方</div>
+    <ul>
+      <li>🖥️ <strong>画面イメージ（モックアップ）</strong>…実際の画面に近いイメージです。どのボタンがどこにあるか確認できます</li>
+      <li>🔢 <strong>ステップ番号（①②③…）</strong>…手順は番号の順番に操作してください</li>
+      <li>💡 <strong>黄色いボックス</strong>…操作のヒントや注意点です。必ず読んでください</li>
+      <li>✅ <strong>緑のボックス</strong>…大事なポイントをまとめています</li>
+      <li>🧭 <strong>左のメニュー</strong>…読みたいページに直接ジャンプできます</li>
+    </ul>
+  </div>
+
+  <div class="point-box">
+    <div class="point-title">✅ 利用前の確認チェックリスト</div>
+    <ul>
+      <li>Google アカウントでログインしているか確認しましょう</li>
+      <li>管理者からシステムのURL（アドレス）を受け取っていますか？</li>
+      <li>初めて開いたとき「許可しますか？」が表示されたら <strong>「許可」</strong> をクリックしてください</li>
+    </ul>
   </div>
 </section>
 
@@ -479,6 +669,33 @@ body { font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', 'Yu Gothic', sans-ser
     <div class="note-title">アクセス方法</div>
     各機能はGoogle Apps Script WebアプリのURLをブラウザで開いてアクセスします。URLは管理者から共有されたものをブックマークして利用してください。
   </div>
+
+  <h3>アプリの開き方（画面イメージ）</h3>
+  <p style="font-size:0.92rem;color:#555;margin-bottom:14px;">以下の手順でブラウザからアプリを開きます。</p>
+
+  <!-- アクセス方法 モックアップ -->
+  <div class="mockup-wrap">
+    <div class="browser-bar" style="padding:10px 14px;">
+      <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+      <span class="burl" style="font-size:0.8rem;color:#1a2332;font-weight:600;">https://script.google.com/macros/s/＊＊＊＊＊＊/exec　← ① ここに管理者からもらったURLを貼り付けてEnterを押す</span>
+    </div>
+    <div style="background:#f9fafb;padding:30px 40px;min-height:140px;display:flex;align-items:center;justify-content:center;text-align:center;flex-direction:column;gap:12px;">
+      <div style="font-size:0.95rem;color:#555;font-weight:600;">② Googleアカウントへのログインが求められる場合があります</div>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center;">
+        <div style="background:#1a73e8;color:#fff;padding:10px 28px;border-radius:6px;font-size:0.9rem;font-weight:700;cursor:pointer;">Googleアカウントでログイン</div>
+        <div style="font-size:1.2rem;color:#aaa;">→</div>
+        <div style="background:#fff;border:2px solid #e2e8f0;padding:10px 24px;border-radius:6px;font-size:0.9rem;font-weight:700;color:#1a2332;">アクセスを許可する</div>
+      </div>
+      <div style="font-size:0.82rem;color:#888;margin-top:6px;">③「アクセスを許可する」をクリックするとアプリが開きます</div>
+    </div>
+  </div>
+
+  <div class="beginner-tip">
+    <div class="tip-title">💡 「アクセスを許可する」が表示されたら</div>
+    初めてアプリを開くとき、Googleから「このアプリはあなたのデータにアクセスしようとしています」という確認画面が表示されることがあります。<br>
+    これはシステムが正常に動作するために必要です。<strong>「許可」または「アクセスを許可する」</strong> をクリックして進んでください。<br>
+    <span style="font-size:0.85rem;color:#92400e;">※ 2回目以降は表示されません</span>
+  </div>
 </section>
 
 <!-- ===== SECTION 2: 受注兼発送依頼書 ===== -->
@@ -495,6 +712,16 @@ body { font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', 'Yu Gothic', sans-ser
     受注情報を入力し、承認フローを経て出荷指示まで管理する中心的な機能です。
     販売・レンタル・通信費の3種類のモードに対応しています。
   </p>
+
+  <div class="beginner-tip">
+    <div class="tip-title">💡 この機能でできること（かんたんまとめ）</div>
+    <ul>
+      <li>📋 お客様への受注内容（商品・数量・金額・住所など）を入力・保存できます</li>
+      <li>📤 上司への「提出」ボタンを押すと、自動的に承認フローが始まります</li>
+      <li>🔍 「一時保存」を使えば、途中まで入力してあとで続きを書けます</li>
+      <li>⚠️ 「提出」した後は内容を変えると再提出が必要になります</li>
+    </ul>
+  </div>
 
   <!-- MOCKUP -->
   <div class="mockup-wrap">
@@ -694,6 +921,16 @@ body { font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', 'Yu Gothic', sans-ser
     左側のリストから受注を選択すると、右側に商品別の出荷状況と出荷履歴が表示されます。
   </p>
 
+  <div class="beginner-tip">
+    <div class="tip-title">💡 この画面の使い方（かんたんまとめ）</div>
+    <ul>
+      <li>📋 <strong>左のリスト</strong>…自分が関わる受注が一覧で表示されます。クリックして選びます</li>
+      <li>📊 <strong>右の詳細エリア</strong>…選んだ受注の商品ごとの出荷状況と履歴が表示されます</li>
+      <li>🔴 <strong>赤字の「残数」</strong>…まだ出荷が終わっていない数量です</li>
+      <li>🔍 上部の検索ボックスで会社名や受注番号を入力して絞り込みができます</li>
+    </ul>
+  </div>
+
   <!-- MOCKUP -->
   <div class="mockup-wrap">
     <div class="browser-bar">
@@ -839,6 +1076,16 @@ body { font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', 'Yu Gothic', sans-ser
     出荷伝票を作成・管理する画面です。「新規出荷作成」と「作成済伝票の確認・修正」の2つのタブで構成されています。
     出荷伝票を作成するとスプレッドシートが自動生成され、在庫の出荷済数が更新されます。
   </p>
+
+  <div class="beginner-tip">
+    <div class="tip-title">💡 この機能でできること（かんたんまとめ）</div>
+    <ul>
+      <li>📝 「<strong>新規出荷作成</strong>」タブ…今回出荷する商品と数量を入力してボタンを押すだけでOKです</li>
+      <li>📂 「<strong>作成済伝票の確認・修正</strong>」タブ…過去に作った伝票を確認・修正・返品処理できます</li>
+      <li>✅ 出荷数を入力して「出荷伝票を作成する」を押すとスプレッドシートに自動で記録されます</li>
+      <li>⚠️ <strong>「修正」は上書き保存</strong>されます。元のデータは消えるので慎重に操作してください</li>
+    </ul>
+  </div>
 
   <!-- MOCKUP: 新規作成タブ -->
   <div class="mockup-wrap">
@@ -1167,6 +1414,149 @@ body { font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', 'Yu Gothic', sans-ser
     <tr><td>請求スケジュール</td><td>レンタル・通信費の請求スケジュール</td><td>システム自動更新</td></tr>
   </table>
 
+  <h3>スプレッドシートの画面イメージ</h3>
+  <p style="font-size:0.92rem;color:#555;margin-bottom:16px;">実際のスプレッドシートはこのようなシート構成になっています。</p>
+
+  <!-- スプレッドシート HTMLモックアップ -->
+  <div class="mockup-wrap">
+    <div class="browser-bar">
+      <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+      <span class="burl">docs.google.com — おさし 業務管理データ（スプレッドシート）</span>
+    </div>
+    <div class="ss-outer">
+      <div class="ss-app-bar">
+        <span class="ss-app-icon">📊</span>
+        <span class="ss-app-title">おさし 業務管理データ</span>
+        <span style="margin-left:auto;font-size:0.72rem;color:#888;">Google スプレッドシート</span>
+      </div>
+      <div class="ss-menu-bar">
+        <span>ファイル</span><span>編集</span><span>表示</span><span>挿入</span><span>フォーマット</span><span>ツール</span><span>拡張機能</span>
+      </div>
+      <div class="ss-formula-bar">
+        <input class="ss-cell-ref" value="A1" readonly>
+        <span style="color:#ccc;">|</span>
+        <input class="ss-formula-input" value="受注No" readonly>
+      </div>
+      <div class="ss-sheet-tabs">
+        <div class="ss-sheet-tab active">受注データ</div>
+        <div class="ss-sheet-tab">受注明細</div>
+        <div class="ss-sheet-tab">出荷済明細</div>
+        <div class="ss-sheet-tab">出荷伝票履歴</div>
+        <div class="ss-sheet-tab">担当者マスタ</div>
+        <div class="ss-sheet-tab">得意先マスタ</div>
+        <div class="ss-sheet-tab">商品マスタ</div>
+        <div class="ss-sheet-tab" style="color:#888;">＋</div>
+      </div>
+      <div class="ss-grid-wrap">
+        <table class="ss-table">
+          <tr>
+            <th class="ss-row-header"></th>
+            <th class="ss-col-header">A</th>
+            <th class="ss-col-header">B</th>
+            <th class="ss-col-header">C</th>
+            <th class="ss-col-header">D</th>
+            <th class="ss-col-header">E</th>
+            <th class="ss-col-header">F</th>
+            <th class="ss-col-header">G</th>
+          </tr>
+          <tr>
+            <td class="ss-row-header">1</td>
+            <td class="ss-cell header-row">受注No</td>
+            <td class="ss-cell header-row">社名</td>
+            <td class="ss-cell header-row">担当営業</td>
+            <td class="ss-cell header-row">売上日</td>
+            <td class="ss-cell header-row">ステータス</td>
+            <td class="ss-cell header-row">合計金額</td>
+            <td class="ss-cell header-row">PDF URL</td>
+          </tr>
+          <tr>
+            <td class="ss-row-header">2</td>
+            <td class="ss-cell blue-txt">2025-0042</td>
+            <td class="ss-cell">株式会社サンプル商事</td>
+            <td class="ss-cell">山田 太郎</td>
+            <td class="ss-cell">2026/03/01</td>
+            <td class="ss-cell green-txt">完了</td>
+            <td class="ss-cell">¥193,600</td>
+            <td class="ss-cell blue-txt">https://drive...</td>
+          </tr>
+          <tr>
+            <td class="ss-row-header">3</td>
+            <td class="ss-cell blue-txt">2025-0041</td>
+            <td class="ss-cell">株式会社テスト工業</td>
+            <td class="ss-cell">佐藤 花子</td>
+            <td class="ss-cell">2026/02/28</td>
+            <td class="ss-cell" style="color:#b45309;">処理中</td>
+            <td class="ss-cell">¥88,000</td>
+            <td class="ss-cell" style="color:#aaa;">—</td>
+          </tr>
+          <tr>
+            <td class="ss-row-header">4</td>
+            <td class="ss-cell blue-txt">2025-0039</td>
+            <td class="ss-cell">合同会社ABCサービス</td>
+            <td class="ss-cell">田中 一郎</td>
+            <td class="ss-cell">2026/02/20</td>
+            <td class="ss-cell green-txt">完了</td>
+            <td class="ss-cell">¥55,000</td>
+            <td class="ss-cell blue-txt">https://drive...</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="point-box">
+    <div class="point-title">✅ スプレッドシートを直接編集するときの注意</div>
+    <ul>
+      <li>システムが自動更新するセルは<strong>絶対に手動で変更しない</strong>でください（データが壊れます）</li>
+      <li>マスタ（担当者・得意先・商品）の追加・変更は管理者のみが行ってください</li>
+      <li>行を削除するときは必ず管理者に相談してください</li>
+    </ul>
+  </div>
+
+  <!-- スプレッドシート実際の画面キャプチャ用（管理者が差し替えてください） -->
+  <h4 style="margin-top:28px;">📸 実際のスプレッドシート画面（スクリーンショット）</h4>
+  <p style="font-size:0.88rem;color:#666;margin-bottom:6px;">以下に実際の画面のスクリーンショットを挿入してください。<code style="background:#f1f5f9;padding:2px 6px;border-radius:3px;">src=""</code> にGoogle DriveやImgurなどの画像URLを記入します。</p>
+
+  <div class="img-container">
+    <!-- ★ 管理者へ：src="" に実際のスクリーンショット画像のURLを入れてください -->
+    <img src="" alt="スプレッドシート 受注データシート のスクリーンショット" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="display:block;">
+    <div class="img-placeholder" style="display:none;">
+      <div class="ph-icon">📸</div>
+      <p><strong>受注データシート</strong> のスクリーンショットを挿入予定</p>
+      <div class="ph-note">src="" に画像URLを記入すると表示されます</div>
+    </div>
+    <div class="img-caption">📊 スプレッドシート：受注データシート</div>
+  </div>
+
+  <div class="img-container">
+    <!-- ★ 管理者へ：src="" に担当者マスタシートのスクリーンショット画像URLを入れてください -->
+    <img src="" alt="担当者マスタシート のスクリーンショット" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="display:block;">
+    <div class="img-placeholder" style="display:none;">
+      <div class="ph-icon">📸</div>
+      <p><strong>担当者マスタシート</strong> のスクリーンショットを挿入予定</p>
+      <div class="ph-note">src="" に画像URLを記入すると表示されます</div>
+    </div>
+    <div class="img-caption">👤 スプレッドシート：担当者マスタシート</div>
+  </div>
+
+  <div class="img-container">
+    <!-- ★ 管理者へ：src="" に商品マスタシートのスクリーンショット画像URLを入れてください -->
+    <img src="" alt="商品マスタシート のスクリーンショット" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="display:block;">
+    <div class="img-placeholder" style="display:none;">
+      <div class="ph-icon">📸</div>
+      <p><strong>商品マスタシート</strong> のスクリーンショットを挿入予定</p>
+      <div class="ph-note">src="" に画像URLを記入すると表示されます</div>
+    </div>
+    <div class="img-caption">📦 スプレッドシート：商品マスタシート</div>
+  </div>
+
+  <div class="note">
+    <div class="note-title">📷 スクリーンショット画像の挿入方法</div>
+    1. Google スプレッドシートの画面をスクリーンショット（PrintScreen または Snipping Tool）で撮影します<br>
+    2. Google DriveやImgurなどにアップロードして「リンクをコピー」します<br>
+    3. このHTMLファイルの <code style="background:#f1f5f9;padding:1px 5px;border-radius:3px;">src=""</code> の部分にそのURLを貼り付けて保存し、GASを再デプロイします
+  </div>
+
   <h3>担当者マスタの管理</h3>
   <div class="steps">
     <div class="step">
@@ -1244,6 +1634,134 @@ body { font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', 'Yu Gothic', sans-ser
   <div class="note">
     <div class="note-title">キャッシュについて</div>
     担当者マスタなどのデータは10分間キャッシュされます。マスタ変更後すぐに反映させたい場合は、GASエディタからキャッシュクリア関数（<code style="background:#f1f5f9;padding:1px 5px;border-radius:3px;">CacheService.getScriptCache().removeAll()</code>）を実行してください。
+  </div>
+
+  <!-- GASエディタの画面キャプチャ用 -->
+  <h4 style="margin-top:28px;">📸 Apps Script（GASエディタ）の画面</h4>
+  <div class="img-container">
+    <!-- ★ 管理者へ：src="" にGASエディタのスクリーンショット画像URLを入れてください -->
+    <img src="" alt="Google Apps Script エディタのスクリーンショット" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="display:block;">
+    <div class="img-placeholder" style="display:none;">
+      <div class="ph-icon">⚙️</div>
+      <p><strong>Google Apps Script エディタ</strong> のスクリーンショットを挿入予定</p>
+      <div class="ph-note">src="" に画像URLを記入すると表示されます</div>
+    </div>
+    <div class="img-caption">⚙️ Google Apps Script エディタ（拡張機能 → Apps Script から開けます）</div>
+  </div>
+
+  <div class="img-container">
+    <!-- ★ 管理者へ：src="" にデプロイ設定画面のスクリーンショット画像URLを入れてください -->
+    <img src="" alt="デプロイ設定画面のスクリーンショット" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" style="display:block;">
+    <div class="img-placeholder" style="display:none;">
+      <div class="ph-icon">🚀</div>
+      <p><strong>デプロイ設定画面</strong> のスクリーンショットを挿入予定</p>
+      <div class="ph-note">src="" に画像URLを記入すると表示されます</div>
+    </div>
+    <div class="img-caption">🚀 デプロイ設定画面（「デプロイ」→「新しいデプロイ」）</div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section" id="faq">
+  <div class="section-label">困ったときは</div>
+  <h2>よくある質問</h2>
+  <p class="section-intro">
+    操作で迷ったときや、思い通りに動かないときは、まず以下をご確認ください。
+  </p>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-mark">Q.</span>
+        <span>URLを開いたら「許可」を求められた。どうすればいい？</span>
+      </div>
+      <div class="faq-a">
+        <span class="faq-a-mark">A.</span>
+        <span>初めてアプリを開くと、Googleがアクセス許可を確認します。<strong>「許可」または「アクセスを許可する」</strong>をクリックしてください。これはシステムが正常に動作するために必要な手順です。2回目以降は表示されません。</span>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-mark">Q.</span>
+        <span>「一時保存」と「提出」の違いは何ですか？</span>
+      </div>
+      <div class="faq-a">
+        <span class="faq-a-mark">A.</span>
+        <span><strong>「一時保存」</strong>は、まだ入力が途中のとき使います。データは保存されますが承認フローは始まりません。<strong>「提出」</strong>は入力が完了したときに押します。提出すると上司への承認依頼が自動的に始まります。</span>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-mark">Q.</span>
+        <span>提出した後に入力内容を間違えたことに気づいた。どうすれば直せますか？</span>
+      </div>
+      <div class="faq-a">
+        <span class="faq-a-mark">A.</span>
+        <span>受注兼発送依頼書の「<strong>再編集</strong>」ボタンをクリックしてください。ステータスが「作成中」に戻り、内容を修正できます。修正が終わったら再度「提出」ボタンを押してください。</span>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-mark">Q.</span>
+        <span>画面が真っ白になる、または「エラー」と表示される。</span>
+      </div>
+      <div class="faq-a">
+        <span class="faq-a-mark">A.</span>
+        <span>まずブラウザを更新（F5キーまたは画面上部の更新ボタン）してみてください。それでも解決しない場合は、ブラウザのキャッシュをクリア（Ctrl+Shift+Delete）するか、別のブラウザ（ChromeやEdge）で試してください。解決しない場合は管理者に連絡してください。</span>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-mark">Q.</span>
+        <span>ダッシュボードに自分の受注が表示されない。</span>
+      </div>
+      <div class="faq-a">
+        <span class="faq-a-mark">A.</span>
+        <span>画面左上の検索ボックスに自分の名前や受注番号を入力して検索してみてください。また、ステータスのフィルタが「すべて」になっているか確認してください。それでも見当たらない場合は、受注兼発送依頼書でデータが正しく保存されているか確認するか、管理者に問い合わせてください。</span>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-mark">Q.</span>
+        <span>PDFが生成されない・PDFを開くリンクが表示されない。</span>
+      </div>
+      <div class="faq-a">
+        <span class="faq-a-mark">A.</span>
+        <span>しばらく待ってからページを更新してみてください。Google Driveへのファイル保存に時間がかかることがあります。また、Googleアカウントのストレージ容量が不足していないか確認してください。繰り返し発生する場合は管理者に連絡してください。</span>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-mark">Q.</span>
+        <span>商品を検索したが見つからない。</span>
+      </div>
+      <div class="faq-a">
+        <span class="faq-a-mark">A.</span>
+        <span>商品コードまたは品名の一部を入力して検索してください。それでも見つからない場合は、商品マスタに登録されていない可能性があります。管理者に商品マスタへの追加を依頼してください。</span>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-mark">Q.</span>
+        <span>（管理者向け）担当者を追加したのにアプリに反映されない。</span>
+      </div>
+      <div class="faq-a">
+        <span class="faq-a-mark">A.</span>
+        <span>担当者マスタのデータは最大10分間キャッシュされます。すぐに反映させたい場合は、GASエディタから <code style="background:#f1f5f9;padding:1px 5px;border-radius:3px;">CacheService.getScriptCache().removeAll()</code> 関数を実行してください。</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="point-box" style="margin-top:28px;">
+    <div class="point-title">✅ 問題が解決しない場合は管理者へ</div>
+    <p>エラーメッセージが表示された場合は、その内容をスクリーンショット（PrintScreen）に撮って管理者に送ると、原因特定がスムーズです。</p>
   </div>
 </section>
 
