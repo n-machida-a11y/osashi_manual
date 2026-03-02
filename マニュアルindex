@@ -376,67 +376,117 @@
       <h5><span class="step-num">②</span>必要な情報を入力・修正する</h5>
       <p>従来のExcelと同じ感覚で、出荷日・納期・配送方法・直送先担当者名などを入力・修正します。</p>
 
-      <!-- 受注兼アプリ モックアップ -->
+      <!-- 受注兼アプリ モックアップ（実際の画面に合わせたスタイル） -->
       <div class="mockup-wrap" style="margin-top:16px;">
         <div class="browser-bar">
           <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
           <span class="burl">受注兼発送依頼書</span>
         </div>
-        <div class="font-sans bg-white overflow-x-auto">
-          <!-- タブ -->
-          <div class="flex border-b border-gray-300 bg-gray-100 text-sm">
-            <button class="px-5 py-2 font-bold text-blue-600 bg-white border-b-2 border-blue-600">販売</button>
-            <button class="px-5 py-2 text-gray-500">レンタル</button>
-            <button class="px-5 py-2 text-gray-500">通信費</button>
+        <!-- タブ -->
+        <div class="font-sans" style="background:#f3f4f6;">
+          <div style="display:flex;align-items:flex-end;gap:4px;padding:8px 8px 0;border-bottom:2px solid #d1d5db;">
+            <div style="padding:8px 16px;border-radius:8px 8px 0 0;font-weight:700;font-size:0.82rem;background:#fff;color:#2563eb;border:1px solid #d1d5db;border-bottom:2px solid #fff;margin-bottom:-2px;">販売</div>
+            <div style="padding:8px 16px;border-radius:8px 8px 0 0;font-weight:700;font-size:0.82rem;background:#f3f4f6;color:#6b7280;border:1px solid #d1d5db;border-bottom:none;">レンタル</div>
+            <div style="padding:8px 16px;border-radius:8px 8px 0 0;font-weight:700;font-size:0.82rem;background:#f3f4f6;color:#6b7280;border:1px solid #d1d5db;border-bottom:none;">通信費</div>
           </div>
-          <!-- 本体 -->
-          <div class="p-4 text-xs text-gray-700" style="min-width:560px;">
-            <div class="grid grid-cols-2 gap-4 mb-3">
+          <!-- フォーム本体（A4用紙スタイル） -->
+          <div style="background:#fff;padding:28px 32px;border:1px solid #d1d5db;box-shadow:0 4px 24px rgba(0,0,0,0.12);margin:12px;overflow-x:auto;">
+            <!-- タイトル -->
+            <h2 style="font-family:'Noto Serif JP',serif;font-size:1.4rem;font-weight:700;letter-spacing:0.25em;border-bottom:4px double #000;display:inline-block;padding-bottom:4px;margin-bottom:16px;">受注兼発送依頼書</h2>
+            <!-- 得意先・直送先グリッド -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;border:2px solid #000;margin-bottom:12px;">
               <!-- 得意先情報 -->
-              <div class="border border-gray-300 rounded p-3">
-                <div class="font-bold text-gray-800 text-sm mb-2 border-b pb-1">得意先情報</div>
-                <div class="space-y-1.5">
-                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">社名</span><input class="flex-1 border border-red-400 rounded px-2 py-0.5 bg-red-50" value="株式会社サンプル商事" readonly></div>
-                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">担当者</span><input class="flex-1 border border-red-400 rounded px-2 py-0.5 bg-red-50" value="鈴木 次郎" readonly></div>
-                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">担当営業</span><input class="flex-1 border border-red-400 rounded px-2 py-0.5 bg-red-50" value="営業 太郎" readonly></div>
-                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">見積書No</span><input class="flex-1 border border-red-400 rounded px-2 py-0.5 bg-red-50" value="" readonly></div>
-                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">TEL</span><input class="flex-1 border border-red-400 rounded px-2 py-0.5 bg-red-50" value="03-0000-0000" readonly></div>
-                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">住所</span><input class="flex-1 border border-red-400 rounded px-2 py-0.5 bg-red-50" value="東京都千代田区〇〇1-2-3" readonly></div>
-                </div>
+              <div style="border-right:1px solid #000;padding:10px;">
+                <div style="font-size:0.7rem;font-weight:700;background:#e5e7eb;padding:2px 10px;border-radius:4px;border:1px solid #d1d5db;display:inline-block;margin-bottom:8px;">社名</div>
+                <input style="font-weight:700;font-size:1rem;width:100%;outline:none;background:transparent;border:none;" value="株式会社サンプル商事" readonly>
+                <div style="font-size:0.7rem;color:#888;margin-top:2px;">担当者: <input style="outline:none;background:transparent;border-bottom:1px solid #d1d5db;font-size:0.75rem;" value="鈴木 次郎" readonly> &nbsp; 担当営業: <input style="outline:none;background:transparent;border-bottom:1px solid #d1d5db;font-size:0.75rem;" value="営業 太郎" readonly></div>
+                <div style="margin-top:8px;"><div style="font-size:0.7rem;font-weight:700;background:#e5e7eb;padding:2px 10px;border-radius:4px;border:1px solid #d1d5db;display:inline-block;margin-bottom:4px;">住所</div>
+                <div style="font-size:0.7rem;color:#555;">〒100-0001</div>
+                <textarea style="width:100%;background:transparent;outline:none;resize:none;font-size:0.78rem;border:none;" rows="2" readonly>東京都千代田区〇〇1-2-3</textarea>
+                <div style="font-size:0.7rem;color:#555;">TEL: <input style="background:transparent;outline:none;border-bottom:1px solid #d1d5db;font-size:0.7rem;width:110px;" value="03-0000-0000" readonly></div></div>
               </div>
               <!-- 直送先情報 -->
-              <div class="border border-gray-300 rounded p-3">
-                <div class="font-bold text-gray-800 text-sm mb-2 border-b pb-1">直送先情報</div>
-                <div class="space-y-1.5">
-                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">直送先名</span><input class="flex-1 border border-gray-300 rounded px-2 py-0.5" value="" readonly></div>
-                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">直送先担当者</span><input class="flex-1 border border-gray-300 rounded px-2 py-0.5" value="" readonly></div>
-                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">TEL</span><input class="flex-1 border border-gray-300 rounded px-2 py-0.5" value="" readonly></div>
-                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">住所</span><input class="flex-1 border border-gray-300 rounded px-2 py-0.5" value="" readonly></div>
+              <div style="padding:10px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                  <div style="font-size:0.7rem;font-weight:700;background:#e5e7eb;padding:2px 10px;border-radius:4px;border:1px solid #d1d5db;display:inline-block;">直送先</div>
+                  <input style="font-weight:700;font-size:0.8rem;border-bottom:1px solid #d1d5db;background:transparent;outline:none;width:55%;" placeholder="直送先担当者名" readonly>
                 </div>
+                <input style="font-weight:700;font-size:0.95rem;border-bottom:1px dashed #d1d5db;background:transparent;outline:none;width:100%;margin-bottom:4px;" placeholder="（直送先名）" readonly>
+                <div style="font-size:0.7rem;color:#555;margin-top:6px;">〒 <input style="background:transparent;outline:none;border-bottom:1px solid #d1d5db;width:80px;font-size:0.7rem;" placeholder="000-0000" readonly></div>
+                <input style="width:100%;background:transparent;border-bottom:1px solid #d1d5db;outline:none;font-size:0.75rem;margin-top:3px;" placeholder="住所１" readonly>
+                <div style="font-size:0.7rem;color:#555;margin-top:4px;">TEL: <input style="background:transparent;outline:none;border-bottom:1px solid #d1d5db;font-size:0.7rem;width:110px;" readonly></div>
               </div>
             </div>
             <!-- 出荷情報 -->
-            <div class="border border-gray-300 rounded p-3 mb-3">
-              <div class="font-bold text-gray-800 text-sm mb-2 border-b pb-1">出荷・配送情報</div>
-              <div class="grid grid-cols-4 gap-2">
-                <div class="flex flex-col gap-1"><span class="text-gray-500">出荷日</span><input class="border border-red-400 rounded px-2 py-0.5 bg-red-50" value="2026/03/05" readonly></div>
-                <div class="flex flex-col gap-1"><span class="text-gray-500">納期</span><input class="border border-red-400 rounded px-2 py-0.5 bg-red-50" value="2026/03/06" readonly></div>
-                <div class="flex flex-col gap-1"><span class="text-gray-500">配送方法</span><input class="border border-red-400 rounded px-2 py-0.5 bg-red-50" value="ヤマト(AM)" readonly></div>
-                <div class="flex flex-col gap-1"><span class="text-gray-500">時間帯</span><select class="border border-gray-300 rounded px-2 py-0.5 bg-white"><option>午前中</option><option>14時～16時</option><option>指定なし</option></select></div>
+            <div style="border:2px solid #000;padding:8px;margin-bottom:10px;">
+              <div style="font-size:0.7rem;font-weight:700;background:#e5e7eb;padding:2px 10px;border-radius:4px;border:1px solid #d1d5db;display:inline-block;margin-bottom:8px;">出荷・配送情報</div>
+              <div style="display:grid;grid-template-columns:20px 1fr 1fr 1fr 1fr 0.8fr 1fr;gap:6px;font-size:0.72rem;text-align:center;font-weight:700;color:#555;margin-bottom:4px;">
+                <div></div>
+                <div style="background:#e5e7eb;border-radius:3px;padding:2px;border:1px solid #e2e8f0;">出荷日</div>
+                <div style="background:#e5e7eb;border-radius:3px;padding:2px;border:1px solid #e2e8f0;">納期</div>
+                <div style="background:#e5e7eb;border-radius:3px;padding:2px;border:1px solid #e2e8f0;">配送方法</div>
+                <div style="background:#e5e7eb;border-radius:3px;padding:2px;border:1px solid #e2e8f0;">時間帯</div>
+                <div style="background:#e5e7eb;border-radius:3px;padding:2px;border:1px solid #e2e8f0;">出荷No</div>
+                <div style="background:#fff3cd;border-radius:3px;padding:2px;border:1px solid #fde68a;color:#92400e;">出荷指示確認</div>
+              </div>
+              <div style="display:grid;grid-template-columns:20px 1fr 1fr 1fr 1fr 0.8fr 1fr;gap:6px;font-size:0.75rem;align-items:center;">
+                <div style="background:#f3f4f6;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;border:1px solid #d1d5db;">1</div>
+                <input style="background:transparent;border-bottom:1px solid #d1d5db;outline:none;text-align:center;font-size:0.73rem;background:#fef2f2;border:2px solid #ef4444;" value="2026/03/05" readonly>
+                <input style="background:transparent;border-bottom:1px solid #d1d5db;outline:none;text-align:center;font-size:0.73rem;" value="2026/03/06" readonly>
+                <input style="background:transparent;border-bottom:1px solid #d1d5db;outline:none;text-align:center;font-size:0.73rem;background:#fef2f2;border:2px solid #ef4444;" value="ヤマト(AM)" readonly>
+                <select style="background:transparent;border-bottom:1px solid #d1d5db;outline:none;font-size:0.73rem;width:100%;"><option>午前中</option></select>
+                <input style="background:transparent;border-bottom:1px solid #d1d5db;outline:none;text-align:center;font-size:0.73rem;" readonly>
+                <div style="font-size:0.65rem;color:#d1d5db;text-align:center;">✓</div>
               </div>
             </div>
-            <!-- 明細 -->
-            <div class="border border-gray-300 rounded p-3">
-              <div class="font-bold text-gray-800 text-sm mb-2 border-b pb-1">販売品明細</div>
-              <table class="w-full text-[11px] border-collapse">
-                <tr class="bg-gray-100"><th class="border border-gray-300 p-1">品名</th><th class="border border-gray-300 p-1">数量</th><th class="border border-gray-300 p-1">単位</th><th class="border border-gray-300 p-1">単価</th><th class="border border-gray-300 p-1">金額</th><th class="border border-gray-300 p-1">手配日</th></tr>
-                <tr><td class="border border-gray-300 p-1">レーザープリンター A4</td><td class="border border-gray-300 p-1 text-right">2</td><td class="border border-gray-300 p-1 text-center">台</td><td class="border border-gray-300 p-1 text-right">68,000</td><td class="border border-gray-300 p-1 text-right">136,000</td><td class="border border-gray-300 p-1">03/05</td></tr>
-                <tr><td class="border border-gray-300 p-1">トナーカートリッジ（黒）</td><td class="border border-gray-300 p-1 text-right">5</td><td class="border border-gray-300 p-1 text-center">本</td><td class="border border-gray-300 p-1 text-right">4,800</td><td class="border border-gray-300 p-1 text-right">24,000</td><td class="border border-gray-300 p-1">03/05</td></tr>
-              </table>
-              <div class="text-right mt-2 text-xs space-y-0.5">
-                <div>売上小計：<strong>160,000</strong></div>
-                <div>消費税（10%）：16,000</div>
-                <div class="font-bold text-sm">合計（税込み）：<span class="text-blue-700">176,000</span></div>
+            <!-- 明細テーブル -->
+            <div style="border:2px solid #000;">
+              <div style="display:grid;grid-template-columns:24px 70px 1.5fr 36px 36px 60px 60px 70px 85px 48px 60px 50px;background:#e5e7eb;border-bottom:2px solid #000;text-align:center;font-weight:700;font-size:0.65rem;color:#333;">
+                <div style="border-right:1px solid #000;padding:4px;"></div>
+                <div style="border-right:1px solid #000;padding:4px;">取引年月日</div>
+                <div style="border-right:1px solid #000;padding:4px;">品名</div>
+                <div style="border-right:1px solid #000;padding:4px;">数量</div>
+                <div style="border-right:1px solid #000;padding:4px;">単位</div>
+                <div style="border-right:1px solid #000;padding:4px;">単価</div>
+                <div style="border-right:1px solid #000;padding:4px;">金額</div>
+                <div style="border-right:1px solid #000;padding:4px;">製造No</div>
+                <div style="border-right:1px solid #000;padding:4px;">品名詳細</div>
+                <div style="border-right:1px solid #000;padding:4px;">手配日</div>
+                <div style="border-right:1px solid #000;padding:4px;">原価単価</div>
+                <div style="padding:4px;">掛率</div>
+              </div>
+              <div style="display:grid;grid-template-columns:24px 70px 1.5fr 36px 36px 60px 60px 70px 85px 48px 60px 50px;border-bottom:1px solid #000;font-size:0.7rem;min-height:28px;align-items:center;">
+                <div style="border-right:1px solid #000;padding:3px;text-align:center;"></div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:center;">03/05</div>
+                <div style="border-right:1px solid #000;padding:3px;">レーザープリンター A4</div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:right;">2</div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:center;">台</div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:right;">68,000</div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:right;font-weight:700;">136,000</div>
+                <div style="border-right:1px solid #000;padding:3px;"></div>
+                <div style="border-right:1px solid #000;padding:3px;"></div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:center;">03/05</div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:right;color:#9ca3af;">55,000</div>
+                <div style="padding:3px;text-align:center;color:#9ca3af;">80%</div>
+              </div>
+              <div style="display:grid;grid-template-columns:24px 70px 1.5fr 36px 36px 60px 60px 70px 85px 48px 60px 50px;font-size:0.7rem;min-height:28px;align-items:center;background:#f9fafb;">
+                <div style="border-right:1px solid #000;padding:3px;"></div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:center;">03/05</div>
+                <div style="border-right:1px solid #000;padding:3px;">トナーカートリッジ（黒）</div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:right;">5</div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:center;">本</div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:right;">4,800</div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:right;font-weight:700;">24,000</div>
+                <div style="border-right:1px solid #000;padding:3px;"></div>
+                <div style="border-right:1px solid #000;padding:3px;"></div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:center;">03/05</div>
+                <div style="border-right:1px solid #000;padding:3px;text-align:right;color:#9ca3af;">3,800</div>
+                <div style="padding:3px;text-align:center;color:#9ca3af;">79%</div>
+              </div>
+              <div style="background:#f9fafb;border-top:1px solid #000;padding:8px 12px;text-align:right;font-size:0.8rem;display:flex;justify-content:flex-end;gap:24px;">
+                <span>小計 <strong>160,000</strong></span>
+                <span>消費税 16,000</span>
+                <span style="font-size:1rem;font-weight:700;">合計 <span style="color:#2563eb;">176,000</span> 円</span>
               </div>
             </div>
           </div>
@@ -493,34 +543,34 @@
         営業事務が「処理開始」を押すまでは、「再編集」ボタンから何度でも修正できます。
       </div>
 
-      <!-- ボタン部分モックアップ -->
+      <!-- ボタン部分モックアップ（実際のヘッダーパネルスタイル） -->
       <div class="mockup-wrap" style="margin-top:16px;">
         <div class="browser-bar">
           <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-          <span class="burl">受注兼発送依頼書 — ヘッダー操作パネル</span>
+          <span class="burl">受注兼発送依頼書 — 操作パネル</span>
         </div>
-        <div class="font-sans bg-gray-100 p-3 overflow-x-auto">
-          <div class="bg-white rounded-lg shadow-sm border-l-4 border-blue-600 p-3 flex justify-between items-center min-w-[620px]">
-            <div class="flex items-center gap-3">
-              <div>
-                <div class="font-bold text-blue-700 text-sm">【販売品】</div>
-                <div class="text-[11px] text-gray-500">受注No: 250969　株式会社サンプル商事</div>
+        <div class="font-sans" style="background:#f3f4f6;padding:12px;overflow-x:auto;">
+          <div class="bg-white rounded-lg shadow-md border-l-4 border-blue-600 p-4 flex justify-between items-center" style="min-width:660px;">
+            <div class="flex items-center space-x-4">
+              <div class="flex flex-col">
+                <span class="font-bold text-lg text-gray-800">【販売品】</span>
+                <span class="text-xs text-gray-500">受注No: 250969</span>
               </div>
-              <select class="bg-gray-100 text-xs font-bold px-2 py-1 rounded border border-gray-300 outline-none">
-                <option>作成中</option><option>仮</option><option>差替</option>
+              <select class="bg-gray-100 text-xs font-bold p-1 rounded border border-gray-300 outline-none">
+                <option>作成中</option><option>【仮】(金額0)</option><option>【差替】</option>
               </select>
-              <span class="text-[11px] px-2 py-0.5 bg-gray-200 text-gray-600 rounded font-bold">提出済み</span>
+              <span class="text-xs font-bold px-3 py-1 rounded text-white" style="background:#2563eb;">提出済み</span>
             </div>
-            <div class="flex items-center gap-2">
-              <button class="px-2 py-1 bg-purple-600 text-white border-0 rounded text-xs">📎 添付ファイル</button>
-              <button class="px-2 py-1 bg-green-600 text-white border-0 rounded text-xs">Excel出力</button>
-              <button class="px-2 py-1 bg-gray-100 text-gray-700 border border-gray-200 rounded text-xs">画像保存</button>
-              <div class="h-4 w-px bg-gray-300 mx-1"></div>
-              <button class="px-3 py-1 bg-blue-600 text-white border-0 rounded font-bold text-xs">💾 一時保存</button>
-              <button class="px-3 py-1 bg-indigo-600 text-white border-0 rounded font-bold text-xs">提出 ▶</button>
-              <button class="px-3 py-1 bg-amber-500 text-white border-0 rounded font-bold text-xs">再編集</button>
+            <div class="flex items-center space-x-2">
+              <button class="px-4 py-2 rounded text-sm shadow text-white border-0" style="background:#9333ea;">📎 添付ファイル</button>
+              <button class="px-4 py-2 rounded text-sm shadow text-white border-0" style="background:#16a34a;">Excel出力</button>
+              <button class="px-4 py-2 rounded text-sm shadow border" style="background:#f3f4f6;color:#374151;border-color:#e5e7eb;">画像保存</button>
+              <button class="px-4 py-2 rounded text-sm shadow text-white font-bold border-0" style="background:#2563eb;">💾 一時保存</button>
+              <button class="px-6 py-2 rounded text-sm shadow text-white font-bold border-0" style="background:#4f46e5;">提出</button>
+              <button class="px-4 py-2 rounded text-sm shadow text-white font-bold border-0" style="background:#d97706;">再編集</button>
             </div>
           </div>
+          <p class="text-xs text-gray-500 mt-2 ms-1">※ ステータスによって表示されるボタンが変わります（処理中：「処理完了」、完了：「完了済を再編集」など）</p>
         </div>
       </div>
     </div>
@@ -558,44 +608,55 @@
       </tbody>
     </table>
 
-    <!-- 承認スタンプ モックアップ -->
+    <!-- 承認スタンプ モックアップ（実際の画面スタイル） -->
     <div class="mockup-wrap">
       <div class="browser-bar">
         <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
         <span class="burl">受注兼発送依頼書 — 承認スタンプ欄</span>
       </div>
       <div class="font-sans bg-white p-4 overflow-x-auto">
-        <div class="flex gap-0 border border-gray-300 rounded overflow-hidden" style="min-width:520px;max-width:640px;">
-          <div class="flex flex-col items-center border-r border-gray-300 px-3 py-2 min-w-[80px] bg-gray-50">
-            <div class="text-[10px] text-gray-500 mb-1">提出日</div>
-            <div class="text-xs font-bold text-gray-700">2026/03/02</div>
+        <!-- 提出日 + 6スタンプ -->
+        <div style="display:flex;border:1px solid #000;box-shadow:0 2px 4px rgba(0,0,0,0.1);width:fit-content;">
+          <!-- 提出日 -->
+          <div style="width:70px;background:#fff;border-right:1px solid #000;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:4px;">
+            <div style="width:100%;text-align:center;border-bottom:1px solid #000;font-size:0.62rem;background:#e5e7eb;padding:3px 0;font-weight:700;">提出日</div>
+            <div style="font-size:0.68rem;font-weight:700;color:#374151;padding:6px 0;text-align:center;">2026/<br>03/02</div>
           </div>
-          <div class="flex flex-col items-center border-r border-gray-300 px-3 py-2 min-w-[80px]">
-            <div class="text-[10px] text-gray-500 mb-1">作成</div>
-            <div class="w-10 h-10 rounded-full border-2 border-red-500 flex items-center justify-center text-red-600 font-bold text-sm">山田</div>
+          <!-- 作成（承認済み） -->
+          <div style="width:56px;height:80px;background:#fff;border-right:1px solid #000;display:flex;flex-direction:column;align-items:center;justify-content:space-between;">
+            <div style="width:100%;text-align:center;border-bottom:1px solid #000;font-size:0.62rem;background:#e5e7eb;padding:3px 0;font-weight:700;">作成</div>
+            <div style="width:44px;height:44px;border-radius:50%;border:2px solid #dc2626;display:flex;align-items:center;justify-content:center;color:#dc2626;font-family:serif;font-size:0.7rem;font-weight:700;margin:4px 0;">山田</div>
           </div>
-          <div class="flex flex-col items-center border-r border-gray-300 px-3 py-2 min-w-[80px]">
-            <div class="text-[10px] text-gray-500 mb-1">本社事務</div>
-            <div class="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-300 text-xs">未</div>
+          <!-- 本社事務（未承認） -->
+          <div style="width:56px;height:80px;background:#fff;border-right:1px solid #000;display:flex;flex-direction:column;align-items:center;justify-content:space-between;">
+            <div style="width:100%;text-align:center;border-bottom:1px solid #000;font-size:0.62rem;background:#e5e7eb;padding:3px 0;font-weight:700;">本社事務</div>
+            <div style="display:flex;flex-direction:column;align-items:center;padding-bottom:6px;">
+              <span style="color:#e5e7eb;font-size:1.2rem;font-weight:700;line-height:1;">・</span>
+              <button style="margin-top:2px;padding:1px 4px;background:#fef2f2;color:#dc2626;border:1px solid #fecaca;border-radius:3px;font-size:0.52rem;cursor:pointer;">承認する</button>
+            </div>
           </div>
-          <div class="flex flex-col items-center border-r border-gray-300 px-3 py-2 min-w-[80px]">
-            <div class="text-[10px] text-gray-500 mb-1">営業</div>
-            <div class="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-300 text-xs">未</div>
+          <!-- 営業 -->
+          <div style="width:56px;height:80px;background:#fff;border-right:1px solid #000;display:flex;flex-direction:column;align-items:center;justify-content:space-between;">
+            <div style="width:100%;text-align:center;border-bottom:1px solid #000;font-size:0.62rem;background:#e5e7eb;padding:3px 0;font-weight:700;">営業</div>
+            <div style="padding-bottom:10px;"><span style="color:#e5e7eb;font-size:1.2rem;font-weight:700;">・</span></div>
           </div>
-          <div class="flex flex-col items-center border-r border-gray-300 px-3 py-2 min-w-[80px]">
-            <div class="text-[10px] text-gray-500 mb-1">課長</div>
-            <div class="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-300 text-xs">未</div>
+          <!-- 課長 -->
+          <div style="width:56px;height:80px;background:#fff;border-right:1px solid #000;display:flex;flex-direction:column;align-items:center;justify-content:space-between;">
+            <div style="width:100%;text-align:center;border-bottom:1px solid #000;font-size:0.62rem;background:#e5e7eb;padding:3px 0;font-weight:700;">課長</div>
+            <div style="padding-bottom:10px;"><span style="color:#e5e7eb;font-size:1.2rem;font-weight:700;">・</span></div>
           </div>
-          <div class="flex flex-col items-center border-r border-gray-300 px-3 py-2 min-w-[80px]">
-            <div class="text-[10px] text-gray-500 mb-1">部長</div>
-            <div class="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-300 text-xs">未</div>
+          <!-- 部長 -->
+          <div style="width:56px;height:80px;background:#fff;border-right:1px solid #000;display:flex;flex-direction:column;align-items:center;justify-content:space-between;">
+            <div style="width:100%;text-align:center;border-bottom:1px solid #000;font-size:0.62rem;background:#e5e7eb;padding:3px 0;font-weight:700;">部長</div>
+            <div style="padding-bottom:10px;"><span style="color:#e5e7eb;font-size:1.2rem;font-weight:700;">・</span></div>
           </div>
-          <div class="flex flex-col items-center px-3 py-2 min-w-[80px]">
-            <div class="text-[10px] text-gray-500 mb-1">社長</div>
-            <div class="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-300 text-xs">未</div>
+          <!-- 社長 -->
+          <div style="width:56px;height:80px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:space-between;">
+            <div style="width:100%;text-align:center;border-bottom:1px solid #000;font-size:0.62rem;background:#e5e7eb;padding:3px 0;font-weight:700;">社長</div>
+            <div style="padding-bottom:10px;"><span style="color:#e5e7eb;font-size:1.2rem;font-weight:700;">・</span></div>
           </div>
         </div>
-        <p class="text-xs text-gray-500 mt-2">※ 自分の権限に応じたスタンプ欄をクリックすると承認印が押されます</p>
+        <p class="text-xs text-gray-500 mt-2">※ 自分の権限に応じたスタンプ欄に「承認する」ボタンが表示されます</p>
       </div>
     </div>
   </section>
@@ -619,48 +680,97 @@
       <div>📷 出荷明細アプリ（商品選択）</div>
     </div>
 
+    <!-- 出荷明細書モックアップ（実際のスタイル） -->
     <div class="mockup-wrap">
       <div class="browser-bar">
         <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-        <span class="burl">受注・出荷管理システム — 出荷明細書作成</span>
+        <span class="burl">出荷明細書作成</span>
       </div>
-      <div class="font-sans bg-white p-3 text-gray-800">
-        <div class="p-2 bg-gray-100 mb-3 text-sm font-bold rounded flex items-center border border-gray-200">
-          <input type="checkbox" checked class="mr-2 w-4 h-4"> 全選択
+      <div style="background:#f4f6f9;padding:20px;font-family:sans-serif;font-size:0.9rem;color:#333;">
+        <h1 style="font-size:1.2em;color:#444;margin:0 0 15px;display:flex;align-items:center;gap:10px;">
+          <span style="border-bottom:3px solid #007bff;padding-bottom:5px;">出荷明細書</span>
+        </h1>
+        <!-- タブ -->
+        <div style="display:flex;border-bottom:2px solid #ddd;margin-bottom:15px;">
+          <div style="padding:10px 22px;font-weight:700;background:#fff;color:#007bff;border:1px solid #ddd;border-bottom:2px solid #fff;border-radius:8px 8px 0 0;margin-bottom:-2px;cursor:pointer;">📝 新規出荷作成</div>
+          <div style="padding:10px 22px;font-weight:700;background:#e9ecef;color:#666;border:1px solid #ddd;border-bottom:none;border-radius:8px 8px 0 0;cursor:pointer;">📂 作成済伝票の確認・修正</div>
         </div>
-        <ul class="list-none p-0 m-0">
-          <li class="border-b border-gray-200 py-3 px-2">
-            <div class="flex items-center font-bold text-sm mb-2">
-              <div class="flex flex-col items-center mr-4 text-center min-w-[36px]">
-                <input type="checkbox" class="w-4 h-4 mb-1">
-                <span class="text-[10px] text-red-500">除外</span>
+        <!-- カード -->
+        <div style="background:#fff;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.1);padding:20px;margin-bottom:15px;">
+          <!-- 作成者 -->
+          <div style="margin-bottom:10px;">
+            <label style="font-weight:700;display:block;margin-bottom:4px;font-size:0.88em;color:#007bff;">👤 作成者</label>
+            <select style="width:200px;padding:8px;border:1px solid #007bff;border-radius:4px;font-size:0.95em;background:#f0f8ff;">
+              <option>田中 事務</option>
+            </select>
+          </div>
+          <!-- 得意先 -->
+          <div style="display:grid;grid-template-columns:1fr 7fr;gap:10px;margin-bottom:10px;">
+            <div>
+              <label style="font-weight:700;display:block;margin-bottom:3px;font-size:0.88em;color:#666;">得意先コード</label>
+              <input style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;font-size:0.95em;height:38px;" value="C-1023" readonly>
+            </div>
+            <div>
+              <label style="font-weight:700;display:block;margin-bottom:3px;font-size:0.88em;color:#666;">得意先名</label>
+              <input style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;font-size:0.95em;height:38px;" value="株式会社サンプル商事" readonly>
+            </div>
+          </div>
+          <!-- 出荷情報 -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:15px;">
+            <div>
+              <label style="font-weight:700;display:block;margin-bottom:3px;font-size:0.88em;color:#666;">出荷日</label>
+              <input style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;height:38px;" value="2026/03/05" readonly>
+            </div>
+            <div>
+              <label style="font-weight:700;display:block;margin-bottom:3px;font-size:0.88em;color:#666;">到着日</label>
+              <input style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;height:38px;" value="2026/03/06" readonly>
+            </div>
+            <div>
+              <label style="font-weight:700;display:block;margin-bottom:3px;font-size:0.88em;color:#666;">到着時刻</label>
+              <select style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;height:38px;"><option>午前中</option></select>
+            </div>
+          </div>
+        </div>
+        <!-- 全選択 -->
+        <div style="padding:10px;background:#f0f0f0;margin-bottom:10px;border-radius:4px;">
+          <label style="font-weight:700;font-size:0.9em;cursor:pointer;"><input type="checkbox" checked style="transform:scale(1.5);margin-right:10px;"> 全選択</label>
+        </div>
+        <!-- 商品リスト -->
+        <div style="background:#fff;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.1);padding:15px;margin-bottom:15px;">
+          <!-- 商品1（出荷する） -->
+          <div style="border-bottom:1px solid #eee;padding:15px 5px;">
+            <div style="display:flex;align-items:center;font-weight:700;">
+              <div style="position:relative;margin-right:15px;text-align:center;min-width:28px;">
+                <input type="checkbox" style="transform:scale(1.5);">
+                <div style="position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:0.7em;color:#d9534f;width:max-content;">除外</div>
               </div>
-              <input type="checkbox" checked class="w-4 h-4 mr-3">
+              <input type="checkbox" checked style="transform:scale(1.5);margin-right:12px;">
               <span>レーザープリンター A4 (P-1001)</span>
             </div>
-            <div class="text-xs text-gray-600 pl-16 flex gap-4 mb-1">
-              <span>受注: 2</span><span>済: 1</span><span class="font-bold text-red-600">残: 1</span>
+            <div style="font-size:0.88em;color:#666;margin-top:6px;padding-left:55px;">
+              <span style="margin-right:15px;">受注: 2</span><span style="margin-right:15px;">済: 1</span><span style="font-weight:700;color:#d9534f;">残: 1</span>
             </div>
-            <div class="pl-16 flex items-center text-sm">
-              <label class="mr-2 text-gray-600">今回数:</label>
-              <input type="number" value="1" class="w-16 p-1 border border-gray-300 rounded text-right outline-none">
+            <div style="margin-top:10px;padding-left:55px;">
+              <label style="font-size:0.9em;color:#666;margin-right:8px;">今回数 (Max:1):</label>
+              <input type="number" value="1" style="width:100px;padding:5px;border:1px solid #ccc;border-radius:4px;">
             </div>
-          </li>
-          <li class="py-3 px-2 bg-gray-50 opacity-60">
-            <div class="flex items-center font-bold text-sm mb-1">
-              <div class="flex flex-col items-center mr-4 text-center min-w-[36px]">
-                <input type="checkbox" checked class="w-4 h-4 mb-1">
-                <span class="text-[10px] text-red-500 font-bold">除外</span>
+          </div>
+          <!-- 商品2（除外） -->
+          <div style="padding:15px 5px;opacity:0.6;">
+            <div style="display:flex;align-items:center;font-weight:700;">
+              <div style="position:relative;margin-right:15px;text-align:center;min-width:28px;">
+                <input type="checkbox" checked style="transform:scale(1.5);">
+                <div style="position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:0.7em;color:#d9534f;font-weight:700;width:max-content;">除外</div>
               </div>
-              <input type="checkbox" disabled class="w-4 h-4 mr-3">
+              <input type="checkbox" disabled style="transform:scale(1.5);margin-right:12px;">
               <span>トナーカートリッジ（黒）</span>
             </div>
-            <div class="text-xs text-gray-500 pl-16 flex gap-4">
-              <span>受注: 5</span><span>済: 5</span><span class="font-bold">残: 0</span>
+            <div style="font-size:0.88em;color:#666;margin-top:6px;padding-left:55px;">
+              <span style="margin-right:15px;">受注: 5</span><span style="margin-right:15px;">済: 5</span><span style="font-weight:700;">残: 0</span>
             </div>
-          </li>
-        </ul>
-        <button class="w-full bg-blue-600 border-0 text-white font-bold py-2.5 rounded mt-3 text-sm shadow-sm">出荷伝票を作成する</button>
+          </div>
+        </div>
+        <button style="background-color:#007bff;color:white;padding:12px;border:none;border-radius:5px;cursor:pointer;width:100%;font-size:1.05em;margin-top:5px;">出荷伝票を作成する</button>
       </div>
     </div>
 
@@ -710,18 +820,25 @@
       <div>📷 確認・処理完了の画面</div>
     </div>
 
+    <!-- 確認・処理完了 モックアップ（実際のスタイル） -->
     <div class="mockup-wrap">
       <div class="browser-bar">
         <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-        <span class="burl">受注・出荷管理システム — 受注兼発送依頼書（処理中）</span>
+        <span class="burl">受注兼発送依頼書（処理中）</span>
       </div>
-      <div class="bg-gray-200 p-3">
-        <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200 flex items-center gap-3 flex-wrap">
-          <span class="font-bold text-blue-700">【販売品】No.250969</span>
-          <span class="bg-red-600 text-white px-2 py-0.5 rounded text-xs font-bold">処理中</span>
-          <div class="flex-1"></div>
-          <div class="px-3 py-1.5 bg-gray-100 border border-gray-300 rounded text-gray-500 text-sm font-bold">🔒 ロック中</div>
-          <button class="px-4 py-1.5 bg-green-700 border-0 text-white rounded text-sm font-bold">✅ 処理完了</button>
+      <div class="font-sans" style="background:#f3f4f6;padding:12px;overflow-x:auto;">
+        <div class="bg-white rounded-lg shadow-md border-l-4 border-blue-600 p-4 flex justify-between items-center" style="min-width:540px;">
+          <div class="flex items-center space-x-4">
+            <div class="flex flex-col">
+              <span class="font-bold text-lg text-gray-800">【販売品】</span>
+              <span class="text-xs text-gray-500">受注No: 250969</span>
+            </div>
+            <span class="text-xs font-bold px-3 py-1 rounded text-white" style="background:#dc2626;">処理中</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <div class="px-3 py-2 rounded border" style="background:#f3f4f6;border-color:#d1d5db;color:#6b7280;font-size:0.88rem;font-weight:700;">🔒 ロック中</div>
+            <button class="px-6 py-2 rounded text-sm text-white font-bold border-0" style="background:#15803d;">✅ 処理完了</button>
+          </div>
         </div>
       </div>
     </div>
@@ -762,41 +879,102 @@
       <div>📷 注文書プレビュー画面</div>
     </div>
 
+    <!-- 注文書モックアップ（実際のスタイル） -->
     <div class="mockup-wrap">
       <div class="browser-bar">
         <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-        <span class="burl">受注・出荷管理システム — 注文書作成</span>
+        <span class="burl">注文書作成</span>
       </div>
       <div class="font-sans overflow-hidden">
-        <div class="bg-slate-900 text-white p-3 flex justify-between items-center">
-          <div class="font-bold">📄 注文書プレビュー（2 明細）</div>
-          <button class="bg-blue-600 px-4 py-1.5 rounded text-sm font-bold border-0 text-white">PDFを生成する</button>
+        <!-- 実際のヘッダー：bg-slate-900 -->
+        <div class="flex justify-between items-center p-4 sticky top-0 shadow-lg" style="background:#0f172a;">
+          <div class="flex items-center space-x-2 text-white font-bold text-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>注文書プレビュー（2 明細）</span>
+          </div>
+          <button class="px-8 py-2 rounded-xl font-bold text-white border-0 shadow-lg text-sm" style="background:#2563eb;">PDFを生成する</button>
         </div>
-        <div class="bg-gray-100 p-4">
-          <div class="bg-white p-5 shadow mx-auto" style="max-width:480px;font-size:0.85rem;">
-            <div class="text-center font-bold text-xl mb-3 border-b-2 border-gray-800 pb-2">注 文 書</div>
-            <div class="flex justify-between mb-3">
-              <div class="font-bold border-b border-gray-800 pb-1">株式会社サンプル商事 御中</div>
-              <div class="text-sm">2026年3月1日</div>
+        <!-- ペーパー -->
+        <div style="background:#f1f5f9;padding:24px;display:flex;justify-content:center;">
+          <div style="background:white;width:100%;max-width:680px;padding:32px 48px;box-shadow:0 10px 25px -5px rgba(0,0,0,0.1);font-size:0.82rem;position:relative;">
+            <!-- ページ番号 -->
+            <div style="position:absolute;top:16px;right:24px;font-size:0.65rem;font-weight:700;color:#94a3b8;">1 / 1ページ</div>
+            <!-- タイトル -->
+            <div style="text-align:center;margin-bottom:20px;padding-top:8px;">
+              <span style="font-size:1.5rem;font-weight:700;letter-spacing:0.3em;border-bottom:4px double #1e293b;padding-bottom:4px;">注 文 書</span>
             </div>
-            <table class="w-full border-collapse border border-gray-800 text-xs text-center">
-              <tr class="bg-gray-100">
-                <th class="border border-gray-800 p-1"><input type="checkbox" checked></th>
-                <th class="border border-gray-800 p-1">品名・型式</th>
-                <th class="border border-gray-800 p-1">数量</th>
-                <th class="border border-gray-800 p-1">単価</th>
+            <!-- 発行者情報 -->
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">
+              <div style="padding-top:32px;">
+                <div style="font-size:1rem;font-weight:700;border-bottom:2px solid #1e293b;padding-bottom:4px;padding-right:48px;white-space:nowrap;">株式会社サンプル商事 御中</div>
+              </div>
+              <div style="text-align:right;font-size:0.72rem;color:#374151;">
+                <div style="font-weight:700;margin-bottom:6px;">2026年3月1日</div>
+                <div style="color:#94a3b8;font-size:0.65rem;">住所</div>
+                <input style="border-bottom:1px dashed #e2e8f0;background:transparent;text-align:right;font-size:0.72rem;width:220px;outline:none;" value="東京都千代田区〇〇1-2-3" readonly>
+                <div style="margin-top:4px;color:#94a3b8;font-size:0.65rem;">社名</div>
+                <input style="border-bottom:1px dashed #e2e8f0;background:transparent;text-align:right;font-size:0.8rem;font-weight:700;width:220px;outline:none;" value="株式会社サンプル商事" readonly>
+                <span style="font-weight:700;margin-left:4px;">印</span>
+              </div>
+            </div>
+            <!-- 支払情報グリッド -->
+            <div style="display:grid;grid-template-columns:2fr 1fr;border:1px solid #1e293b;margin-bottom:18px;">
+              <div style="border-right:1px solid #1e293b;">
+                <div style="display:flex;height:32px;border-bottom:1px solid #1e293b;">
+                  <div style="width:7rem;background:#f8fafc;font-weight:700;font-size:0.68rem;border-right:1px solid #1e293b;padding:4px;display:flex;align-items:center;">納入期日</div>
+                  <div style="flex:1;padding:4px 8px;font-size:0.72rem;display:flex;align-items:center;"><input style="border:none;outline:none;background:transparent;font-size:0.72rem;width:100%;" value="2026年3月10日" readonly></div>
+                </div>
+                <div style="display:flex;height:32px;border-bottom:1px solid #1e293b;">
+                  <div style="width:7rem;background:#f8fafc;font-weight:700;font-size:0.68rem;border-right:1px solid #1e293b;padding:4px;display:flex;align-items:center;">納入場所</div>
+                  <div style="flex:1;padding:4px 8px;font-size:0.72rem;display:flex;align-items:center;"><input style="border:none;outline:none;background:transparent;font-size:0.72rem;width:100%;" value="本社倉庫" readonly></div>
+                </div>
+                <div style="display:flex;height:32px;">
+                  <div style="width:7rem;background:#f8fafc;font-weight:700;font-size:0.68rem;border-right:1px solid #1e293b;padding:4px;display:flex;align-items:center;">支払条件</div>
+                  <div style="flex:1;padding:4px 8px;font-size:0.72rem;display:flex;align-items:center;font-weight:700;">月末締め翌月末払い</div>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;divide-color:#1e293b;">
+                <div style="flex:1;display:flex;justify-content:space-between;align-items:center;padding:4px 10px;border-bottom:1px solid #1e293b;">
+                  <span style="font-size:0.65rem;color:#94a3b8;">税抜合計</span>
+                  <span style="font-size:0.75rem;font-weight:700;">¥160,000</span>
+                </div>
+                <div style="flex:1;display:flex;justify-content:space-between;align-items:center;padding:4px 10px;border-bottom:1px solid #1e293b;">
+                  <span style="font-size:0.65rem;color:#94a3b8;">消費税(10%)</span>
+                  <span style="font-size:0.75rem;font-weight:700;">¥16,000</span>
+                </div>
+                <div style="flex:2;display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:#f8fafc;">
+                  <span style="font-size:0.65rem;color:#1d4ed8;font-weight:700;">税込合計</span>
+                  <span style="font-size:1rem;font-weight:900;color:#1e40af;">¥176,000</span>
+                </div>
+              </div>
+            </div>
+            <!-- 商品テーブル -->
+            <table style="width:100%;border-collapse:collapse;border:1px solid #1e293b;font-size:0.75rem;text-align:center;">
+              <tr style="background:#f8fafc;height:34px;">
+                <th style="border:1px solid #1e293b;width:36px;padding:6px;">☑</th>
+                <th style="border:1px solid #1e293b;padding:6px;">品 名 ・ 型 式</th>
+                <th style="border:1px solid #1e293b;width:52px;padding:6px;">数 量</th>
+                <th style="border:1px solid #1e293b;width:80px;padding:6px;">単価 (円)</th>
+                <th style="border:1px solid #1e293b;width:90px;padding:6px;">金額 (円)</th>
               </tr>
               <tr>
-                <td class="border border-gray-800 p-1"><input type="checkbox" checked></td>
-                <td class="border border-gray-800 p-1 text-left">レーザープリンター A4</td>
-                <td class="border border-gray-800 p-1">2</td>
-                <td class="border border-gray-800 p-1">¥68,000</td>
+                <td style="border:1px solid #1e293b;padding:6px;"><input type="checkbox" checked></td>
+                <td style="border:1px solid #1e293b;padding:6px;text-align:left;">レーザープリンター A4</td>
+                <td style="border:1px solid #1e293b;padding:6px;">2</td>
+                <td style="border:1px solid #1e293b;padding:6px;text-align:right;">¥68,000</td>
+                <td style="border:1px solid #1e293b;padding:6px;text-align:right;font-weight:700;">¥136,000</td>
               </tr>
-              <tr class="opacity-50">
-                <td class="border border-gray-800 p-1"><input type="checkbox"></td>
-                <td class="border border-gray-800 p-1 text-left">トナーカートリッジ</td>
-                <td class="border border-gray-800 p-1">5</td>
-                <td class="border border-gray-800 p-1">¥4,800</td>
+              <tr style="opacity:0.3;">
+                <td style="border:1px solid #1e293b;padding:6px;"><input type="checkbox"></td>
+                <td style="border:1px solid #1e293b;padding:6px;text-align:left;">トナーカートリッジ（黒）</td>
+                <td style="border:1px solid #1e293b;padding:6px;">5</td>
+                <td style="border:1px solid #1e293b;padding:6px;text-align:right;">¥4,800</td>
+                <td style="border:1px solid #1e293b;padding:6px;text-align:right;font-weight:700;">¥24,000</td>
+              </tr>
+              <tr style="height:32px;background:#f8fafc;font-weight:700;border-top:2px solid #1e293b;">
+                <td colspan="3" style="border:1px solid #1e293b;"></td>
+                <td style="border:1px solid #1e293b;text-align:center;font-size:0.72rem;background:#f1f5f9;">税込合計</td>
+                <td style="border:1px solid #1e293b;text-align:right;padding:6px;font-size:0.95rem;color:#1e40af;">¥176,000</td>
               </tr>
             </table>
           </div>
