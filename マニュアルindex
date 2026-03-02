@@ -214,7 +214,7 @@
   <div class="nav-group-label">その他</div>
   <a href="#dashboard">出荷ダッシュボード</a>
   <a href="#ordersheet">注文書の発行</a>
-  <a href="#irregular">イレギュラー対応</a>
+  <a href="#irregular">出荷明細の修正・返品・複製</a>
   <? if (isAdmin) { ?>
   <a href="#admin">管理者向け設定</a>
   <? } ?>
@@ -1071,8 +1071,8 @@
 
   <!-- ===== イレギュラー対応 ===== -->
   <section class="section alt" id="irregular">
-    <div class="section-label">その他</div>
-    <h2>イレギュラー対応</h2>
+    <div class="section-label">出荷明細</div>
+    <h2>出荷明細の修正・返品・複製手順</h2>
     <p class="section-intro">
       「作成済みの伝票の確認修正」から行う、修正・返品・複製の手順です。
     </p>
