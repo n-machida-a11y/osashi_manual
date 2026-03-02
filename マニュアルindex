@@ -700,7 +700,7 @@
       <h5><span class="step-num">3</span>出荷する商品を選択する</h5>
       <ul>
         <li><strong>出荷する商品：</strong>チェックボックスをONにすると残数が自動入力されます。分納の場合はここで今回出荷する数に変更します。</li>
-        <li><strong>出荷しない商品：</strong>左端の「除外」チェックをONにします。</li>
+        <li><strong>出荷対象外項目：</strong>労務費や諸経費など今後出荷対象とならない項目は左端の「除外」チェックをONにします。</li>
       </ul>
       <p class="mt-3 fw-bold" style="font-size:0.93rem;">画面イメージ（商品選択）</p>
       <div class="mockup-wrap" style="margin-top:12px;">
