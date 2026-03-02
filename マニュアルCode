@@ -1,4 +1,4 @@
-var ADMIN_EMAIL  = 'n-machida@race-number.co.jp';
+var ADMIN_EMAILS = ['n-machida@race-number.co.jp', 'kagata@race-tech.co.jp'];
 var IMG_FOLDER_ID = '1U1UfITfe9ggy9sbCRj0QGJFJiKz02idD';
 var IMG_KEYS = [
   'img_login',        // ログイン画面
@@ -19,7 +19,7 @@ function doGet() {
     tmpl[key]  = fileId ? fileToBase64(fileId) : '';
   });
 
-  tmpl.isAdmin = (Session.getActiveUser().getEmail() === ADMIN_EMAIL);
+  tmpl.isAdmin = (ADMIN_EMAILS.indexOf(Session.getActiveUser().getEmail()) !== -1);
 
   return tmpl.evaluate()
     .setTitle('受注・出荷管理システム マニュアル')
@@ -37,7 +37,7 @@ function fileToBase64(fileId) {
 }
 
 function checkAdmin() {
-  if (Session.getActiveUser().getEmail() !== ADMIN_EMAIL) {
+  if (ADMIN_EMAILS.indexOf(Session.getActiveUser().getEmail()) === -1) {
     throw new Error('この操作は管理者のみ実行できます。');
   }
 }

@@ -215,7 +215,7 @@
   <a href="#dashboard">出荷ダッシュボード</a>
   <a href="#ordersheet">注文書の発行</a>
   <a href="#irregular">出荷明細の修正・返品・複製</a>
-  <a href="#admin">管理者向け設定</a>
+  <a href="#admin">レイテク編集用</a>
 </nav>
 
 <!-- ===== メイン ===== -->
@@ -1106,12 +1106,8 @@
 
   <!-- ===== 管理者向け ===== -->
   <section class="section" id="admin">
-    <div class="section-label">管理者向け</div>
-    <h2>管理者向け設定</h2>
-    <div class="role-row">
-      <span class="role-lbl">操作者：</span>
-      <span class="badge badge-mgr rounded-pill px-2 py-1">管理者</span>
-    </div>
+    <div class="section-label">レイテク編集用</div>
+    <h2>レイテク編集用</h2>
 
     <h3>📸 マニュアル画像の設定</h3>
     <p style="font-size:0.95rem;color:#444;margin-bottom:14px;">
