@@ -961,11 +961,6 @@
         <img src="<?= img_ordersheet ?>" alt="注文書プレビュー画面">
         <div>📷 注文書プレビュー画面</div>
       </div>
-    </div>
-
-    <div class="step-box">
-      <h5><span class="step-num">2</span>出力する明細にチェックを入れる</h5>
-      <p>注文書に含めたい行のチェックボックスをONにします。チェックを外すと金額から除外されます。</p>
       <!-- 注文書モックアップ -->
       <div class="mockup-wrap" style="margin-top:16px;">
         <div class="browser-bar">
@@ -1064,12 +1059,12 @@
     </div>
 
     <div class="step-box">
-      <h5><span class="step-num">3</span>宛名・条件を確認・編集する</h5>
+      <h5><span class="step-num">2</span>宛名・条件を確認・編集する</h5>
       <p>得意先名・担当者名・納入期日・支払条件などをプレビュー上でクリックして直接編集できます。</p>
     </div>
 
     <div class="step-box">
-      <h5><span class="step-num">4</span>「PDFを生成する」ボタンを押す</h5>
+      <h5><span class="step-num">3</span>「PDFを生成する」ボタンを押す</h5>
       <p>生成完了後に「PDFを開く」リンクが表示されます。クリックしてPDFを確認・印刷してください。</p>
     </div>
   </section>
