@@ -952,119 +952,126 @@
       プレビュー画面上で宛名・条件を直接編集してから出力できます。
     </p>
 
-    <div class="image-placeholder">
-      <img src="<?= img_ordersheet ?>" alt="注文書プレビュー画面">
-      <div>📷 注文書プレビュー画面</div>
-    </div>
-
-    <!-- 注文書モックアップ（実際のスタイル） -->
-    <div class="mockup-wrap">
-      <div class="browser-bar">
-        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-        <span class="burl">注文書作成</span>
-      </div>
-      <div class="font-sans overflow-hidden">
-        <!-- 実際のヘッダー：bg-slate-900 -->
-        <div class="flex justify-between items-center p-4 sticky top-0 shadow-lg" style="background:#0f172a;">
-          <div class="flex items-center space-x-2 text-white font-bold text-sm">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-            <span>注文書プレビュー（2 明細）</span>
-          </div>
-          <button class="px-8 py-2 rounded-xl font-bold text-white border-0 shadow-lg text-sm" style="background:#2563eb;">PDFを生成する</button>
-        </div>
-        <!-- ペーパー -->
-        <div style="background:#f1f5f9;padding:24px;display:flex;justify-content:center;">
-          <div style="background:white;width:100%;max-width:680px;padding:32px 48px;box-shadow:0 10px 25px -5px rgba(0,0,0,0.1);font-size:0.82rem;position:relative;">
-            <!-- ページ番号 -->
-            <div style="position:absolute;top:16px;right:24px;font-size:0.65rem;font-weight:700;color:#94a3b8;">1 / 1ページ</div>
-            <!-- タイトル -->
-            <div style="text-align:center;margin-bottom:20px;padding-top:8px;">
-              <span style="font-size:1.5rem;font-weight:700;letter-spacing:0.3em;border-bottom:4px double #1e293b;padding-bottom:4px;">注 文 書</span>
-            </div>
-            <!-- 発行者情報 -->
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">
-              <div style="padding-top:32px;">
-                <div style="font-size:1rem;font-weight:700;border-bottom:2px solid #1e293b;padding-bottom:4px;padding-right:48px;white-space:nowrap;">株式会社サンプル商事 御中</div>
-              </div>
-              <div style="text-align:right;font-size:0.72rem;color:#374151;">
-                <div style="font-weight:700;margin-bottom:6px;">2026年3月1日</div>
-                <div style="color:#94a3b8;font-size:0.65rem;">住所</div>
-                <input style="border-bottom:1px dashed #e2e8f0;background:transparent;text-align:right;font-size:0.72rem;width:220px;outline:none;" value="東京都千代田区〇〇1-2-3" readonly>
-                <div style="margin-top:4px;color:#94a3b8;font-size:0.65rem;">社名</div>
-                <input style="border-bottom:1px dashed #e2e8f0;background:transparent;text-align:right;font-size:0.8rem;font-weight:700;width:220px;outline:none;" value="株式会社サンプル商事" readonly>
-                <span style="font-weight:700;margin-left:4px;">印</span>
-              </div>
-            </div>
-            <!-- 支払情報グリッド -->
-            <div style="display:grid;grid-template-columns:2fr 1fr;border:1px solid #1e293b;margin-bottom:18px;">
-              <div style="border-right:1px solid #1e293b;">
-                <div style="display:flex;height:32px;border-bottom:1px solid #1e293b;">
-                  <div style="width:7rem;background:#f8fafc;font-weight:700;font-size:0.68rem;border-right:1px solid #1e293b;padding:4px;display:flex;align-items:center;">納入期日</div>
-                  <div style="flex:1;padding:4px 8px;font-size:0.72rem;display:flex;align-items:center;"><input style="border:none;outline:none;background:transparent;font-size:0.72rem;width:100%;" value="2026年3月10日" readonly></div>
-                </div>
-                <div style="display:flex;height:32px;border-bottom:1px solid #1e293b;">
-                  <div style="width:7rem;background:#f8fafc;font-weight:700;font-size:0.68rem;border-right:1px solid #1e293b;padding:4px;display:flex;align-items:center;">納入場所</div>
-                  <div style="flex:1;padding:4px 8px;font-size:0.72rem;display:flex;align-items:center;"><input style="border:none;outline:none;background:transparent;font-size:0.72rem;width:100%;" value="本社倉庫" readonly></div>
-                </div>
-                <div style="display:flex;height:32px;">
-                  <div style="width:7rem;background:#f8fafc;font-weight:700;font-size:0.68rem;border-right:1px solid #1e293b;padding:4px;display:flex;align-items:center;">支払条件</div>
-                  <div style="flex:1;padding:4px 8px;font-size:0.72rem;display:flex;align-items:center;font-weight:700;">月末締め翌月末払い</div>
-                </div>
-              </div>
-              <div style="display:flex;flex-direction:column;divide-color:#1e293b;">
-                <div style="flex:1;display:flex;justify-content:space-between;align-items:center;padding:4px 10px;border-bottom:1px solid #1e293b;">
-                  <span style="font-size:0.65rem;color:#94a3b8;">税抜合計</span>
-                  <span style="font-size:0.75rem;font-weight:700;">¥160,000</span>
-                </div>
-                <div style="flex:1;display:flex;justify-content:space-between;align-items:center;padding:4px 10px;border-bottom:1px solid #1e293b;">
-                  <span style="font-size:0.65rem;color:#94a3b8;">消費税(10%)</span>
-                  <span style="font-size:0.75rem;font-weight:700;">¥16,000</span>
-                </div>
-                <div style="flex:2;display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:#f8fafc;">
-                  <span style="font-size:0.65rem;color:#1d4ed8;font-weight:700;">税込合計</span>
-                  <span style="font-size:1rem;font-weight:900;color:#1e40af;">¥176,000</span>
-                </div>
-              </div>
-            </div>
-            <!-- 商品テーブル -->
-            <table style="width:100%;border-collapse:collapse;border:1px solid #1e293b;font-size:0.75rem;text-align:center;">
-              <tr style="background:#f8fafc;height:34px;">
-                <th style="border:1px solid #1e293b;width:36px;padding:6px;">☑</th>
-                <th style="border:1px solid #1e293b;padding:6px;">品 名 ・ 型 式</th>
-                <th style="border:1px solid #1e293b;width:52px;padding:6px;">数 量</th>
-                <th style="border:1px solid #1e293b;width:80px;padding:6px;">単価 (円)</th>
-                <th style="border:1px solid #1e293b;width:90px;padding:6px;">金額 (円)</th>
-              </tr>
-              <tr>
-                <td style="border:1px solid #1e293b;padding:6px;"><input type="checkbox" checked></td>
-                <td style="border:1px solid #1e293b;padding:6px;text-align:left;">レーザープリンター A4</td>
-                <td style="border:1px solid #1e293b;padding:6px;">2</td>
-                <td style="border:1px solid #1e293b;padding:6px;text-align:right;">¥68,000</td>
-                <td style="border:1px solid #1e293b;padding:6px;text-align:right;font-weight:700;">¥136,000</td>
-              </tr>
-              <tr style="opacity:0.3;">
-                <td style="border:1px solid #1e293b;padding:6px;"><input type="checkbox"></td>
-                <td style="border:1px solid #1e293b;padding:6px;text-align:left;">トナーカートリッジ（黒）</td>
-                <td style="border:1px solid #1e293b;padding:6px;">5</td>
-                <td style="border:1px solid #1e293b;padding:6px;text-align:right;">¥4,800</td>
-                <td style="border:1px solid #1e293b;padding:6px;text-align:right;font-weight:700;">¥24,000</td>
-              </tr>
-              <tr style="height:32px;background:#f8fafc;font-weight:700;border-top:2px solid #1e293b;">
-                <td colspan="3" style="border:1px solid #1e293b;"></td>
-                <td style="border:1px solid #1e293b;text-align:center;font-size:0.72rem;background:#f1f5f9;">税込合計</td>
-                <td style="border:1px solid #1e293b;text-align:right;padding:6px;font-size:0.95rem;color:#1e40af;">¥176,000</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <h3>操作手順</h3>
-    <div class="step-box"><h5><span class="step-num">1</span>注文書アプリを開き、受注番号を入力する</h5><p>注文書アプリのURLを開き、対象の受注番号を入力してデータを読み込みます。</p></div>
-    <div class="step-box"><h5><span class="step-num">2</span>出力する明細にチェックを入れる</h5><p>注文書に含めたい行のチェックボックスをONにします。チェックを外すと金額から除外されます。</p></div>
-    <div class="step-box"><h5><span class="step-num">3</span>宛名・条件を確認・編集する</h5><p>得意先名・担当者名・納入期日・支払条件などをプレビュー上でクリックして直接編集できます。</p></div>
-    <div class="step-box"><h5><span class="step-num">4</span>「PDFを生成する」ボタンを押す</h5><p>生成完了後に「PDFを開く」リンクが表示されます。クリックしてPDFを確認・印刷してください。</p></div>
+
+    <div class="step-box">
+      <h5><span class="step-num">1</span>AppSheetの6つ目のボタンから注文書アプリを開く</h5>
+      <p>受注一覧の対象データ行にある6つ目のボタンを押すと、注文書アプリが開きます。該当の受注データが自動で読み込まれます。</p>
+      <div class="image-placeholder" style="margin-top:14px;">
+        <img src="<?= img_ordersheet ?>" alt="注文書プレビュー画面">
+        <div>📷 注文書プレビュー画面</div>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <h5><span class="step-num">2</span>出力する明細にチェックを入れる</h5>
+      <p>注文書に含めたい行のチェックボックスをONにします。チェックを外すと金額から除外されます。</p>
+      <!-- 注文書モックアップ -->
+      <div class="mockup-wrap" style="margin-top:16px;">
+        <div class="browser-bar">
+          <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+          <span class="burl">注文書作成</span>
+        </div>
+        <div class="font-sans overflow-hidden">
+          <div class="flex justify-between items-center p-4 sticky top-0 shadow-lg" style="background:#0f172a;">
+            <div class="flex items-center space-x-2 text-white font-bold text-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>注文書プレビュー（2 明細）</span>
+            </div>
+            <button class="px-8 py-2 rounded-xl font-bold text-white border-0 shadow-lg text-sm" style="background:#2563eb;">PDFを生成する</button>
+          </div>
+          <div style="background:#f1f5f9;padding:24px;display:flex;justify-content:center;">
+            <div style="background:white;width:100%;max-width:680px;padding:32px 48px;box-shadow:0 10px 25px -5px rgba(0,0,0,0.1);font-size:0.82rem;position:relative;">
+              <div style="position:absolute;top:16px;right:24px;font-size:0.65rem;font-weight:700;color:#94a3b8;">1 / 1ページ</div>
+              <div style="text-align:center;margin-bottom:20px;padding-top:8px;">
+                <span style="font-size:1.5rem;font-weight:700;letter-spacing:0.3em;border-bottom:4px double #1e293b;padding-bottom:4px;">注 文 書</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">
+                <div style="padding-top:32px;">
+                  <div style="font-size:1rem;font-weight:700;border-bottom:2px solid #1e293b;padding-bottom:4px;padding-right:48px;white-space:nowrap;">株式会社サンプル商事 御中</div>
+                </div>
+                <div style="text-align:right;font-size:0.72rem;color:#374151;">
+                  <div style="font-weight:700;margin-bottom:6px;">2026年3月1日</div>
+                  <div style="color:#94a3b8;font-size:0.65rem;">住所</div>
+                  <input style="border-bottom:1px dashed #e2e8f0;background:transparent;text-align:right;font-size:0.72rem;width:220px;outline:none;" value="東京都千代田区〇〇1-2-3" readonly>
+                  <div style="margin-top:4px;color:#94a3b8;font-size:0.65rem;">社名</div>
+                  <input style="border-bottom:1px dashed #e2e8f0;background:transparent;text-align:right;font-size:0.8rem;font-weight:700;width:220px;outline:none;" value="株式会社サンプル商事" readonly>
+                  <span style="font-weight:700;margin-left:4px;">印</span>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:2fr 1fr;border:1px solid #1e293b;margin-bottom:18px;">
+                <div style="border-right:1px solid #1e293b;">
+                  <div style="display:flex;height:32px;border-bottom:1px solid #1e293b;">
+                    <div style="width:7rem;background:#f8fafc;font-weight:700;font-size:0.68rem;border-right:1px solid #1e293b;padding:4px;display:flex;align-items:center;">納入期日</div>
+                    <div style="flex:1;padding:4px 8px;font-size:0.72rem;display:flex;align-items:center;"><input style="border:none;outline:none;background:transparent;font-size:0.72rem;width:100%;" value="2026年3月10日" readonly></div>
+                  </div>
+                  <div style="display:flex;height:32px;border-bottom:1px solid #1e293b;">
+                    <div style="width:7rem;background:#f8fafc;font-weight:700;font-size:0.68rem;border-right:1px solid #1e293b;padding:4px;display:flex;align-items:center;">納入場所</div>
+                    <div style="flex:1;padding:4px 8px;font-size:0.72rem;display:flex;align-items:center;"><input style="border:none;outline:none;background:transparent;font-size:0.72rem;width:100%;" value="本社倉庫" readonly></div>
+                  </div>
+                  <div style="display:flex;height:32px;">
+                    <div style="width:7rem;background:#f8fafc;font-weight:700;font-size:0.68rem;border-right:1px solid #1e293b;padding:4px;display:flex;align-items:center;">支払条件</div>
+                    <div style="flex:1;padding:4px 8px;font-size:0.72rem;display:flex;align-items:center;font-weight:700;">月末締め翌月末払い</div>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;">
+                  <div style="flex:1;display:flex;justify-content:space-between;align-items:center;padding:4px 10px;border-bottom:1px solid #1e293b;">
+                    <span style="font-size:0.65rem;color:#94a3b8;">税抜合計</span>
+                    <span style="font-size:0.75rem;font-weight:700;">¥160,000</span>
+                  </div>
+                  <div style="flex:1;display:flex;justify-content:space-between;align-items:center;padding:4px 10px;border-bottom:1px solid #1e293b;">
+                    <span style="font-size:0.65rem;color:#94a3b8;">消費税(10%)</span>
+                    <span style="font-size:0.75rem;font-weight:700;">¥16,000</span>
+                  </div>
+                  <div style="flex:2;display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:#f8fafc;">
+                    <span style="font-size:0.65rem;color:#1d4ed8;font-weight:700;">税込合計</span>
+                    <span style="font-size:1rem;font-weight:900;color:#1e40af;">¥176,000</span>
+                  </div>
+                </div>
+              </div>
+              <table style="width:100%;border-collapse:collapse;border:1px solid #1e293b;font-size:0.75rem;text-align:center;">
+                <tr style="background:#f8fafc;height:34px;">
+                  <th style="border:1px solid #1e293b;width:36px;padding:6px;">☑</th>
+                  <th style="border:1px solid #1e293b;padding:6px;">品 名 ・ 型 式</th>
+                  <th style="border:1px solid #1e293b;width:52px;padding:6px;">数 量</th>
+                  <th style="border:1px solid #1e293b;width:80px;padding:6px;">単価 (円)</th>
+                  <th style="border:1px solid #1e293b;width:90px;padding:6px;">金額 (円)</th>
+                </tr>
+                <tr>
+                  <td style="border:1px solid #1e293b;padding:6px;"><input type="checkbox" checked></td>
+                  <td style="border:1px solid #1e293b;padding:6px;text-align:left;">レーザープリンター A4</td>
+                  <td style="border:1px solid #1e293b;padding:6px;">2</td>
+                  <td style="border:1px solid #1e293b;padding:6px;text-align:right;">¥68,000</td>
+                  <td style="border:1px solid #1e293b;padding:6px;text-align:right;font-weight:700;">¥136,000</td>
+                </tr>
+                <tr style="opacity:0.3;">
+                  <td style="border:1px solid #1e293b;padding:6px;"><input type="checkbox"></td>
+                  <td style="border:1px solid #1e293b;padding:6px;text-align:left;">トナーカートリッジ（黒）</td>
+                  <td style="border:1px solid #1e293b;padding:6px;">5</td>
+                  <td style="border:1px solid #1e293b;padding:6px;text-align:right;">¥4,800</td>
+                  <td style="border:1px solid #1e293b;padding:6px;text-align:right;font-weight:700;">¥24,000</td>
+                </tr>
+                <tr style="height:32px;background:#f8fafc;font-weight:700;border-top:2px solid #1e293b;">
+                  <td colspan="3" style="border:1px solid #1e293b;"></td>
+                  <td style="border:1px solid #1e293b;text-align:center;font-size:0.72rem;background:#f1f5f9;">税込合計</td>
+                  <td style="border:1px solid #1e293b;text-align:right;padding:6px;font-size:0.95rem;color:#1e40af;">¥176,000</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <h5><span class="step-num">3</span>宛名・条件を確認・編集する</h5>
+      <p>得意先名・担当者名・納入期日・支払条件などをプレビュー上でクリックして直接編集できます。</p>
+    </div>
+
+    <div class="step-box">
+      <h5><span class="step-num">4</span>「PDFを生成する」ボタンを押す</h5>
+      <p>生成完了後に「PDFを開く」リンクが表示されます。クリックしてPDFを確認・印刷してください。</p>
+    </div>
   </section>
 
   <!-- ===== イレギュラー対応 ===== -->
