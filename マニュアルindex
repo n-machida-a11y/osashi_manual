@@ -580,8 +580,8 @@
       <h5><span class="step-num">①</span>提出されたデータを確認する</h5>
       <p>「受注兼_営業事務」を開くと、提出済みのリストが表示されます。未処理のものは受注Noが<strong style="color:#dc2626;">赤字</strong>で表示されます。</p>
       <div class="image-placeholder" style="margin-top:14px;">
-        <img src="" data-key="img_menu" alt="メニュー画面">
-        <div>📷 メニュー画面</div>
+        <img src="" data-key="img_jimu_menu" alt="受注兼_営業事務 メニュー画面">
+        <div>📷 受注兼_営業事務 メニュー画面</div>
       </div>
       <div class="image-placeholder" style="margin-top:0;">
         <img src="" data-key="img_juchu_list" alt="受注兼リスト">
@@ -1135,7 +1135,7 @@
           <td id="st_img_login" class="text-center">—</td>
         </tr>
         <tr>
-          <td>AppSheet メニュー画面</td>
+          <td>AppSheet メニュー画面<br><small class="text-muted">（データ取り込みボタン）</small></td>
           <td>
             <div class="d-flex gap-2 align-items-center">
               <input class="form-control form-control-sm" id="img_menu" placeholder="ファイルID（直接入力も可）">
@@ -1143,6 +1143,16 @@
             </div>
           </td>
           <td id="st_img_menu" class="text-center">—</td>
+        </tr>
+        <tr>
+          <td>AppSheet メニュー画面<br><small class="text-muted">（受注兼_営業事務）</small></td>
+          <td>
+            <div class="d-flex gap-2 align-items-center">
+              <input class="form-control form-control-sm" id="img_jimu_menu" placeholder="ファイルID（直接入力も可）">
+              <label class="btn btn-sm btn-outline-primary mb-0 upload-label">📁 選択<input type="file" accept="image/*" onchange="uploadImage(event,'img_jimu_menu')"></label>
+            </div>
+          </td>
+          <td id="st_img_jimu_menu" class="text-center">—</td>
         </tr>
         <tr>
           <td>受注兼 リスト画面</td>
@@ -1235,7 +1245,7 @@
 
   // 管理者向け：ページ読み込み時に設定を反映
   var isAdmin = false;
-  var IMG_KEYS = ['img_login','img_menu','img_juchu_list','img_juchu_detail','img_shipping','img_ordersheet','img_admin_db'];
+  var IMG_KEYS = ['img_login','img_menu','img_jimu_menu','img_juchu_list','img_juchu_detail','img_shipping','img_ordersheet','img_admin_db'];
 
   // 画像を非同期で1枚ずつ読み込む
   if (typeof google !== 'undefined') {
