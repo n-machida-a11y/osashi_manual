@@ -284,7 +284,7 @@
       </a>
 
       <div class="image-placeholder" style="margin-top:16px;">
-        <img src="<?= img_login ?>" alt="ログイン画面">
+        <img src="" data-key="img_login" alt="ログイン画面">
         <div>📷 ログイン画面</div>
       </div>
     </div>
@@ -317,7 +317,7 @@
       <h5><span class="step-num">②</span>メニューの「データ取り込み」ボタンをクリックする</h5>
       <p>アプリのメニュー左端にある「データ取り込み」ボタンをクリックします。</p>
       <div class="image-placeholder" style="margin-top:14px;">
-        <img src="<?= img_menu ?>" alt="メニュー画面">
+        <img src="" data-key="img_menu" alt="メニュー画面">
         <div>📷 メニュー画面</div>
       </div>
     </div>
@@ -365,7 +365,7 @@
       <p>「受注兼」または「受注兼（担当者）」を開きます。「受注兼（担当者）」には自分のデータのみが表示されます。</p>
       <p style="margin-top:8px;">対象データの行にある <strong>3つ目のボタン（受注兼アプリに飛ぶボタン）</strong> を押して詳細画面を開きます。</p>
       <div class="image-placeholder" style="margin-top:14px;">
-        <img src="<?= img_juchu_detail ?>" alt="受注兼 詳細画面">
+        <img src="" data-key="img_juchu_detail" alt="受注兼 詳細画面">
         <div>📷 詳細画面</div>
       </div>
     </div>
@@ -580,11 +580,11 @@
       <h5><span class="step-num">①</span>提出されたデータを確認する</h5>
       <p>「受注兼_営業事務」を開くと、提出済みのリストが表示されます。未処理のものは受注Noが<strong style="color:#dc2626;">赤字</strong>で表示されます。</p>
       <div class="image-placeholder" style="margin-top:14px;">
-        <img src="<?= img_menu ?>" alt="メニュー画面">
+        <img src="" data-key="img_menu" alt="メニュー画面">
         <div>📷 メニュー画面</div>
       </div>
       <div class="image-placeholder" style="margin-top:0;">
-        <img src="<?= img_juchu_list ?>" alt="受注兼リスト">
+        <img src="" data-key="img_juchu_list" alt="受注兼リスト">
         <div>📷 受注兼リスト画面</div>
       </div>
     </div>
@@ -684,7 +684,7 @@
       <h5><span class="step-num">1</span>「出荷明細アプリ移動」ボタンを押す</h5>
       <p>受注管理アプリの左から2つ目のボタン「出荷明細アプリ移動」を押します。得意先コード・直送先名などは自動で引き継がれます。</p>
       <div class="image-placeholder" style="margin-top:14px;">
-        <img src="<?= img_shipping ?>" alt="出荷明細アプリ画面">
+        <img src="" data-key="img_shipping" alt="出荷明細アプリ画面">
         <div>📷 出荷明細アプリの画面</div>
       </div>
     </div>
@@ -956,7 +956,7 @@
       <h5><span class="step-num">1</span>AppSheetの6つ目のボタンから注文書アプリを開く</h5>
       <p>受注一覧の対象データ行にある6つ目のボタンを押すと、注文書アプリが開きます。該当の受注データが自動で読み込まれます。</p>
       <div class="image-placeholder" style="margin-top:14px;">
-        <img src="<?= img_ordersheet ?>" alt="注文書プレビュー画面">
+        <img src="" data-key="img_ordersheet" alt="注文書プレビュー画面">
         <div>📷 注文書プレビュー画面</div>
       </div>
       <!-- 注文書モックアップ -->
@@ -1236,6 +1236,24 @@
   // 管理者向け：ページ読み込み時に設定を反映
   var isAdmin = <?= isAdmin ? 'true' : 'false' ?>;
   var IMG_KEYS = ['img_login','img_menu','img_juchu_list','img_juchu_detail','img_shipping','img_ordersheet','img_admin_db'];
+
+  // 画像を非同期で1枚ずつ読み込む
+  if (typeof google !== 'undefined') {
+    window.addEventListener('load', function() {
+      IMG_KEYS.forEach(function(key) {
+        var imgs = document.querySelectorAll('img[data-key="' + key + '"]');
+        if (!imgs.length) return;
+        google.script.run
+          .withSuccessHandler(function(base64) {
+            if (!base64) return;
+            imgs.forEach(function(img) {
+              img.setAttribute('src', base64);
+            });
+          })
+          .loadImageBase64(key);
+      });
+    });
+  }
 
   window.addEventListener('load', loadImageSettings);
 

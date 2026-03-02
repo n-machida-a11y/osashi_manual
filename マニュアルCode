@@ -11,34 +11,27 @@ var IMG_KEYS = [
 ];
 
 function doGet() {
-  var tmpl  = HtmlService.createTemplateFromFile('マニュアルindex');
-  var props = PropertiesService.getScriptProperties();
+  var tmpl = HtmlService.createTemplateFromFile('マニュアルindex');
 
+  // 画像は非同期ロードのため初期値は空文字
   IMG_KEYS.forEach(function(key) {
-    var fileId = props.getProperty(key) || '';
-    tmpl[key]  = fileId ? fileToBase64(fileId) : '';
+    tmpl[key] = '';
   });
-
-  tmpl.isAdmin = (ADMIN_EMAILS.indexOf(Session.getActiveUser().getEmail()) !== -1);
 
   return tmpl.evaluate()
     .setTitle('受注・出荷管理システム マニュアル')
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
-/* ---- 内部ユーティリティ ---- */
-function fileToBase64(fileId) {
+/* ---- 1枚ずつbase64変換（クライアント側から非同期で呼ぶ） ---- */
+function loadImageBase64(imgKey) {
   try {
+    var fileId = PropertiesService.getScriptProperties().getProperty(imgKey) || '';
+    if (!fileId) return '';
     var blob = DriveApp.getFileById(fileId).getBlob();
     return 'data:' + blob.getContentType() + ';base64,' + Utilities.base64Encode(blob.getBytes());
   } catch(e) {
     return '';
-  }
-}
-
-function checkAdmin() {
-  if (ADMIN_EMAILS.indexOf(Session.getActiveUser().getEmail()) === -1) {
-    throw new Error('この操作は管理者のみ実行できます。');
   }
 }
 
