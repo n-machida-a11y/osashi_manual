@@ -207,7 +207,7 @@
 
   <div class="nav-group-label">操作手順</div>
   <a href="#login">起動・ログイン</a>
-  <a href="#csv">① CSVデータの読み込み</a>
+  <a href="#txt-import">① 商魂との連携</a>
   <a href="#juchu">② 受注兼発送依頼書</a>
   <a href="#shipping">③ 出荷明細書の作成</a>
   <a href="#confirm">④ 確認・処理完了</a>
@@ -275,111 +275,75 @@
   <section class="section alt" id="login">
     <div class="section-label">起動</div>
     <h2>アプリの起動・ログイン</h2>
-    <p class="section-intro">
-      管理者から共有されたURLをブラウザで開き、最初に自分の名前を登録します。
-    </p>
 
-    <div class="image-placeholder">
-      <img src="<?= img_login ?>" alt="ログイン画面">
-      <div>📷 ログイン画面のスクリーンショット</div>
-    </div>
+    <div class="step-box">
+      <h5><span class="step-num">①</span>アプリをブラウザで開き、自分の名前を選択します</h5>
+      <p style="margin-bottom:12px;">アプリURL：</p>
+      <a href="https://www.appsheet.com/start/1e48f45e-c936-4f42-945a-ee4590b9a86e"
+         target="_blank"
+         style="display:inline-flex;align-items:center;gap:8px;background:#1e3a5f;color:#fff;padding:10px 22px;border-radius:7px;text-decoration:none;font-weight:700;font-size:0.95rem;">
+        🔗 アプリを開く（AppSheet）
+      </a>
 
-    <div class="mockup-wrap">
-      <div class="browser-bar">
-        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-        <span class="burl">受注・出荷管理システム — ログイン</span>
-      </div>
-      <div class="bg-white p-4">
-        <div class="mx-auto" style="max-width:380px;">
-          <h6 class="text-center fw-bold mb-1" style="font-size:1.05rem;">担当者を選択してください</h6>
-          <p class="text-center text-muted mb-3" style="font-size:0.85rem;">選択後「保存」を押してください</p>
-          <select class="form-select mb-3">
-            <option>— 名前を選択 —</option>
-            <option>営業 太郎</option>
-            <option>事務 花子</option>
-          </select>
-          <button class="btn btn-primary w-100 fw-bold" style="font-size:1rem;">保存</button>
-        </div>
+      <div class="image-placeholder" style="margin-top:16px;">
+        <img src="<?= img_login ?>" alt="ログイン画面">
+        <div>📷 ログイン画面</div>
       </div>
     </div>
 
     <div class="step-box">
-      <h5><span class="step-num">1</span>ブラウザでURLを開く</h5>
-      <p>以下のURLをGoogle ChromeまたはMicrosoft Edgeで開きます。</p>
-      <div class="mt-2">
-        <a href="https://www.appsheet.com/start/1e48f45e-c936-4f42-945a-ee4590b9a86e"
-           target="_blank"
-           style="display:inline-flex;align-items:center;gap:8px;background:#1e3a5f;color:#fff;padding:10px 20px;border-radius:7px;text-decoration:none;font-weight:700;font-size:0.95rem;">
-          🔗 アプリを開く（AppSheet）
-        </a>
-      </div>
-      <p class="mt-2" style="font-size:0.88rem;color:#666;">
-        URLをブックマークしておくと次回から便利です。
-      </p>
-    </div>
-    <div class="step-box">
-      <h5><span class="step-num">2</span>自分の名前を選択して「保存」を押す</h5>
-      <p>プルダウンから自分の名前を選択し、「保存」ボタンを押します。</p>
-    </div>
-
-    <div class="note">
-      <div class="note-title">次回以降は自動でログイン</div>
-      デバイスに名前が紐づくため、2回目以降はURLを開くだけで自動的にログイン状態になります。
-      別の端末を使う場合は再度名前を選択してください。
+      <h5><span class="step-num">②</span>「<span style="color:#dc2626;font-weight:700;">保存</span>」ボタンを押す</h5>
+      <p>デバイスに名前が紐づくため、次回以降は自動で名前が入ります。</p>
+      <p style="margin-top:8px;font-size:0.9rem;color:#555;">今後Googleアカウントが付与されたら、このログイン画面はなくなります。</p>
     </div>
   </section>
 
-  <!-- ===== ① CSV取込 ===== -->
-  <section class="section" id="csv">
+  <!-- ===== ① 商魂との連携 ===== -->
+  <section class="section" id="txt-import">
     <div class="section-label">手順 ①</div>
-    <h2>CSVデータの読み込み</h2>
+    <h2>商魂との連携</h2>
     <div class="role-row">
       <span class="role-lbl">操作者：</span>
       <span class="badge badge-sales rounded-pill px-2 py-1">営業</span>
     </div>
     <p class="section-intro">
-      基幹システム（商魂）から出力したCSVデータを取り込み、
-      受注兼発送依頼書のベースデータを自動作成します。複数ファイルを一括で取り込めます。
+      商魂から出力したTXTデータを取り込み、受注兼発送依頼書のベースデータを自動作成します。複数ファイルを一括で取り込めます。
     </p>
 
-    <div class="image-placeholder">
-      <img src="<?= img_csv ?>" alt="CSVデータ取込画面">
-      <div>📷 CSVデータ取込画面</div>
+    <div class="step-box">
+      <h5><span class="step-num">①</span>商魂からTXTファイルをダウンロードする</h5>
+      <p>基幹システム（商魂）の所定の画面から、受注データをTXT形式でエクスポートします。</p>
     </div>
 
-    <div class="mockup-wrap">
-      <div class="browser-bar">
-        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-        <span class="burl">受注・出荷管理システム — データ取込</span>
+    <div class="step-box">
+      <h5><span class="step-num">②</span>メニューの「データ取り込み」ボタンをクリックする</h5>
+      <p>アプリのメニュー左端にある「データ取り込み」ボタンをクリックします。</p>
+      <div class="image-placeholder" style="margin-top:14px;">
+        <img src="<?= img_menu ?>" alt="メニュー画面">
+        <div>📷 メニュー画面</div>
       </div>
-      <div class="bg-white p-4">
-        <div class="mx-auto" style="max-width:420px;">
-          <h6 class="fw-bold mb-1" style="font-size:1rem;">受注データ取込</h6>
-          <p class="text-muted mb-3" style="font-size:0.85rem;">※複数のCSVファイルを選択できます</p>
-          <label class="form-label fw-bold" style="font-size:0.9rem;">CSVファイルを選択</label>
-          <input type="file" class="form-control mb-3" disabled>
-          <button class="btn btn-primary w-100 fw-bold" style="font-size:0.95rem;">アップロードして取込</button>
+    </div>
+
+    <div class="step-box">
+      <h5><span class="step-num">③</span>ファイルを選択して取り込む</h5>
+      <p>ファイル選択欄から、ダウンロードしたTXTファイルを選択します（複数選択可）。<br>
+      「アップロードして取込」ボタンを押すと処理が開始されます。</p>
+
+      <div class="mockup-wrap" style="margin-top:16px;">
+        <div class="browser-bar">
+          <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+          <span class="burl">受注・出荷管理システム — データ取込</span>
+        </div>
+        <div class="bg-white p-4">
+          <div class="mx-auto" style="max-width:420px;">
+            <h6 class="fw-bold mb-1" style="font-size:1rem;">受注データ取込</h6>
+            <p class="text-muted mb-3" style="font-size:0.85rem;">※複数のTXTファイルを選択できます</p>
+            <label class="form-label fw-bold" style="font-size:0.9rem;">TXTファイルを選択</label>
+            <input type="file" class="form-control mb-3" disabled>
+            <button class="btn btn-primary w-100 fw-bold" style="font-size:0.95rem;">アップロードして取込</button>
+          </div>
         </div>
       </div>
-    </div>
-
-    <h3>操作手順</h3>
-    <div class="step-box">
-      <h5><span class="step-num">1</span>商魂からCSVファイルをダウンロードする</h5>
-      <p>基幹システム（商魂）の所定の画面から、受注データをCSV形式でエクスポートします。</p>
-    </div>
-    <div class="step-box">
-      <h5><span class="step-num">2</span>メニューの「データ取り込み」ボタンをクリックする</h5>
-      <p>アプリのメニュー左端にある「データ取り込み」ボタンをクリックします。</p>
-    </div>
-    <div class="step-box">
-      <h5><span class="step-num">3</span>ファイルを選択して取り込む</h5>
-      <p>ファイル選択欄から、ダウンロードしたCSVファイルを選択します（複数選択可）。<br>
-      「アップロードして取込」ボタンを押すと処理が開始されます。</p>
-    </div>
-    <div class="step-box">
-      <h5><span class="step-num">4</span>受注兼発送依頼書が作成されていることを確認する</h5>
-      <p>取り込みが完了すると、「受注兼」または「受注兼（担当者）」のリストに新しいデータが表示されます。</p>
     </div>
   </section>
 
@@ -397,85 +361,192 @@
       従来のExcelと同じ感覚で入力できます。
     </p>
 
-    <div class="image-placeholder">
-      <img src="<?= img_juchu ?>" alt="受注兼発送依頼書アプリ">
-      <div>📷 受注兼発送依頼書アプリの画面</div>
-    </div>
-
-    <div class="image-placeholder" style="margin-top:0;">
-      <img src="<?= img_dashboard ?>" alt="ダッシュボード受注一覧">
-      <div>📷 ダッシュボード（受注一覧）の画面</div>
-    </div>
-
-    <div class="mockup-wrap">
-      <div class="browser-bar">
-        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-        <span class="burl">受注・出荷管理システム — 受注兼発送依頼書（操作パネル）</span>
+    <!-- 営業の操作手順 -->
+    <div class="step-box">
+      <h5><span class="step-num">①</span>対象データを開く</h5>
+      <p>「受注兼」または「受注兼（担当者）」を開きます。「受注兼（担当者）」には自分のデータのみが表示されます。</p>
+      <p style="margin-top:8px;">対象データの行にある <strong>3つ目のボタン（受注兼アプリに飛ぶボタン）</strong> を押して詳細画面を開きます。</p>
+      <div class="image-placeholder" style="margin-top:14px;">
+        <img src="<?= img_juchu_detail ?>" alt="受注兼 詳細画面">
+        <div>📷 詳細画面</div>
       </div>
-      <div class="bg-gray-200 p-3 overflow-x-auto">
-        <div class="bg-white p-3 rounded-lg shadow-sm flex justify-between items-center border-l-4 border-blue-600 min-w-[580px]">
-          <div class="flex items-center space-x-3">
-            <div>
-              <div class="font-bold text-blue-700 text-sm">【販売品】No.250969</div>
-              <div class="text-[11px] text-gray-500">株式会社サンプル商事</div>
-            </div>
-            <select class="bg-gray-100 text-xs font-bold p-1 rounded border border-gray-300 outline-none"><option>作成中</option><option>仮</option><option>差替</option></select>
-            <span class="bg-gray-400 text-white px-2 py-0.5 rounded text-[11px] font-bold">未提出</span>
+    </div>
+
+    <div class="step-box">
+      <h5><span class="step-num">②</span>必要な情報を入力・修正する</h5>
+      <p>従来のExcelと同じ感覚で、出荷日・納期・配送方法・直送先担当者名などを入力・修正します。</p>
+
+      <!-- 受注兼アプリ モックアップ -->
+      <div class="mockup-wrap" style="margin-top:16px;">
+        <div class="browser-bar">
+          <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+          <span class="burl">受注兼発送依頼書</span>
+        </div>
+        <div class="font-sans bg-white overflow-x-auto">
+          <!-- タブ -->
+          <div class="flex border-b border-gray-300 bg-gray-100 text-sm">
+            <button class="px-5 py-2 font-bold text-blue-600 bg-white border-b-2 border-blue-600">販売</button>
+            <button class="px-5 py-2 text-gray-500">レンタル</button>
+            <button class="px-5 py-2 text-gray-500">通信費</button>
           </div>
-          <div class="flex items-center space-x-2">
-            <button class="px-3 py-1.5 bg-purple-600 text-white border-0 rounded text-xs">📎 添付ファイル</button>
-            <button class="px-3 py-1.5 bg-green-600 text-white border-0 rounded text-xs">Excel出力</button>
-            <button class="px-3 py-1.5 bg-gray-100 text-gray-700 border border-gray-200 rounded text-xs">画像保存</button>
-            <div class="h-4 w-px bg-gray-300"></div>
-            <button class="px-3 py-1.5 bg-blue-600 text-white border-0 rounded font-bold text-xs">💾 一時保存</button>
-            <button class="px-4 py-1.5 bg-indigo-600 text-white border-0 rounded font-bold text-xs">提出 ▶</button>
+          <!-- 本体 -->
+          <div class="p-4 text-xs text-gray-700" style="min-width:560px;">
+            <div class="grid grid-cols-2 gap-4 mb-3">
+              <!-- 得意先情報 -->
+              <div class="border border-gray-300 rounded p-3">
+                <div class="font-bold text-gray-800 text-sm mb-2 border-b pb-1">得意先情報</div>
+                <div class="space-y-1.5">
+                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">社名</span><input class="flex-1 border border-red-400 rounded px-2 py-0.5 bg-red-50" value="株式会社サンプル商事" readonly></div>
+                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">担当者</span><input class="flex-1 border border-red-400 rounded px-2 py-0.5 bg-red-50" value="鈴木 次郎" readonly></div>
+                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">担当営業</span><input class="flex-1 border border-red-400 rounded px-2 py-0.5 bg-red-50" value="営業 太郎" readonly></div>
+                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">見積書No</span><input class="flex-1 border border-red-400 rounded px-2 py-0.5 bg-red-50" value="" readonly></div>
+                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">TEL</span><input class="flex-1 border border-red-400 rounded px-2 py-0.5 bg-red-50" value="03-0000-0000" readonly></div>
+                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">住所</span><input class="flex-1 border border-red-400 rounded px-2 py-0.5 bg-red-50" value="東京都千代田区〇〇1-2-3" readonly></div>
+                </div>
+              </div>
+              <!-- 直送先情報 -->
+              <div class="border border-gray-300 rounded p-3">
+                <div class="font-bold text-gray-800 text-sm mb-2 border-b pb-1">直送先情報</div>
+                <div class="space-y-1.5">
+                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">直送先名</span><input class="flex-1 border border-gray-300 rounded px-2 py-0.5" value="" readonly></div>
+                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">直送先担当者</span><input class="flex-1 border border-gray-300 rounded px-2 py-0.5" value="" readonly></div>
+                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">TEL</span><input class="flex-1 border border-gray-300 rounded px-2 py-0.5" value="" readonly></div>
+                  <div class="flex gap-2 items-center"><span class="w-24 text-gray-500 shrink-0">住所</span><input class="flex-1 border border-gray-300 rounded px-2 py-0.5" value="" readonly></div>
+                </div>
+              </div>
+            </div>
+            <!-- 出荷情報 -->
+            <div class="border border-gray-300 rounded p-3 mb-3">
+              <div class="font-bold text-gray-800 text-sm mb-2 border-b pb-1">出荷・配送情報</div>
+              <div class="grid grid-cols-4 gap-2">
+                <div class="flex flex-col gap-1"><span class="text-gray-500">出荷日</span><input class="border border-red-400 rounded px-2 py-0.5 bg-red-50" value="2026/03/05" readonly></div>
+                <div class="flex flex-col gap-1"><span class="text-gray-500">納期</span><input class="border border-red-400 rounded px-2 py-0.5 bg-red-50" value="2026/03/06" readonly></div>
+                <div class="flex flex-col gap-1"><span class="text-gray-500">配送方法</span><input class="border border-red-400 rounded px-2 py-0.5 bg-red-50" value="ヤマト(AM)" readonly></div>
+                <div class="flex flex-col gap-1"><span class="text-gray-500">時間帯</span><select class="border border-gray-300 rounded px-2 py-0.5 bg-white"><option>午前中</option><option>14時～16時</option><option>指定なし</option></select></div>
+              </div>
+            </div>
+            <!-- 明細 -->
+            <div class="border border-gray-300 rounded p-3">
+              <div class="font-bold text-gray-800 text-sm mb-2 border-b pb-1">販売品明細</div>
+              <table class="w-full text-[11px] border-collapse">
+                <tr class="bg-gray-100"><th class="border border-gray-300 p-1">品名</th><th class="border border-gray-300 p-1">数量</th><th class="border border-gray-300 p-1">単位</th><th class="border border-gray-300 p-1">単価</th><th class="border border-gray-300 p-1">金額</th><th class="border border-gray-300 p-1">手配日</th></tr>
+                <tr><td class="border border-gray-300 p-1">レーザープリンター A4</td><td class="border border-gray-300 p-1 text-right">2</td><td class="border border-gray-300 p-1 text-center">台</td><td class="border border-gray-300 p-1 text-right">68,000</td><td class="border border-gray-300 p-1 text-right">136,000</td><td class="border border-gray-300 p-1">03/05</td></tr>
+                <tr><td class="border border-gray-300 p-1">トナーカートリッジ（黒）</td><td class="border border-gray-300 p-1 text-right">5</td><td class="border border-gray-300 p-1 text-center">本</td><td class="border border-gray-300 p-1 text-right">4,800</td><td class="border border-gray-300 p-1 text-right">24,000</td><td class="border border-gray-300 p-1">03/05</td></tr>
+              </table>
+              <div class="text-right mt-2 text-xs space-y-0.5">
+                <div>売上小計：<strong>160,000</strong></div>
+                <div>消費税（10%）：16,000</div>
+                <div class="font-bold text-sm">合計（税込み）：<span class="text-blue-700">176,000</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <div class="fw-bold mb-2" style="font-size:0.95rem;">入力必須項目（提出時に未入力だと赤くなる項目）</div>
+        <div class="row g-2" style="font-size:0.9rem;">
+          <div class="col-md-6">
+            <ul class="mb-0" style="line-height:1.9;">
+              <li>社名</li>
+              <li>先方担当者名</li>
+              <li>担当営業</li>
+              <li>見積書No</li>
+              <li>住所（郵便番号・住所1）</li>
+              <li>TEL</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="mb-0" style="line-height:1.9;">
+              <li>配送方法（1回目）</li>
+              <li>締め日</li>
+              <li>支払日</li>
+              <li>支払条件詳細</li>
+              <li>伝票No <span class="text-muted" style="font-size:0.82rem;">（販売モードのみ）</span></li>
+              <li>レンタルID・現場名 <span class="text-muted" style="font-size:0.82rem;">（レンタルモードのみ）</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <div class="fw-bold mb-2" style="font-size:0.95rem;">その他の入力項目</div>
+        <ul style="font-size:0.93rem;line-height:1.9;">
+          <li><strong>明細：</strong>品名を検索→選択→数量・単価を入力（金額は自動計算）。「明細を追加」で行を増やせる</li>
+          <li><strong>出荷指示：</strong>出荷日・納期・配送方法・時間帯（最大10回分）。「行を追加」で増やせる</li>
+          <li><strong>集金条件：</strong>締め日・支払日・支払条件詳細（プルダウン選択）</li>
+          <li><strong>モード切替：</strong>販売 / レンタル / 通信費。レンタル・通信費は「生成」で請求スケジュールを自動作成</li>
+          <li><strong>技術課依頼書：</strong>有 / 無を選択。「有」の場合は依頼内容を入力</li>
+          <li><strong>添付ファイル：</strong>Excel・PDF・画像などを案件に紐づけられる</li>
+          <li><strong>備考・メール：</strong>備考の追加と、スタッフへのメール通知送信（CC追加可）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-box">
+      <h5><span class="step-num">③</span>「提出」ボタンを押して承認フローを開始する</h5>
+      <p>入力が完了したら「提出 ▶」ボタンを押します。営業事務側にデータが連携されます。<br>
+      入力途中で中断する場合は「💾 一時保存」を押してください。</p>
+
+      <div class="note warn" style="margin-top:14px;">
+        <div class="note-title">提出後に修正したい場合</div>
+        営業事務が「処理開始」を押すまでは、「再編集」ボタンから何度でも修正できます。
+      </div>
+
+      <!-- ボタン部分モックアップ -->
+      <div class="mockup-wrap" style="margin-top:16px;">
+        <div class="browser-bar">
+          <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+          <span class="burl">受注兼発送依頼書 — ヘッダー操作パネル</span>
+        </div>
+        <div class="font-sans bg-gray-100 p-3 overflow-x-auto">
+          <div class="bg-white rounded-lg shadow-sm border-l-4 border-blue-600 p-3 flex justify-between items-center min-w-[620px]">
+            <div class="flex items-center gap-3">
+              <div>
+                <div class="font-bold text-blue-700 text-sm">【販売品】</div>
+                <div class="text-[11px] text-gray-500">受注No: 250969　株式会社サンプル商事</div>
+              </div>
+              <select class="bg-gray-100 text-xs font-bold px-2 py-1 rounded border border-gray-300 outline-none">
+                <option>作成中</option><option>仮</option><option>差替</option>
+              </select>
+              <span class="text-[11px] px-2 py-0.5 bg-gray-200 text-gray-600 rounded font-bold">提出済み</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="px-2 py-1 bg-purple-600 text-white border-0 rounded text-xs">📎 添付ファイル</button>
+              <button class="px-2 py-1 bg-green-600 text-white border-0 rounded text-xs">Excel出力</button>
+              <button class="px-2 py-1 bg-gray-100 text-gray-700 border border-gray-200 rounded text-xs">画像保存</button>
+              <div class="h-4 w-px bg-gray-300 mx-1"></div>
+              <button class="px-3 py-1 bg-blue-600 text-white border-0 rounded font-bold text-xs">💾 一時保存</button>
+              <button class="px-3 py-1 bg-indigo-600 text-white border-0 rounded font-bold text-xs">提出 ▶</button>
+              <button class="px-3 py-1 bg-amber-500 text-white border-0 rounded font-bold text-xs">再編集</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <h3>操作手順</h3>
+    <!-- 営業事務 -->
+    <h3>営業事務の操作手順</h3>
+
     <div class="step-box">
-      <h5><span class="step-num">1</span>対象データを開く</h5>
-      <p>「受注兼」または「受注兼（担当者）」のリストを開きます。<br>
-      <small class="text-muted">※「受注兼（担当者）」には自分のデータのみが表示されます。</small></p>
-      <p style="margin-top:8px;">対象データの行にある <strong>3つ目のボタン（受注兼アプリに飛ぶボタン）</strong> を押して詳細画面を開きます。</p>
-    </div>
-    <div class="step-box">
-      <h5><span class="step-num">2</span>必要な情報を入力・修正する</h5>
-      <p>従来のExcelと同じ感覚で、出荷日・納期・配送方法・直送先担当者名などを入力・修正します。</p>
-      <ul>
-        <li><strong>基本情報：</strong>得意先・直送先の住所、担当者名など</li>
-        <li><strong>モード切替：</strong>販売・レンタル・通信費。レンタル/通信費は「生成」で請求スケジュールを自動作成</li>
-        <li><strong>明細：</strong>商品検索→選択→数量・単価入力（金額は自動計算）。「明細を追加」で行を増やせる</li>
-        <li><strong>出荷指示：</strong>出荷日・納期・配送方法・時間帯（最大10回分）</li>
-        <li><strong>集金条件：</strong>締め日・支払日・支払方法</li>
-        <li><strong>添付ファイル：</strong>参考資料（Excel・PDF・画像など）を案件に紐づけられる</li>
-        <li><strong>備考・メール：</strong>備考の追加と、スタッフへのメール通知送信（CC追加可）</li>
-      </ul>
-    </div>
-    <div class="step-box">
-      <h5><span class="step-num">3</span>「提出」ボタンを押して承認フローを開始する</h5>
-      <p>入力が完了したら「提出 ▶」ボタンを押します。営業事務側にデータが連携されます。<br>
-      入力途中で中断する場合は「💾 一時保存」を押してください。</p>
+      <h5><span class="step-num">①</span>提出されたデータを確認する</h5>
+      <p>「受注兼_営業事務」を開くと、提出済みのリストが表示されます。未処理のものは受注Noが<strong style="color:#dc2626;">赤字</strong>で表示されます。</p>
+      <div class="image-placeholder" style="margin-top:14px;">
+        <img src="<?= img_menu ?>" alt="メニュー画面">
+        <div>📷 メニュー画面</div>
+      </div>
+      <div class="image-placeholder" style="margin-top:0;">
+        <img src="<?= img_juchu_list ?>" alt="受注兼リスト">
+        <div>📷 受注兼リスト画面</div>
+      </div>
     </div>
 
-    <div class="note warn">
-      <div class="note-title">提出後の修正</div>
-      営業事務が「処理開始」を押すまでは、「再編集」ボタンから何度でも修正できます。
-      「処理開始」後は再編集するとステータスが「作成中」に戻り、再度提出が必要です。
-    </div>
-
-    <h3>営業事務：未処理データの確認</h3>
     <div class="step-box">
-      <h5><span class="step-num">1</span>赤字で表示されているデータを確認する</h5>
-      <p>営業担当者から提出されたデータのうち、未処理のものは一覧で<strong>赤字</strong>で表示されます。</p>
-    </div>
-    <div class="step-box">
-      <h5><span class="step-num">2</span>「処理開始」を押してロックする</h5>
+      <h5><span class="step-num">②</span>「処理開始」を押してロックする</h5>
       <p>対象データを開き「処理開始」ボタンを押します。営業担当者からの編集ができなくなります。</p>
     </div>
 
+    <!-- 承認スタンプ -->
     <h3>承認スタンプの流れ</h3>
     <table class="table table-bordered" style="font-size:0.93rem;">
       <thead class="table-dark"><tr><th>ステップ</th><th>担当</th><th>操作</th></tr></thead>
@@ -484,9 +555,49 @@
         <tr><td>承認（課長）</td><td>課長</td><td>スタンプ欄をクリック</td></tr>
         <tr><td>承認（部長）</td><td>部長</td><td>スタンプ欄をクリック</td></tr>
         <tr><td>承認（社長）</td><td>社長</td><td>スタンプ欄をクリック</td></tr>
-        <tr><td>処理開始</td><td><span class="badge badge-office rounded-pill px-2">営業事務</span></td><td>「処理開始」ボタンを押す</td></tr>
       </tbody>
     </table>
+
+    <!-- 承認スタンプ モックアップ -->
+    <div class="mockup-wrap">
+      <div class="browser-bar">
+        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+        <span class="burl">受注兼発送依頼書 — 承認スタンプ欄</span>
+      </div>
+      <div class="font-sans bg-white p-4 overflow-x-auto">
+        <div class="flex gap-0 border border-gray-300 rounded overflow-hidden" style="min-width:520px;max-width:640px;">
+          <div class="flex flex-col items-center border-r border-gray-300 px-3 py-2 min-w-[80px] bg-gray-50">
+            <div class="text-[10px] text-gray-500 mb-1">提出日</div>
+            <div class="text-xs font-bold text-gray-700">2026/03/02</div>
+          </div>
+          <div class="flex flex-col items-center border-r border-gray-300 px-3 py-2 min-w-[80px]">
+            <div class="text-[10px] text-gray-500 mb-1">作成</div>
+            <div class="w-10 h-10 rounded-full border-2 border-red-500 flex items-center justify-center text-red-600 font-bold text-sm">山田</div>
+          </div>
+          <div class="flex flex-col items-center border-r border-gray-300 px-3 py-2 min-w-[80px]">
+            <div class="text-[10px] text-gray-500 mb-1">本社事務</div>
+            <div class="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-300 text-xs">未</div>
+          </div>
+          <div class="flex flex-col items-center border-r border-gray-300 px-3 py-2 min-w-[80px]">
+            <div class="text-[10px] text-gray-500 mb-1">営業</div>
+            <div class="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-300 text-xs">未</div>
+          </div>
+          <div class="flex flex-col items-center border-r border-gray-300 px-3 py-2 min-w-[80px]">
+            <div class="text-[10px] text-gray-500 mb-1">課長</div>
+            <div class="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-300 text-xs">未</div>
+          </div>
+          <div class="flex flex-col items-center border-r border-gray-300 px-3 py-2 min-w-[80px]">
+            <div class="text-[10px] text-gray-500 mb-1">部長</div>
+            <div class="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-300 text-xs">未</div>
+          </div>
+          <div class="flex flex-col items-center px-3 py-2 min-w-[80px]">
+            <div class="text-[10px] text-gray-500 mb-1">社長</div>
+            <div class="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-300 text-xs">未</div>
+          </div>
+        </div>
+        <p class="text-xs text-gray-500 mt-2">※ 自分の権限に応じたスタンプ欄をクリックすると承認印が押されます</p>
+      </div>
+    </div>
   </section>
 
   <!-- ===== ③ 出荷明細書 ===== -->
@@ -773,34 +884,34 @@
           <td id="st_img_login" class="text-center">—</td>
         </tr>
         <tr>
-          <td>CSV取込画面</td>
+          <td>AppSheet メニュー画面</td>
           <td>
             <div class="d-flex gap-2 align-items-center">
-              <input class="form-control form-control-sm" id="img_csv" placeholder="ファイルID（直接入力も可）">
-              <label class="btn btn-sm btn-outline-primary mb-0 upload-label">📁 選択<input type="file" accept="image/*" onchange="uploadImage(event,'img_csv')"></label>
+              <input class="form-control form-control-sm" id="img_menu" placeholder="ファイルID（直接入力も可）">
+              <label class="btn btn-sm btn-outline-primary mb-0 upload-label">📁 選択<input type="file" accept="image/*" onchange="uploadImage(event,'img_menu')"></label>
             </div>
           </td>
-          <td id="st_img_csv" class="text-center">—</td>
+          <td id="st_img_menu" class="text-center">—</td>
         </tr>
         <tr>
-          <td>ダッシュボード</td>
+          <td>受注兼 リスト画面</td>
           <td>
             <div class="d-flex gap-2 align-items-center">
-              <input class="form-control form-control-sm" id="img_dashboard" placeholder="ファイルID（直接入力も可）">
-              <label class="btn btn-sm btn-outline-primary mb-0 upload-label">📁 選択<input type="file" accept="image/*" onchange="uploadImage(event,'img_dashboard')"></label>
+              <input class="form-control form-control-sm" id="img_juchu_list" placeholder="ファイルID（直接入力も可）">
+              <label class="btn btn-sm btn-outline-primary mb-0 upload-label">📁 選択<input type="file" accept="image/*" onchange="uploadImage(event,'img_juchu_list')"></label>
             </div>
           </td>
-          <td id="st_img_dashboard" class="text-center">—</td>
+          <td id="st_img_juchu_list" class="text-center">—</td>
         </tr>
         <tr>
-          <td>受注兼発送依頼書</td>
+          <td>受注兼 詳細画面</td>
           <td>
             <div class="d-flex gap-2 align-items-center">
-              <input class="form-control form-control-sm" id="img_juchu" placeholder="ファイルID（直接入力も可）">
-              <label class="btn btn-sm btn-outline-primary mb-0 upload-label">📁 選択<input type="file" accept="image/*" onchange="uploadImage(event,'img_juchu')"></label>
+              <input class="form-control form-control-sm" id="img_juchu_detail" placeholder="ファイルID（直接入力も可）">
+              <label class="btn btn-sm btn-outline-primary mb-0 upload-label">📁 選択<input type="file" accept="image/*" onchange="uploadImage(event,'img_juchu_detail')"></label>
             </div>
           </td>
-          <td id="st_img_juchu" class="text-center">—</td>
+          <td id="st_img_juchu_detail" class="text-center">—</td>
         </tr>
         <tr>
           <td>出荷明細アプリ</td>
@@ -884,7 +995,7 @@
 
   // 管理者向け：ページ読み込み時に設定を反映
   var isAdmin = <?= isAdmin ? 'true' : 'false' ?>;
-  var IMG_KEYS = ['img_login','img_csv','img_dashboard','img_juchu','img_shipping','img_confirm','img_ordersheet','img_admin_db'];
+  var IMG_KEYS = ['img_login','img_menu','img_juchu_list','img_juchu_detail','img_shipping','img_confirm','img_ordersheet','img_admin_db'];
 
   if (isAdmin) {
     window.addEventListener('load', loadImageSettings);

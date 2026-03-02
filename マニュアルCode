@@ -1,8 +1,14 @@
 var ADMIN_EMAIL  = 'n-machida@race-number.co.jp';
 var IMG_FOLDER_ID = '1U1UfITfe9ggy9sbCRj0QGJFJiKz02idD';
 var IMG_KEYS = [
-  'img_login', 'img_csv', 'img_dashboard', 'img_juchu',
-  'img_shipping', 'img_confirm', 'img_ordersheet', 'img_admin_db'
+  'img_login',        // ログイン画面
+  'img_menu',         // AppSheet メニュー画面
+  'img_juchu_list',   // 受注兼 リスト画面
+  'img_juchu_detail', // 受注兼 詳細画面
+  'img_shipping',     // 出荷明細アプリ
+  'img_confirm',      // 確認・処理完了
+  'img_ordersheet',   // 注文書プレビュー
+  'img_admin_db'      // 管理用スプレッドシート
 ];
 
 function doGet() {
