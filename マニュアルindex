@@ -1234,7 +1234,7 @@
   document.querySelectorAll('[id]').forEach(function(el) { observer.observe(el); });
 
   // 管理者向け：ページ読み込み時に設定を反映
-  var isAdmin = <?= isAdmin ? 'true' : 'false' ?>;
+  var isAdmin = false;
   var IMG_KEYS = ['img_login','img_menu','img_juchu_list','img_juchu_detail','img_shipping','img_ordersheet','img_admin_db'];
 
   // 画像を非同期で1枚ずつ読み込む
