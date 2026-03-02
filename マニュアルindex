@@ -212,6 +212,7 @@
   <a href="#shipping">③ 出荷明細書の作成</a>
 
   <div class="nav-group-label">その他</div>
+  <a href="#dashboard">出荷ダッシュボード</a>
   <a href="#ordersheet">注文書の発行</a>
   <a href="#irregular">イレギュラー対応</a>
   <? if (isAdmin) { ?>
@@ -759,6 +760,180 @@
     <div class="step-box">
       <h5><span class="step-num">6</span>「作成済みの伝票の確認修正」で確認者を承認する</h5>
       <p>出荷明細アプリの「📂 作成済みの伝票の確認修正」タブを開きます。対象の伝票を選択し、「確認済みにする」からプルダウンで確認者の名前を選んで「実行」を押します。伝票の確認欄に名前が反映されます。</p>
+    </div>
+  </section>
+
+  <!-- ===== 出荷ダッシュボード ===== -->
+  <section class="section alt" id="dashboard">
+    <div class="section-label">その他</div>
+    <h2>出荷ダッシュボード</h2>
+    <div class="role-row">
+      <span class="role-lbl">主な対象：</span>
+      <span class="badge badge-office rounded-pill px-2 py-1">営業事務</span>
+      <span class="badge badge-sales rounded-pill px-2 py-1">営業</span>
+    </div>
+    <p class="section-intro">
+      伝票ごとの出荷状況を一覧で確認できる画面です。出荷済み・一部のみ出荷・未出荷などのステータスが自動的に更新されるため、対応漏れを防ぐのに役立ちます。
+    </p>
+
+    <h3>主な機能</h3>
+
+    <div class="step-box" style="border-left-color:#3b82f6;">
+      <h5>出荷状況の一覧確認</h5>
+      <p>画面左側に受注一覧が表示されます。各行にステータスバッジが表示され、出荷状況を一目で把握できます。ステータスは出荷処理に応じて自動更新されます。</p>
+      <div class="d-flex gap-2 mt-2 flex-wrap">
+        <span class="badge rounded-pill px-3 py-1" style="background:#dcfce7;color:#15803d;font-size:0.88rem;">出荷済</span>
+        <span class="badge rounded-pill px-3 py-1" style="background:#fef9c3;color:#854d0e;font-size:0.88rem;">一部出荷</span>
+        <span class="badge rounded-pill px-3 py-1" style="background:#fee2e2;color:#b91c1c;font-size:0.88rem;">未出荷</span>
+      </div>
+    </div>
+
+    <div class="step-box" style="border-left-color:#3b82f6;">
+      <h5>詳細の確認</h5>
+      <p>一覧から伝票をクリックすると、右側に以下の詳細が表示されます。</p>
+      <ul style="font-size:0.93rem;line-height:1.9;">
+        <li>商品ごとの出荷状況（受注数・出荷済数・残数）</li>
+        <li>未出荷の残数（残数がある場合は赤字で表示）</li>
+        <li>出荷履歴（出荷日・到着日・商品名・数量）</li>
+      </ul>
+    </div>
+
+    <div class="step-box" style="border-left-color:#3b82f6;">
+      <h5>画面遷移ボタン</h5>
+      <p>左側の一覧にある2つのボタンから、対象データを選択した状態で各アプリへ直接移動できます。</p>
+      <div class="d-flex gap-3 mt-2 align-items-center flex-wrap">
+        <span class="px-3 py-1 rounded" style="background:#f9fafb;border:1px solid #d1d5db;color:#374151;font-size:0.88rem;font-weight:600;">受注兼</span>
+        <span style="color:#888;font-size:0.88rem;">→ 受注兼発送依頼書の確認・編集画面へ</span>
+      </div>
+      <div class="d-flex gap-3 mt-2 align-items-center flex-wrap">
+        <span class="px-3 py-1 rounded" style="background:#eff6ff;border:1px solid #bfdbfe;color:#2563eb;font-size:0.88rem;font-weight:600;">出荷明細</span>
+        <span style="color:#888;font-size:0.88rem;">→ 出荷明細書の作成・確認画面へ</span>
+      </div>
+    </div>
+
+    <!-- ダッシュボードモックアップ（実際のスタイル） -->
+    <h3>画面イメージ</h3>
+    <div class="mockup-wrap">
+      <div class="browser-bar">
+        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+        <span class="burl">出荷状況確認ダッシュボード</span>
+      </div>
+      <div class="font-sans" style="background:#f3f4f6;display:flex;height:480px;overflow:hidden;">
+
+        <!-- 左：受注一覧 -->
+        <div style="width:33%;background:#fff;border-right:1px solid #e5e7eb;display:flex;flex-direction:column;">
+          <!-- ヘッダー -->
+          <div class="sticky top-0" style="background:#fff;border-bottom:1px solid #e5e7eb;padding:16px;z-index:10;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <span style="background:#2563eb;color:#fff;font-size:0.7rem;font-weight:700;padding:3px 8px;border-radius:4px;">DASHBOARD</span>
+              <span style="font-size:1rem;font-weight:700;color:#1f2937;">出荷状況確認</span>
+            </div>
+            <select style="width:100%;padding:7px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:0.82rem;background:#fff;margin-bottom:6px;outline:none;">
+              <option>すべてのステータス</option><option>未出荷</option><option>一部出荷</option><option>出荷済</option>
+            </select>
+            <input type="text" placeholder="受注No,得意先,担当者で検索..." style="width:100%;padding:7px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:0.82rem;box-sizing:border-box;outline:none;">
+          </div>
+          <!-- リスト -->
+          <div style="overflow-y:auto;flex:1;">
+            <!-- 選択中 -->
+            <div style="padding:12px;border-bottom:1px solid #f3f4f6;background:#dbeafe;border-left:4px solid #2563eb;cursor:pointer;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
+                <span style="font-weight:700;color:#2563eb;font-size:0.85rem;white-space:nowrap;">250969</span>
+                <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
+                  <span style="font-size:0.65rem;padding:2px 6px;background:#f9fafb;border:1px solid #d1d5db;color:#374151;border-radius:4px;cursor:pointer;">受注兼</span>
+                  <span style="font-size:0.65rem;padding:2px 6px;background:#eff6ff;border:1px solid #bfdbfe;color:#2563eb;border-radius:4px;cursor:pointer;">出荷明細</span>
+                  <span style="font-size:0.65rem;padding:2px 6px;background:#fee2e2;color:#991b1b;border-radius:9999px;font-weight:700;white-space:nowrap;">未出荷</span>
+                </div>
+              </div>
+              <div style="font-size:0.82rem;color:#374151;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">株式会社サンプル商事</div>
+              <div style="font-size:0.72rem;color:#6b7280;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">担当: 営業 太郎</div>
+            </div>
+            <!-- 通常行 -->
+            <div style="padding:12px;border-bottom:1px solid #f3f4f6;cursor:pointer;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
+                <span style="font-weight:700;color:#2563eb;font-size:0.85rem;">250968</span>
+                <div style="display:flex;gap:4px;align-items:center;">
+                  <span style="font-size:0.65rem;padding:2px 6px;background:#f9fafb;border:1px solid #d1d5db;color:#374151;border-radius:4px;">受注兼</span>
+                  <span style="font-size:0.65rem;padding:2px 6px;background:#eff6ff;border:1px solid #bfdbfe;color:#2563eb;border-radius:4px;">出荷明細</span>
+                  <span style="font-size:0.65rem;padding:2px 6px;background:#fef9c3;color:#854d0e;border-radius:9999px;font-weight:700;white-space:nowrap;">一部出荷</span>
+                </div>
+              </div>
+              <div style="font-size:0.82rem;color:#374151;font-weight:600;">株式会社テスト工業</div>
+              <div style="font-size:0.72rem;color:#6b7280;margin-top:2px;">担当: 佐藤 花子</div>
+            </div>
+            <div style="padding:12px;border-bottom:1px solid #f3f4f6;cursor:pointer;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
+                <span style="font-weight:700;color:#2563eb;font-size:0.85rem;">250965</span>
+                <div style="display:flex;gap:4px;align-items:center;">
+                  <span style="font-size:0.65rem;padding:2px 6px;background:#f9fafb;border:1px solid #d1d5db;color:#374151;border-radius:4px;">受注兼</span>
+                  <span style="font-size:0.65rem;padding:2px 6px;background:#eff6ff;border:1px solid #bfdbfe;color:#2563eb;border-radius:4px;">出荷明細</span>
+                  <span style="font-size:0.65rem;padding:2px 6px;background:#dcfce7;color:#166534;border-radius:9999px;font-weight:700;white-space:nowrap;">出荷済</span>
+                </div>
+              </div>
+              <div style="font-size:0.82rem;color:#374151;font-weight:600;">合同会社ABCサービス</div>
+              <div style="font-size:0.72rem;color:#6b7280;margin-top:2px;">担当: 田中 一郎</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：詳細 -->
+        <div style="width:67%;display:flex;flex-direction:column;overflow-y:auto;">
+          <div style="padding:24px;">
+            <!-- 商品別出荷状況 -->
+            <div style="background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,0.08);padding:16px;margin-bottom:16px;">
+              <div style="font-size:0.92rem;font-weight:700;color:#374151;margin-bottom:12px;border-left:4px solid #2563eb;padding-left:8px;">商品別 出荷状況</div>
+              <table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+                <tr style="background:#f9fafb;">
+                  <th style="padding:8px 12px;text-align:left;font-weight:600;color:#374151;text-transform:uppercase;font-size:0.7rem;">商品コード</th>
+                  <th style="padding:8px 12px;text-align:left;font-weight:600;color:#374151;text-transform:uppercase;font-size:0.7rem;">商品名</th>
+                  <th style="padding:8px 12px;text-align:right;font-weight:600;color:#374151;text-transform:uppercase;font-size:0.7rem;">受注数</th>
+                  <th style="padding:8px 12px;text-align:right;font-weight:600;color:#dc2626;text-transform:uppercase;font-size:0.7rem;">残数</th>
+                  <th style="padding:8px 12px;text-align:right;font-weight:600;color:#374151;text-transform:uppercase;font-size:0.7rem;">出荷済</th>
+                </tr>
+                <tr style="border-bottom:1px solid #f3f4f6;">
+                  <td style="padding:8px 12px;font-family:monospace;">P-1001</td>
+                  <td style="padding:8px 12px;">レーザープリンター A4</td>
+                  <td style="padding:8px 12px;text-align:right;font-weight:500;">2</td>
+                  <td style="padding:8px 12px;text-align:right;font-weight:700;color:#dc2626;">1</td>
+                  <td style="padding:8px 12px;text-align:right;color:#6b7280;">1</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px 12px;font-family:monospace;">P-2050</td>
+                  <td style="padding:8px 12px;">トナーカートリッジ（黒）</td>
+                  <td style="padding:8px 12px;text-align:right;font-weight:500;">5</td>
+                  <td style="padding:8px 12px;text-align:right;color:#d1d5db;font-weight:700;">0</td>
+                  <td style="padding:8px 12px;text-align:right;color:#6b7280;">5</td>
+                </tr>
+              </table>
+            </div>
+            <!-- 出荷履歴 -->
+            <div style="background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,0.08);padding:16px;">
+              <div style="font-size:0.92rem;font-weight:700;color:#374151;margin-bottom:12px;border-left:4px solid #16a34a;padding-left:8px;">出荷履歴</div>
+              <table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+                <tr style="background:#f9fafb;">
+                  <th style="padding:8px 12px;text-align:left;font-weight:600;color:#374151;font-size:0.7rem;text-transform:uppercase;">出荷日</th>
+                  <th style="padding:8px 12px;text-align:left;font-weight:600;color:#374151;font-size:0.7rem;text-transform:uppercase;">到着日</th>
+                  <th style="padding:8px 12px;text-align:left;font-weight:600;color:#374151;font-size:0.7rem;text-transform:uppercase;">商品名</th>
+                  <th style="padding:8px 12px;text-align:right;font-weight:600;color:#374151;font-size:0.7rem;text-transform:uppercase;">出荷数</th>
+                </tr>
+                <tr style="border-bottom:1px solid #f3f4f6;">
+                  <td style="padding:8px 12px;">2026/03/01</td>
+                  <td style="padding:8px 12px;">2026/03/02</td>
+                  <td style="padding:8px 12px;">レーザープリンター A4</td>
+                  <td style="padding:8px 12px;text-align:right;font-weight:500;">1</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px 12px;">2026/03/01</td>
+                  <td style="padding:8px 12px;">2026/03/02</td>
+                  <td style="padding:8px 12px;">トナーカートリッジ（黒）</td>
+                  <td style="padding:8px 12px;text-align:right;font-weight:500;">5</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
