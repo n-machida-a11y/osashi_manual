@@ -372,7 +372,7 @@
       <div class="mockup-wrap" style="margin-top:16px;">
         <div class="browser-bar">
           <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-          <span class="burl">受注・出荷管理システム — データ取込</span>
+          <span class="burl">script.google.com/macros/s/AKfycb…/exec?page=import</span>
         </div>
         <div class="bg-white p-4">
           <div class="mx-auto" style="max-width:420px;">
@@ -420,7 +420,7 @@
       <div class="mockup-wrap" style="margin-top:16px;">
         <div class="browser-bar">
           <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-          <span class="burl">受注兼発送依頼書</span>
+          <span class="burl">script.google.com/macros/s/AKfycb…/exec?orderNo=250969</span>
         </div>
         <!-- タブ -->
         <div class="font-sans" style="background:#f3f4f6;">
@@ -471,8 +471,8 @@
               </div>
               <div style="display:grid;grid-template-columns:20px 1fr 1fr 1fr 1fr 0.8fr 1fr;gap:6px;font-size:0.75rem;align-items:center;">
                 <div style="background:#f3f4f6;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;border:1px solid #d1d5db;">1</div>
-                <input style="background:transparent;border-bottom:1px solid #d1d5db;outline:none;text-align:center;font-size:0.73rem;background:#fef2f2;border:2px solid #ef4444;" value="2026/03/05" readonly>
-                <input style="background:transparent;border-bottom:1px solid #d1d5db;outline:none;text-align:center;font-size:0.73rem;" value="2026/03/06" readonly>
+                <input style="background:transparent;border-bottom:1px solid #d1d5db;outline:none;text-align:center;font-size:0.73rem;background:#fef2f2;border:2px solid #ef4444;" value="2025/04/04" readonly>
+                <input style="background:transparent;border-bottom:1px solid #d1d5db;outline:none;text-align:center;font-size:0.73rem;" value="2025/04/05" readonly>
                 <input style="background:transparent;border-bottom:1px solid #d1d5db;outline:none;text-align:center;font-size:0.73rem;background:#fef2f2;border:2px solid #ef4444;" value="ヤマト(AM)" readonly>
                 <select style="background:transparent;border-bottom:1px solid #d1d5db;outline:none;font-size:0.73rem;width:100%;"><option>午前中</option></select>
                 <input style="background:transparent;border-bottom:1px solid #d1d5db;outline:none;text-align:center;font-size:0.73rem;" readonly>
@@ -591,10 +591,10 @@
       <div class="mockup-wrap" style="margin-top:16px;">
         <div class="browser-bar">
           <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-          <span class="burl">受注兼発送依頼書 — 操作パネル</span>
+          <span class="burl">script.google.com/macros/s/AKfycb…/exec?orderNo=250969</span>
         </div>
-        <div class="font-sans" style="background:#f3f4f6;padding:12px;overflow-x:auto;">
-          <div class="bg-white rounded-lg shadow-md border-l-4 border-blue-600 p-4 flex justify-between items-center" style="min-width:660px;">
+        <div class="font-sans" style="background:#f3f4f6;padding:12px;">
+          <div class="bg-white rounded-lg shadow-md border-l-4 border-blue-600 p-4" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;">
             <div class="flex items-center space-x-4">
               <div class="flex flex-col">
                 <span class="font-bold text-lg text-gray-800">【販売品】</span>
@@ -605,7 +605,7 @@
               </select>
               <span class="text-xs font-bold px-3 py-1 rounded text-white" style="background:#2563eb;">提出済み</span>
             </div>
-            <div class="flex items-center space-x-2">
+            <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
               <button class="px-4 py-2 rounded text-sm shadow text-white border-0" style="background:#9333ea;display:inline-flex;align-items:center;gap:6px;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>添付ファイル</button>
               <button class="px-4 py-2 rounded text-sm shadow text-white border-0" style="background:#16a34a;display:inline-flex;align-items:center;gap:6px;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h2"/><path d="M8 17h2"/><path d="M14 13h2"/><path d="M14 17h2"/></svg>Excel出力</button>
               <button class="px-4 py-2 rounded text-sm shadow border" style="background:#f3f4f6;color:#374151;border-color:#e5e7eb;display:inline-flex;align-items:center;gap:6px;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>画像保存</button>
@@ -662,7 +662,7 @@
     <div class="mockup-wrap">
       <div class="browser-bar">
         <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-        <span class="burl">受注兼発送依頼書 — 承認スタンプ欄</span>
+        <span class="burl">script.google.com/macros/s/AKfycb…/exec?orderNo=250969</span>
       </div>
       <div class="font-sans bg-white p-4 overflow-x-auto">
         <!-- 提出日 + 6スタンプ -->
@@ -670,7 +670,7 @@
           <!-- 提出日 -->
           <div style="width:70px;background:#fff;border-right:1px solid #000;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:4px;">
             <div style="width:100%;text-align:center;border-bottom:1px solid #000;font-size:0.62rem;background:#e5e7eb;padding:3px 0;font-weight:700;">提出日</div>
-            <div style="font-size:0.68rem;font-weight:700;color:#374151;padding:6px 0;text-align:center;">2026/<br>03/02</div>
+            <div style="font-size:0.68rem;font-weight:700;color:#374151;padding:6px 0;text-align:center;">2025/<br>04/01</div>
           </div>
           <!-- 作成（承認済み） -->
           <div style="width:56px;height:80px;background:#fff;border-right:1px solid #000;display:flex;flex-direction:column;align-items:center;justify-content:space-between;">
@@ -750,7 +750,7 @@
       <div class="mockup-wrap" style="margin-top:12px;">
         <div class="browser-bar">
           <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-          <span class="burl">出荷明細書作成</span>
+          <span class="burl">script.google.com/macros/s/AKfycb…/exec?page=shipping</span>
         </div>
         <div style="background:#f4f6f9;padding:20px;font-family:sans-serif;font-size:0.9rem;color:#333;">
           <div style="display:flex;border-bottom:2px solid #ddd;margin-bottom:15px;">
@@ -764,8 +764,8 @@
               <div><label style="font-weight:700;font-size:0.88em;color:#666;">得意先名</label><input style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;height:38px;" value="株式会社サンプル商事" readonly></div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
-              <div><label style="font-weight:700;font-size:0.88em;color:#666;">出荷日</label><input style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;height:38px;" value="2026/03/05" readonly></div>
-              <div><label style="font-weight:700;font-size:0.88em;color:#666;">到着日</label><input style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;height:38px;" value="2026/03/06" readonly></div>
+              <div><label style="font-weight:700;font-size:0.88em;color:#666;">出荷日</label><input style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;height:38px;" value="2025/04/04" readonly></div>
+              <div><label style="font-weight:700;font-size:0.88em;color:#666;">到着日</label><input style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;height:38px;" value="2025/04/05" readonly></div>
               <div><label style="font-weight:700;font-size:0.88em;color:#666;">到着時刻</label><select style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;height:38px;"><option>午前中</option></select></div>
             </div>
           </div>
@@ -860,7 +860,7 @@
     <div class="mockup-wrap">
       <div class="browser-bar">
         <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-        <span class="burl">出荷状況確認ダッシュボード</span>
+        <span class="burl">script.google.com/macros/s/AKfycb…/exec?page=dashboard</span>
       </div>
       <div class="font-sans" style="background:#f3f4f6;display:flex;height:480px;overflow:hidden;">
 
@@ -961,14 +961,14 @@
                   <th style="padding:8px 12px;text-align:right;font-weight:600;color:#374151;font-size:0.7rem;text-transform:uppercase;">出荷数</th>
                 </tr>
                 <tr style="border-bottom:1px solid #f3f4f6;">
-                  <td style="padding:8px 12px;">2026/03/01</td>
-                  <td style="padding:8px 12px;">2026/03/02</td>
+                  <td style="padding:8px 12px;">2025/04/01</td>
+                  <td style="padding:8px 12px;">2025/04/02</td>
                   <td style="padding:8px 12px;">レーザープリンター A4</td>
                   <td style="padding:8px 12px;text-align:right;font-weight:500;">1</td>
                 </tr>
                 <tr>
-                  <td style="padding:8px 12px;">2026/03/01</td>
-                  <td style="padding:8px 12px;">2026/03/02</td>
+                  <td style="padding:8px 12px;">2025/04/01</td>
+                  <td style="padding:8px 12px;">2025/04/02</td>
                   <td style="padding:8px 12px;">トナーカートリッジ（黒）</td>
                   <td style="padding:8px 12px;text-align:right;font-weight:500;">5</td>
                 </tr>
@@ -1009,7 +1009,7 @@
       <div class="mockup-wrap" style="margin-top:16px;">
         <div class="browser-bar">
           <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
-          <span class="burl">注文書作成</span>
+          <span class="burl">script.google.com/macros/s/AKfycb…/exec?page=ordersheet</span>
         </div>
         <div class="font-sans overflow-hidden">
           <div class="flex justify-between items-center p-4 sticky top-0 shadow-lg" style="background:#0f172a;">
