@@ -45,7 +45,6 @@ function checkAdmin() {
 /* ---- 画像アップロード（指定フォルダへ保存） ---- */
 function uploadImageToFolder(base64Data, mimeType, fileName, imgKey) {
   try {
-    checkAdmin();
     var folder = DriveApp.getFolderById(IMG_FOLDER_ID);
     var bytes  = Utilities.base64Decode(base64Data);
     var blob   = Utilities.newBlob(bytes, mimeType, fileName);
@@ -60,7 +59,6 @@ function uploadImageToFolder(base64Data, mimeType, fileName, imgKey) {
 /* ---- ファイルID直接入力で保存 ---- */
 function saveImageSettings(settings) {
   try {
-    checkAdmin();
     var props = PropertiesService.getScriptProperties();
     Object.keys(settings).forEach(function(key) {
       var val = settings[key];
@@ -76,7 +74,6 @@ function saveImageSettings(settings) {
 /* ---- 現在の設定を返す ---- */
 function getImageSettings() {
   try {
-    checkAdmin();
     var props  = PropertiesService.getScriptProperties();
     var result = {};
     IMG_KEYS.forEach(function(key) {
